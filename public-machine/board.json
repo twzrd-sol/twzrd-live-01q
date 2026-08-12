@@ -1,8 +1,8 @@
 {
   "schema": "twzrd.live_board/v1",
   "id": "twzrd-live-0-1q",
-  "version": "1.3.0",
-  "generated_at": "2026-08-12T02:24:05.979Z",
+  "version": "1.4.0",
+  "generated_at": "2026-08-12T02:30:08.862Z",
   "product": {
     "name": "TWZRD Live 0\u21921Q",
     "owner": "TWZRD",
@@ -12,8 +12,9 @@
   },
   "north_star": {
     "title": "Live 0\u21921 for Q1",
-    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs \u2014 proven by gate_evals and refuse transcripts, not by free MCP hits.",
-    "primary": "External gate_evals (Path B)",
+    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs \u2014 proven by attributable path_b_artifacts (matched BLOCK+ALLOW), not free MCP hits and not day0.gate_evals.",
+    "primary": "path_b_artifacts (external attributable)",
+    "primary_not": "day0.gate_evals (seller settle-rail only)",
     "secondary": "free_card_hits_external",
     "tertiary": "paid_trust_payer_external"
   },
@@ -53,22 +54,26 @@
     {
       "key": "external_cards",
       "label": "External free cards",
+      "metric": "free_card_hits_external",
       "hint": "Advisory demand only"
     },
     {
-      "key": "gate_evals",
-      "label": "Gate evals",
-      "hint": "Path B \u2014 primary"
+      "key": "seller_gate_evals",
+      "label": "Seller settle-rail evals",
+      "metric": "day0.gate_evals",
+      "hint": "NOT Path B buyer adoption"
     },
     {
-      "key": "gate_blocks",
-      "label": "Gate blocks",
-      "hint": "Refusals that saved spend"
+      "key": "path_b_artifacts",
+      "label": "Path B external artifacts",
+      "metric": "path_b_artifacts",
+      "hint": "PRIMARY \u2014 twzrd.path_b_artifact/v1"
     },
     {
       "key": "paid_external",
       "label": "Paid trust (external)",
-      "hint": "Portable V6 proof"
+      "metric": "paid_trust_payer_external",
+      "hint": "Secondary until Path B artifacts move"
     }
   ],
   "moves": [
@@ -672,7 +677,7 @@
   "path_b_runbook": {
     "schema": "twzrd.path_b_runbook/v1",
     "version": "1.0.1",
-    "generated_at": "2026-08-12T02:24:05.979Z",
+    "generated_at": "2026-08-12T02:24:06.124Z",
     "title": "Path B External Integration Runbook",
     "claim": "Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.",
     "why_first": "Distribution without an external refuse artifact is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists.",
@@ -1334,7 +1339,10 @@
     "title": "Cold-machine Path B refuse proof",
     "command": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
     "expected": "signer_invocation_count=0 payment_retry_count=0",
-    "notes": "No wallet. No USDC. Primary Q1 proof that the buyer gate can refuse before sign. Full external runbook: /path-b \u00b7 Attestation demo: /attest"
+    "notes": "No wallet. No USDC. Primary Q1 proof that the buyer gate can refuse before sign. Full external runbook: /path-b \u00b7 Attestation demo: /attest",
+    "external_artifact_count": 0,
+    "note": "Internal dogfood / self-serve refuse (closes_external_adoption_metric=false) does not close path_b_artifacts.",
+    "vicky_seat_kit": "public-machine/vicky-seat/"
   },
   "endpoints": {
     "human_ui": "https://twzrd-live-01q-host.vercel.app/",
@@ -1353,5 +1361,17 @@
     "intel_preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
     "sprat_source": "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
     "sprat_extract_note": "SPRAT GitHub is source extract / history only \u2014 not a second start-here"
+  },
+  "metric_dictionary": {
+    "gate_evals": {
+      "meaning": "seller_settle_rail_only",
+      "not": "Path B buyer adoption"
+    },
+    "path_b_artifacts": {
+      "meaning": "buyer_path_b_external_proof"
+    }
+  },
+  "success_criteria": {
+    "path_b_external_proof": "Requires \u22651 attributable external twzrd.path_b_artifact/v1 with matched BLOCK+ALLOW from an operator-controlled environment."
   }
 }

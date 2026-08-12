@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(204).end();
   try {
     const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@cfccf82c464b4f50b31c899b6dce416e881b9239/public-machine/attestation.json",
+      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/attestation.json",
       { cache: "no-store" },
     );
     res.setHeader("content-type", "application/json; charset=utf-8");

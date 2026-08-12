@@ -29,3 +29,6 @@ Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight (not this board).
 See [`public-machine/`](./public-machine/) and [`AGENTS-MACHINE.md`](./AGENTS-MACHINE.md).
 
 `grid-kernel` was throwaway — do not use.
+
+**Path B metric honesty:** `day0.gate_evals` = seller settle-rail only. Primary Path B = `path_b_artifacts`. Vicky kit: [`public-machine/vicky-seat/`](./public-machine/vicky-seat/).
+

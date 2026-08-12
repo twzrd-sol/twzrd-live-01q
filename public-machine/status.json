@@ -1,12 +1,13 @@
 {
   "schema": "twzrd.live_board_status/v1",
   "id": "twzrd-live-0-1q",
-  "version": "1.3.0",
-  "generated_at": "2026-08-12T02:24:06.143Z",
+  "version": "1.4.0",
+  "generated_at": "2026-08-12T02:30:08.862Z",
   "north_star": {
     "title": "Live 0\u21921 for Q1",
-    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs \u2014 proven by gate_evals and refuse transcripts, not by free MCP hits.",
-    "primary": "External gate_evals (Path B)",
+    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs \u2014 proven by attributable path_b_artifacts (matched BLOCK+ALLOW), not free MCP hits and not day0.gate_evals.",
+    "primary": "path_b_artifacts (external attributable)",
+    "primary_not": "day0.gate_evals (seller settle-rail only)",
     "secondary": "free_card_hits_external",
     "tertiary": "paid_trust_payer_external"
   },
@@ -231,5 +232,17 @@
     "intel_preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
     "sprat_source": "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
     "sprat_extract_note": "SPRAT GitHub is source extract / history only \u2014 not a second start-here"
+  },
+  "metric_dictionary": {
+    "gate_evals": {
+      "meaning": "seller_settle_rail_only",
+      "not": "Path B buyer adoption"
+    },
+    "path_b_artifacts": {
+      "meaning": "buyer_path_b_external_proof"
+    }
+  },
+  "success_criteria": {
+    "path_b_external_proof": "Requires \u22651 attributable external twzrd.path_b_artifact/v1 with matched BLOCK+ALLOW from an operator-controlled environment."
   }
 }

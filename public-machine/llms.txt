@@ -8,8 +8,8 @@
 > SPRAT GitHub = source extract / history only (not a second start-here).
 
 schema: twzrd.live_board/v1
-version: 1.3.0
-generated_at: 2026-08-12T02:24:06.311Z
+version: 1.4.0
+generated_at: 2026-08-12T02:30:08.959Z
 
 ## Routing (locked)
 
@@ -36,9 +36,10 @@ SPRAT GitHub                        — extract / history only
 
 ## North star
 
-An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by gate_evals and refuse transcripts, not by free MCP hits.
+An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by attributable path_b_artifacts (matched BLOCK+ALLOW), not by free MCP hits.
 
-- Primary: External gate_evals (Path B)
+- Primary: path_b_artifacts (external)
+- Primary NOT: day0.gate_evals (seller settle-rail only)
 - Secondary: free_card_hits_external
 - Tertiary: paid_trust_payer_external
 
@@ -85,6 +86,8 @@ schema: twzrd.path_b_runbook/v1 · v1.0.1
 **North star:** Success = one attributable external buyer refuse transcript (BLOCK with signer_invocation_count=0, payment_retry_count=0) under partner control — filed as twzrd.path_b_artifact/v1. Not free MCP hits. Not internal dogfood.
 
 Partner sequence (locked): **Vicky → Nick → Lucas**
+
+White-glove kit: `public-machine/vicky-seat/`
 
 Cold install:
 ```bash

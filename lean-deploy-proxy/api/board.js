@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     const done = parseDone(url.searchParams.get("done"));
 
     const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@cfccf82c464b4f50b31c899b6dce416e881b9239/public-machine/board.json",
+      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/board.json",
       { cache: "no-store" },
     );
     const board = await r.json();
@@ -87,21 +87,68 @@ export default async function handler(req, res) {
       if (h.ok) {
         const health = await h.json();
         const day0 = health.day0 || {};
+        const externalCards = day0.free_card_hits_external || 0;
+        const sellerGateEvals = day0.gate_evals || 0;
+        const sellerGateBlocks = day0.gate_blocks || 0;
+        const paidExternal = day0.paid_trust_payer_external || 0;
+        const pathBArtifacts =
+          typeof board.dogfood?.external_artifact_count === "number"
+            ? board.dogfood.external_artifact_count
+            : 0;
         const funnel = {
-          external_cards: day0.free_card_hits_external || 0,
-          gate_evals: day0.gate_evals || 0,
-          gate_blocks: day0.gate_blocks || 0,
-          paid_external: day0.paid_trust_payer_external || 0,
+          merchant_supply: {
+            note: "Seller settle-rail only — NOT buyer Path B adoption",
+            seller_gate_evals: sellerGateEvals,
+            seller_gate_blocks: sellerGateBlocks,
+            source: "intel day0.gate_*",
+          },
+          buyer_protection_path_b: {
+            note: "Primary Path B success = path_b_artifacts, not day0.gate_evals",
+            free_card_hits_external: externalCards,
+            attributable_artifacts: pathBArtifacts,
+            metric_closed: pathBArtifacts >= 1,
+            primary_success_metric: "path_b_artifacts",
+          },
+          external_cards: externalCards,
+          gate_evals: sellerGateEvals,
+          gate_evals_meaning: "seller_settle_rail_only",
+          gate_blocks: sellerGateBlocks,
+          paid_external: paidExternal,
+          path_b_artifacts: pathBArtifacts,
         };
         let diagnosis =
           (board.live && board.live.diagnosis) ||
           "Infra live; check funnel for demand.";
-        if (funnel.gate_evals === 0 && funnel.external_cards > 0) {
-          diagnosis =
-            "Advisory demand exists without enforcement. External free cards are happening; Path B still has no external refuse artifact (buyer gate). day0.gate_evals is settle-gate context — not Path B proof alone.";
-        } else if (funnel.gate_evals === 0 && funnel.external_cards === 0) {
-          diagnosis =
-            "Infra is live; demand is not. Zero external free cards and no external Path B artifact yet.";
+        if (pathBArtifacts >= 1) {
+          diagnosis = `Path B external proof present (path_b_artifacts=${pathBArtifacts}). Seller settle-rail gate_evals=${sellerGateEvals} is separate.`;
+        } else if (externalCards > 0) {
+          diagnosis = `Advisory demand without Path B external proof. free_card_hits_external=${externalCards}; path_b_artifacts=0. day0.gate_evals=${sellerGateEvals} is seller settle-rail only.`;
+        } else {
+          diagnosis = `Infra is live; demand is not. Zero path_b_artifacts — no external Path B seat. day0.gate_evals=${sellerGateEvals} is seller settle-rail only.`;
+        }
+        board.metric_dictionary = {
+          gate_evals: {
+            meaning: "seller_settle_rail_only",
+            definition: "Facilitator settle-guard evaluations (merchant wash/sybil at settle).",
+            not: "Buyer Path B refuse-before-sign. Refuse bin does not increment this.",
+          },
+          path_b_artifacts: {
+            meaning: "buyer_path_b_external_proof",
+            definition: "Attributable external twzrd.path_b_artifact/v1 (matched BLOCK+ALLOW).",
+          },
+        };
+        board.success_criteria = {
+          path_b_external_proof:
+            "Requires ≥1 attributable external twzrd.path_b_artifact/v1 with matched BLOCK (signer_invocation_count=0) and ALLOW from an operator-controlled environment.",
+        };
+        if (board.north_star) {
+          board.north_star = {
+            ...board.north_star,
+            primary: "path_b_artifacts (external attributable)",
+            primary_not: "day0.gate_evals (seller settle-rail only)",
+            statement:
+              "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by attributable path_b_artifacts, not free MCP hits and not day0.gate_evals.",
+          };
         }
         board.live = {
           ok: true,
@@ -117,6 +164,7 @@ export default async function handler(req, res) {
           day0,
           funnel,
           diagnosis,
+          metric_note: "See board.metric_dictionary. gate_evals ≠ Path B external seats.",
         };
         board.generated_at = new Date().toISOString();
       }

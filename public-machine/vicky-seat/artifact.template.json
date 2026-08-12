@@ -1,0 +1,48 @@
+{
+  "schema": "twzrd.path_b_artifact/v1",
+  "metadata": {
+    "partner_codename": "Vicky",
+    "integration": "vicky-agent-client",
+    "operator_type": "external_partner",
+    "machine_note": "REPLACE: partner-controlled machine (not TWZRD laptop alone)",
+    "gate_package_version": "0.8.14",
+    "captured_at": "REPLACE_ISO8601"
+  },
+  "arm_block": {
+    "run_id": "REPLACE_UUID",
+    "decision": "block",
+    "signer_invocation_count": 0,
+    "payment_retry_count": 0,
+    "tx_signature": null,
+    "client_outcome": "refused_before_sign",
+    "reason": "REPLACE from gate / preflight",
+    "target_url": "https://intel.twzrd.xyz/v1/intel/refuse-fixture"
+  },
+  "arm_allow": {
+    "run_id": "REPLACE_UUID",
+    "decision": "allow",
+    "signer_invocation_count": 1,
+    "tx_signature": "REPLACE_FULL_MAINNET_SIGNATURE_OR_null_if_not_run",
+    "http_status": 200,
+    "target_url": "https://x402-solana-starter.fp4b5ksccw.workers.dev/report",
+    "note": "Real settlement only — never invent a signature"
+  },
+  "health_snapshot": {
+    "before": {
+      "path_b_artifacts": 0,
+      "free_card_hits_external": null,
+      "seller_gate_evals_optional": null,
+      "note": "day0.gate_evals is seller settle-rail only — optional, not success criterion"
+    },
+    "after": {
+      "path_b_artifacts": 1,
+      "note": "Buyer refuse does not require day0.gate_evals to increment"
+    }
+  },
+  "verification": {
+    "valid_matched_pair": false,
+    "external_attribution_confirmed": false,
+    "closes_external_adoption_metric": false
+  },
+  "friction": []
+}

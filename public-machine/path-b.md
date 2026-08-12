@@ -117,3 +117,8 @@ Expected:
 - 3. Run with Vicky, then Nick, then Lucas.
 - 4. Capture one attributable external artifact (twzrd.path_b_artifact/v1).
 - 5. Launch founder post with external proof — not enrollment theater.
+
+## Vicky white-glove kit
+
+Session pack: `public-machine/vicky-seat/` (cold verify, matched-pair, artifact template, friction log).
+
