@@ -181,3 +181,8 @@ Founder recap / announcement only after at least one external artifact exists. E
   "friction": []
 }
 ```
+
+
+## Vicky white-glove kit
+
+Session pack: [`public-machine/vicky-seat/`](./vicky-seat/) — cold verify, matched-pair snippet, artifact template, friction log.

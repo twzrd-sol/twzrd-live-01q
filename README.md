@@ -33,3 +33,5 @@ SPRAT (sprat-brief) → strategy extract / history only
 `day0.gate_evals` is **settle-rail telemetry only** — not buyer AutoGate adoption. Self-serve dogfood does not close external metrics.
 
 Internal dogfood transcripts live under `public-machine/dogfood/` and do **not** close external adoption metrics.
+
+**Vicky seat kit:** [`public-machine/vicky-seat/`](./public-machine/vicky-seat/) — first external Path B white-glove pack.
