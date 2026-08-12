@@ -1,22 +1,25 @@
 {
   "schema": "twzrd.live_board_status/v1",
   "id": "twzrd-live-0-1q",
-  "version": "1.3.0",
-  "generated_at": "2026-08-12T02:21:33.086Z",
+  "version": "1.5.0",
+  "generated_at": "2026-08-12T04:13:29.000Z",
   "north_star": {
-    "title": "Live 0→1 for Q1",
-    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by attributable Path B artifacts (refuse-before-sign transcripts on non-TWZRD hosts), not by free MCP hits or day0.gate_evals.",
-    "primary": "External Path B artifacts (attributable refuse/allow transcripts)",
+    "title": "Live 0\u21921 for Q1",
+    "statement": "One external operator runs automatic preflight on real payments; each decision is joined to settlement or refuse-before-sign proof plus a minimal outcome; the next decision is better because the previous transaction happened. Primary counter remains path_b_artifacts_external \u2265 1 \u2014 not free cards, not day0.gate_evals, not directory size.",
+    "primary": "External Path B artifacts (attributable refuse/allow on non-TWZRD hosts)",
     "primary_metric_key": "path_b_artifacts_external",
     "secondary": "free_card_hits_external (advisory demand only)",
-    "tertiary": "paid_trust_payer_external (portable V6 after seats exist)",
+    "tertiary": "closed_loop_outcome_joins (decision_id \u2192 settlement|block \u2192 outcome \u2192 better next decision)",
     "not_primary": {
-      "day0_gate_evals": "Facilitator settle-gate telemetry only — NOT buyer Path B. Do not chase as external adoption.",
-      "day0_gate_blocks": "Settle-rail refusals — NOT buyer AutoGate signer_invocation_count=0.",
+      "day0_gate_evals": "Facilitator settle-gate telemetry only \u2014 NOT buyer Path B.",
+      "day0_gate_blocks": "Settle-rail refusals \u2014 NOT buyer AutoGate signer_invocation_count=0.",
       "free_preflight": "Advisory only until beforePayment hook is installed.",
-      "self_serve_dogfood": "public-machine/dogfood/* has closes_external_adoption_metric:false"
+      "self_serve_dogfood": "public-machine/dogfood/* has closes_external_adoption_metric:false",
+      "directory_fill": "Agent profiles are evidence inventory until the payment-path loop exists.",
+      "leaderboard_browse": "Leaderboards/reputation rails are secondary UI \u2014 not the product CTA.",
+      "public_mention_outreach": "A public @mention or DM is delivery only \u2014 not a Path B artifact or closed loop."
     },
-    "success_definition": "≥1 twzrd.path_b_artifact/v1 from an operator we do not control, with BLOCK + signer_invocation_count=0 (matched ALLOW when claimed)."
+    "success_definition": "\u22651 external twzrd.path_b_artifact/v1 from an operator we do not control (BLOCK with signer_invocation_count=0; matched ALLOW when claimed), then close the outcome join so a second decision can cite evidence from the first loop."
   },
   "live": {
     "ok": true,
@@ -45,7 +48,7 @@
       "portable_proof_upsell_shown_internal": 0,
       "portable_proof_upsell_shown_external": 0,
       "portable_proof_upsell_shown_unattributed": 0,
-      "portable_proof_upsell_note": "merchant_card path only, interim in-memory counter (per-worker, non-durable, resets on restart) — the preflight path's impressions are durable, see preflight_requests.portable_proof_upsell_trigger instead",
+      "portable_proof_upsell_note": "merchant_card path only, interim in-memory counter (per-worker, non-durable, resets on restart) \u2014 the preflight path's impressions are durable, see preflight_requests.portable_proof_upsell_trigger instead",
       "paid_merchant_mints": 0,
       "receipt_verifies": 0,
       "receipt_verify_valid": 0,
@@ -59,7 +62,7 @@
       "paid_trust_payer_internal": 0,
       "paid_trust_payer_external": 0,
       "paid_trust_payer_unknown": 0,
-      "paid_trust_payer_note": "external = EXTERNAL_VERIFIED_WALLETS only (completed lineage audit); internal = INTERNAL_WALLETS / dogfood; unknown = unknown_pending_audit (default for anything new — never counted as external). Use paid_trust_payer_external for organic conversion, not raw paid_trust_total.",
+      "paid_trust_payer_note": "external = EXTERNAL_VERIFIED_WALLETS only (completed lineage audit); internal = INTERNAL_WALLETS / dogfood; unknown = unknown_pending_audit (default for anything new \u2014 never counted as external). Use paid_trust_payer_external for organic conversion, not raw paid_trust_total.",
       "path_placeholder_hits": 21,
       "template_alias_served": 21,
       "path_invalid_pubkey_hits": 0,
@@ -136,7 +139,7 @@
       "gate_blocks": "empty",
       "paid_external": "empty"
     },
-    "diagnosis": "Infra is live; demand is not. Zero external free cards and zero gate_evals — Path B has no external seat yet."
+    "diagnosis": "Infra is live; demand is not. Zero external free cards and zero gate_evals \u2014 Path B has no external seat yet."
   },
   "cf_strategy": {
     "schema": "twzrd.cf_strategy/v1",
@@ -145,7 +148,7 @@
     "live_source": true,
     "pick": "brief+hold",
     "thesis": "Own the rails that put every Cloudflare Agent on Solana.",
-    "decision_summary": "Hold engineering on Agents MCP SVM. Flood live x402-hono Solana path. MCP-SVM is watch + optional read-only spike only — not build-now.",
+    "decision_summary": "Hold engineering on Agents MCP SVM. Flood live x402-hono Solana path. MCP-SVM is watch + optional read-only spike only \u2014 not build-now.",
     "ship_now": [
       "workers-hono",
       "preflight",
@@ -169,7 +172,7 @@
         "status": "watch"
       }
     },
-    "not_this_board": "Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight — never this board"
+    "not_this_board": "Pay decisions \u2192 https://intel.twzrd.xyz/v1/intel/preflight \u2014 never this board"
   },
   "next_actions": [
     {
@@ -217,7 +220,7 @@
     "title": "Cold-machine Path B refuse proof",
     "command": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
     "expected": "signer_invocation_count=0 payment_retry_count=0",
-    "notes": "No wallet. No USDC. Primary Q1 proof that the buyer gate can refuse before sign. Full external runbook: /path-b · Attestation demo: /attest"
+    "notes": "No wallet. No USDC. Primary Q1 proof that the buyer gate can refuse before sign. Full external runbook: /path-b \u00b7 Attestation demo: /attest"
   },
   "endpoints": {
     "human_ui": "http://127.0.0.1:8080/",
@@ -235,6 +238,9 @@
     "intel_llms": "https://intel.twzrd.xyz/llms.txt",
     "intel_preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
     "sprat_source": "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
-    "sprat_extract_note": "SPRAT GitHub is source extract / history only — not a second start-here"
-  }
+    "sprat_extract_note": "SPRAT GitHub is source extract / history only \u2014 not a second start-here"
+  },
+  "cascade_summary": "operator auto-preflight \u2192 decision_id \u2192 settlement|block \u2192 outcome \u2192 better next",
+  "primary_metric_key": "path_b_artifacts_external",
+  "decision_spine_status": "partial \u2014 soft join exists; cryptographic bind + outcome contract missing (product PR B)"
 }

@@ -1,12 +1,12 @@
 {
   "schema": "twzrd.path_b_runbook/v1",
-  "version": "1.1.0",
-  "generated_at": "2026-08-12T02:30:58.712Z",
+  "version": "1.2.0",
+  "generated_at": "2026-08-12T04:13:29.000Z",
   "title": "Path B External Integration Runbook",
-  "claim": "Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.",
-  "why_first": "Distribution without external Path B artifacts is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists. day0.gate_evals is settle-rail only \u2014 do not treat a flat gate_evals counter as failed Path B installs.",
+  "claim": "Externally controlled payment-path trust: operator auto-calls TWZRD before pay; decision can BLOCK before sign or ALLOW with joinable settlement; minimal outcome closes the loop so the next decision improves.",
+  "why_first": "Directory browse never starts the cascade. First domino = one operator/facilitator integration. path_b_artifacts_external is primary seat proof. Soft preflight\u2192settlement join exists; cryptographic decision_id bind + outcome attestation are product spine (PR B). day0.gate_evals is settle-rail only. Public @mentions are outreach delivery, not artifacts.",
   "not_this_runbook": "Pay decisions \u2192 https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight \u2260 product.",
-  "north_star": "Success = \u22651 external twzrd.path_b_artifact/v1 (non-TWZRD host) with signer_invocation_count=0 on BLOCK; matched ALLOW when claimed. Not day0.gate_evals.",
+  "north_star": "Success = \u22651 external twzrd.path_b_artifact/v1, then closed decision\u2192settlement|block\u2192outcome join so decision\u2082 cites evidence from loop\u2081. Not day0.gate_evals. Not directory size.",
   "install": {
     "package": "twzrd-x402-gate",
     "package_version": "0.8.14",
@@ -121,7 +121,7 @@
       "title": "Lock next seat + founder-post gate",
       "duration": "5 min",
       "operator": "You",
-      "detail": "Sequence is locked: Seat 1 → Seat 2 → Seat 3. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
+      "detail": "Sequence is locked: Seat 1 \u2192 Seat 2 \u2192 Seat 3. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
       "expected": [
         "Next partner on the locked sequence scheduled",
         "Artifact file path / gist / transcript linked on board notes"
@@ -186,7 +186,9 @@
       "why_this_order": "Locked sequence. First attributable refuse must come from a real external control plane, not a list blast.",
       "session_goal": "Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.",
       "success": "Artifact filed; artifact schema + registry path understood; white-glove notes for install friction.",
-      "do_not": "Do not skip to Seat 2 until Seat 1 session is complete or explicitly rescheduled."
+      "do_not": "Do not skip to Seat 2 until Seat 1 session is complete or explicitly rescheduled.",
+      "note": "Procedural seat label only \u2014 not a booked person until a real operator accepts.",
+      "status": "open"
     },
     {
       "order": 2,
@@ -195,7 +197,9 @@
       "why_this_order": "Second seat validates the runbook is repeatable after Seat 1 fixes.",
       "session_goal": "Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.",
       "success": "Second artifact; runbook edits if friction differs from Seat 1.",
-      "do_not": "Do not open multi-target outbound in parallel."
+      "do_not": "Do not open multi-target outbound in parallel.",
+      "note": "Procedural seat label only \u2014 not a booked person until a real operator accepts.",
+      "status": "open"
     },
     {
       "order": 3,
@@ -204,7 +208,9 @@
       "why_this_order": "Third seat is the credibility threshold for a founder post with external proof, not enrollment theater.",
       "session_goal": "Install path stable enough to reference publicly; optional embed docs next.",
       "success": "\u22651 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.",
-      "do_not": "Do not launch distribution package until this seat (or clear Seat 1+Seat 2 artifacts) unlocks the claim."
+      "do_not": "Do not launch distribution package until this seat (or clear Seat 1+Seat 2 artifacts) unlocks the claim.",
+      "note": "Procedural seat label only \u2014 not a booked person until a real operator accepts.",
+      "status": "open"
     }
   ],
   "artifact": {
@@ -328,10 +334,14 @@
   },
   "metric_doctrine": {
     "primary": "path_b_artifacts_external",
-    "registry": "public-machine/path-b-artifacts.json",
-    "day0_gate_evals": "settle-gate telemetry only \u2014 NOT buyer AutoGate Path B",
-    "free_preflight": "advisory only",
-    "self_serve": "closes_external_adoption_metric:false"
+    "secondary": "free_card_hits_external (advisory)",
+    "tertiary": "closed_loop_outcome_joins",
+    "not_primary": [
+      "day0.gate_evals / gate_blocks \u2014 settle-rail only",
+      "self-serve dogfood \u2014 closes_external_adoption_metric: false",
+      "public outreach posts \u2014 delivery only",
+      "agent directory growth \u2014 inventory until loop exists"
+    ]
   },
   "first_seat_kit": {
     "path": "public-machine/first-seat-kit/",
@@ -344,5 +354,59 @@
       "friction-log.template.md",
       "README.md"
     ]
+  },
+  "cascade": {
+    "schema": "twzrd.cascade/v1",
+    "broken_theory": "Add agent profiles \u2192 improve Intel \u2192 agents browse directory \u2192 agents buy trust checks. Agents do not naturally browse before every payment.",
+    "actual_loop": [
+      "Agent intends to pay",
+      "Operator/facilitator automatically calls /trust or preflight (shadow OK)",
+      "TWZRD emits a signed decision (decision_id)",
+      "Payment is allowed or blocked before sign",
+      "Settlement receipt OR blocked-before-sign proof",
+      "Authenticated minimal outcome (delivered / not / unknown)",
+      "Counterparty score and policy improve",
+      "Next decision is better because the previous transaction happened"
+    ],
+    "first_domino": "One operator/facilitator integration that auto-runs preflight on real payments \u2014 not one agent browsing Intel.",
+    "hidden_domino": "Outcome join: who was evaluated, what TWZRD predicted, did payment occur, was service delivered, was it worth buying. Signed decision_id is the join key.",
+    "intel_role": "intel.twzrd.xyz is not where the loop begins. It is the window into the memory created by the loop.",
+    "until_loop_exists": "Adding agents is inventory. Once the loop exists, every transaction compounds TWZRD."
+  },
+  "decision_spine": {
+    "schema": "twzrd.decision_spine/v1",
+    "status": "partial \u2014 soft join exists; cryptographic bind + outcome contract missing (product PR B)",
+    "chain": [
+      "signed decision_id (preflight_id today; must become cryptographically bound)",
+      "gate artifact",
+      "payment intent",
+      "settlement receipt | blocked-before-sign proof",
+      "authenticated outcome",
+      "score/policy evidence"
+    ],
+    "present": {
+      "preflight_id": "Server decision id on free preflight",
+      "preflight_request_id_on_settlement": "Store can soft-associate within ~30m",
+      "path_b_artifact": "External refuse/allow transcript schema"
+    },
+    "missing": {
+      "crypto_bind": "decision_id not committed into x402 challenge / payment intent",
+      "outcome_attestation": "No first-class authenticated outcome contract yet",
+      "compounding_proof": "Decision\u2082 citing evidence from closed loop\u2081 not yet demoed"
+    },
+    "allow_closes_through": "settlement + authenticated outcome",
+    "block_closes_through": "proof signing never occurred (signer_invocation_count=0)"
+  },
+  "outcome_join": {
+    "required_fields": [
+      "decision_id",
+      "counterparty",
+      "prediction (allow|warn|block)",
+      "payment_occurred (bool|null)",
+      "service_outcome (delivered|not_delivered|unknown)",
+      "worth_buying (bool|null|unknown)"
+    ],
+    "join_key": "signed decision_id (today: preflight_id \u2014 not yet crypto-bound into challenge)",
+    "status": "schema declared; crypto bind + attestation = product PR B"
   }
 }

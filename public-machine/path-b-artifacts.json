@@ -1,16 +1,24 @@
 {
   "schema": "twzrd.path_b_artifact_registry/v1",
   "version": "1.0.0",
-  "generated_at": "2026-08-12T02:21:33.086Z",
+  "generated_at": "2026-08-12T04:13:29.000Z",
   "note": "Path B PRIMARY success = count of external attributable artifacts below. Self-serve / TWZRD dogfood does NOT close external adoption.",
   "doctrine": {
     "primary": "external_path_b_artifacts",
     "primary_definition": "twzrd.path_b_artifact/v1 filed from a non-TWZRD-operated host with signer_invocation_count=0 on BLOCK (and matched ALLOW when claimed).",
     "not_primary": [
-      "day0.gate_evals — facilitator settle-gate telemetry (shadow/enforcing), not buyer AutoGate",
-      "day0.gate_blocks — settle-rail only",
-      "free_card_hits / free_card_hits_external — advisory preflight only",
-      "self_serve dogfood under public-machine/dogfood/ — closes_external_adoption_metric:false"
+      "day0.gate_evals \u2014 facilitator settle-gate telemetry (shadow/enforcing), not buyer AutoGate",
+      "day0.gate_blocks \u2014 settle-rail only",
+      "free_card_hits / free_card_hits_external \u2014 advisory preflight only",
+      "self_serve dogfood under public-machine/dogfood/ \u2014 closes_external_adoption_metric:false"
+    ],
+    "cascade": "Seat artifact is first proof; closed outcome join compounds intelligence (product PR B).",
+    "not_success": [
+      "outreach posts",
+      "free_card_hits",
+      "day0.gate_evals",
+      "directory growth",
+      "self-serve dogfood"
     ]
   },
   "artifacts": [],
@@ -19,6 +27,6 @@
     "external_block": 0,
     "external_allow": 0,
     "dogfood_self_serve": 1,
-    "dogfood_note": "See public-machine/dogfood/* — not counted in external_artifacts"
+    "dogfood_note": "See public-machine/dogfood/* \u2014 not counted in external_artifacts"
   }
 }
