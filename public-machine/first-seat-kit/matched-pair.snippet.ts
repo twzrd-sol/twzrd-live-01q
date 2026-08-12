@@ -1,5 +1,5 @@
 /**
- * Vicky seat — matched BLOCK + ALLOW sketch for PayAI x402-solana + twzrd-x402-gate.
+ * First external seat — matched BLOCK + ALLOW sketch for PayAI x402-solana + twzrd-x402-gate.
  *
  * Public APIs (verified against twzrd-x402-gate@0.8.14):
  *   createTwzrdBeforePaymentHook from "twzrd-x402-gate"
@@ -13,7 +13,7 @@ import { createX402Client } from "x402-solana";
 import { createTwzrdBeforePaymentHook } from "twzrd-x402-gate";
 // import operator wallet type from your stack (e.g. @solana/web3.js Keypair / wallet adapter)
 
-const integration = "vicky-agent-client";
+const integration = "first-external-seat-agent-client"; // replace with the operator's real integration label
 const BLOCK_URL =
   process.env.PATH_B_BLOCK_URL ?? "https://intel.twzrd.xyz/v1/intel/refuse-fixture";
 const ALLOW_URL =

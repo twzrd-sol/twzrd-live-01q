@@ -1,8 +1,8 @@
 {
   "schema": "twzrd.path_b_artifact/v1",
   "metadata": {
-    "partner_codename": "Vicky",
-    "integration": "vicky-agent-client",
+    "partner_codename": "REPLACE_WITH_REAL_OPERATOR_OR_ORG",
+    "integration": "REPLACE_WITH_REAL_INTEGRATION_LABEL",
     "operator_type": "external_partner",
     "machine_note": "REPLACE: partner-controlled machine (not TWZRD laptop alone)",
     "gate_package_version": "0.8.14",

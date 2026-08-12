@@ -24,7 +24,7 @@ generated_at: 2026-08-11T23:00:47.902Z
 
 - 1. Produce this runbook (screen-share ready)
 - 2. Define BLOCK/ALLOW evidence-capture checklist
-- 3. Run with Vicky, then Nick, then Lucas
+- 3. Run with Seat 1, then Seat 2, then Seat 3
 - 4. Capture one attributable external artifact
 - 5. Launch founder post with external proof — not enrollment theater
 
@@ -126,7 +126,7 @@ Expected:
 ### 6. Lock next seat + founder-post gate (5 min)
 Operator: You
 
-Sequence is locked: Vicky → Nick → Lucas. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.
+Sequence is locked: Seat 1 → Seat 2 → Seat 3. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.
 
 Expected:
 - Next partner on the locked sequence scheduled
@@ -145,9 +145,9 @@ Expected:
 
 ## Partner sequence (locked)
 
-1. **Vicky** — First external seat — design partner operator. Goal: Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.. Success: Artifact filed; artifact schema + registry path understood; white-glove notes for install friction.
-2. **Nick** — Second external seat — buyer pipeline integration. Goal: Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.. Success: Second artifact; runbook edits if friction differs from Vicky.
-3. **Lucas** — Third external seat — framework / embed adjacency. Goal: Install path stable enough to reference publicly; optional embed docs next.. Success: ≥1 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.
+1. **Seat 1** — First external seat — design partner operator. Goal: Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.. Success: Artifact filed; artifact schema + registry path understood; white-glove notes for install friction.
+2. **Seat 2** — Second external seat — buyer pipeline integration. Goal: Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.. Success: Second artifact; runbook edits if friction differs from Seat 1.
+3. **Seat 3** — Third external seat — framework / embed adjacency. Goal: Install path stable enough to reference publicly; optional embed docs next.. Success: ≥1 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.
 
 ## Artifact
 
@@ -156,7 +156,7 @@ Founder recap / announcement only after at least one external artifact exists. E
 ```json
 {
   "schema": "twzrd.path_b_artifact/v1",
-  "partner_codename": "Vicky",
+  "partner_codename": "Seat 1",
   "date_iso": "2026-08-12",
   "machine_note": "partner macbook — external",
   "gate_package_version": "0.8.14",
@@ -183,6 +183,6 @@ Founder recap / announcement only after at least one external artifact exists. E
 ```
 
 
-## Vicky white-glove kit
+## First external seat — white-glove kit
 
-Session pack: [`public-machine/vicky-seat/`](./vicky-seat/) — cold verify, matched-pair snippet, artifact template, friction log.
+Session pack: [`public-machine/first-seat-kit/`](./first-seat-kit/) — cold verify, matched-pair snippet, artifact template, friction log.
