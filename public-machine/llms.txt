@@ -8,8 +8,8 @@
 > SPRAT GitHub = source extract / history only (not a second start-here).
 
 schema: twzrd.live_board/v1
-version: 1.3.0
-generated_at: 2026-08-12T00:27:55.753Z
+version: 1.4.0
+generated_at: 2026-08-12T03:54:35.000Z
 
 ## Routing (locked)
 
