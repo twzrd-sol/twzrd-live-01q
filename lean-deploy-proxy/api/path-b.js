@@ -9,14 +9,14 @@ export default async function handler(req, res) {
     const format = (url.searchParams.get("format") || "json").toLowerCase();
     if (format === "md" || format === "markdown" || format === "txt") {
       const r = await fetch(
-        "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@2d7ca2bbb71c4ed158e71f988bc003b54e5f1c41/public-machine/path-b.md",
+        "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@8b4bc078054dde928c119c0562dc298e10d78eae/public-machine/path-b.md",
         { cache: "no-store" },
       );
       res.setHeader("content-type", "text/markdown; charset=utf-8");
       return res.status(r.status).send(await r.text());
     }
     const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@2d7ca2bbb71c4ed158e71f988bc003b54e5f1c41/public-machine/path-b.json",
+      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@8b4bc078054dde928c119c0562dc298e10d78eae/public-machine/path-b.json",
       { cache: "no-store" },
     );
     res.setHeader("content-type", "application/json; charset=utf-8");
