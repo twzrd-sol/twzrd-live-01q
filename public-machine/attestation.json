@@ -1,7 +1,7 @@
 {
   "schema": "twzrd.agent_attestation/v1",
   "version": "1.0.0",
-  "generated_at": "2026-08-12T00:27:55.572Z",
+  "generated_at": "2026-08-12T02:24:06.133Z",
   "title": "Agent attestation console",
   "thesis": "TWZRD is the external verification edge on the agent graph: who this agent acts for, what it may spend on, how fresh the evidence is, and whether spend should ALLOW / WARN / BLOCK — before the wallet signs.",
   "disclaimer": "Sample cards are fictional and labeled. They illustrate decision shape, not real third-party verification. TWZRD does not claim legal identity attestation; it scores observed settlement / counterparty risk for agent payments.",
