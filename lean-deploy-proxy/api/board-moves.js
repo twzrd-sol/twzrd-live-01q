@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       impact: url.searchParams.get("impact") || undefined,
     };
     const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@cfccf82c464b4f50b31c899b6dce416e881b9239/public-machine/moves.json",
+      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@f04821923c4da2934562f4b36c2dcda0fe88adca/public-machine/moves.json",
       { cache: "no-store" },
     );
     const body = await r.json();

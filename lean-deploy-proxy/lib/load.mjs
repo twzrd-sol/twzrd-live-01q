@@ -1,4 +1,4 @@
-const RAW_BASE = "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine";
+const RAW_BASE = "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@f04821923c4da2934562f4b36c2dcda0fe88adca/public-machine";
 const SPRAT_URLS = [
   "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
   "https://raw.githubusercontent.com/twzrd-sol/sprat-brief/main/sprat.json",
