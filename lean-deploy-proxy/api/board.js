@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     const done = parseDone(url.searchParams.get("done"));
 
     const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/board.json",
+      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@cfccf82c464b4f50b31c899b6dce416e881b9239/public-machine/board.json",
       { cache: "no-store" },
     );
     const board = await r.json();
