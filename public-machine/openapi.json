@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "TWZRD Live 0\u21921Q",
-    "version": "1.2.0",
-    "description": "Machine-readable operator board for intel.twzrd.xyz 0\u21921Q. Includes Path B external runbook (refuse-before-sign), live day0 funnel, and folded CF strategy (SPRAT). Prefer JSON over HTML. Pay decisions \u2192 intel preflight, not this API.",
+    "version": "1.3.0",
+    "description": "Machine-readable operator board for intel.twzrd.xyz 0\u21921Q. Board 1.3.0: Path B runbook (metric semantics clarified), agent attestation, live day0 funnel, CF strategy (SPRAT fold). Prefer JSON over HTML. Pay decisions \u2192 intel preflight, not this API. Source: github.com/twzrd-sol/twzrd-live-01q",
     "contact": {
       "name": "TWZRD",
       "url": "https://twzrd.xyz"
@@ -11,44 +11,48 @@
   },
   "servers": [
     {
-      "url": "https://twzrd-live-01q-host.vercel.app"
+      "url": "https://twzrd-live-01q-host.vercel.app",
+      "description": "Public multi-agent host (twzrd-sol)"
     }
   ],
   "paths": {
     "/llms.txt": {
       "get": {
-        "summary": "Agent entry guide (markdown)",
+        "summary": "Agent start guide (markdown)",
         "operationId": "getLlmsTxt",
         "responses": {
           "200": {
-            "description": "Markdown guide",
-            "content": {
-              "text/markdown": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": "Markdown guide"
           }
         }
       }
     },
     "/path-b": {
       "get": {
-        "summary": "Human Path B external integration runbook (UI)",
-        "operationId": "getPathBUi",
+        "summary": "Human Path B runbook UI (when full app deployed)",
+        "operationId": "getPathBHuman",
         "responses": {
           "200": {
-            "description": "HTML screen-share runbook"
+            "description": "HTML"
+          }
+        }
+      }
+    },
+    "/attest": {
+      "get": {
+        "summary": "Human agent attestation demo UI (when full app deployed)",
+        "operationId": "getAttestHuman",
+        "responses": {
+          "200": {
+            "description": "HTML"
           }
         }
       }
     },
     "/api/path-b": {
       "get": {
-        "summary": "Path B external integration runbook (JSON)",
-        "description": "Install steps, BLOCK/ALLOW evidence checklist, Vicky\u2192Nick\u2192Lucas sequence, artifact template. format=md for markdown.",
-        "operationId": "getPathBRunbook",
+        "summary": "Path B external integration runbook JSON",
+        "operationId": "getPathB",
         "parameters": [
           {
             "name": "format",
@@ -61,21 +65,35 @@
                 "markdown",
                 "txt"
               ]
-            }
+            },
+            "description": "md/markdown/txt returns markdown; default json"
           }
         ],
         "responses": {
           "200": {
-            "description": "path_b_runbook/v1",
+            "description": "twzrd.path_b_runbook/v1 \u2014 includes metric_semantics (buyer refuse \u2260 day0.gate_evals)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object"
                 }
-              },
-              "text/markdown": {
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attestation": {
+      "get": {
+        "summary": "Agent attestation demo pack (Schultz-shaped who/scope/fresh/decision)",
+        "operationId": "getAttestation",
+        "responses": {
+          "200": {
+            "description": "twzrd.agent_attestation/v1 \u2014 sample cards are fictional:true",
+            "content": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "type": "object"
                 }
               }
             }
@@ -85,8 +103,7 @@
     },
     "/api/board": {
       "get": {
-        "summary": "Full board snapshot: live funnel + playbook + cf_strategy + path_b_runbook",
-        "description": "Board includes `path_b_runbook` and `cf_strategy`. Do not use for pay decisions.",
+        "summary": "Full live board snapshot",
         "operationId": "getBoard",
         "parameters": [
           {
@@ -133,12 +150,12 @@
             "schema": {
               "type": "string"
             },
-            "description": "Comma-separated completed move ids"
+            "description": "Comma-separated move ids treated as done (affects next_actions when server supports it)"
           }
         ],
         "responses": {
           "200": {
-            "description": "twzrd.live_board/v1",
+            "description": "twzrd.live_board/v1 \u2014 includes live, path_b_runbook, attestation, cf_strategy, moves (filtered when query params set)",
             "content": {
               "application/json": {
                 "schema": {
@@ -152,18 +169,11 @@
     },
     "/api/board/status": {
       "get": {
-        "summary": "Compact live status + cf_strategy summary",
+        "summary": "Compact status",
         "operationId": "getBoardStatus",
         "responses": {
           "200": {
-            "description": "status",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": "twzrd.live_board_status/v1"
           }
         }
       }
@@ -172,16 +182,32 @@
       "get": {
         "summary": "Playbook moves",
         "operationId": "getBoardMoves",
+        "parameters": [
+          {
+            "name": "phase",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "horizon",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "impact",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "moves",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": "Moves list (filtered when query params set)"
           }
         }
       }
@@ -192,14 +218,7 @@
         "operationId": "getIntelHealth",
         "responses": {
           "200": {
-            "description": "intel health",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": "Upstream health + day0"
           }
         }
       }
@@ -210,14 +229,7 @@
         "operationId": "getOpenApi",
         "responses": {
           "200": {
-            "description": "OpenAPI 3.1",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
+            "description": "OpenAPI 3.1"
           }
         }
       }

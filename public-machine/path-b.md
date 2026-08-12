@@ -1,174 +1,119 @@
 # Path B External Integration Runbook
 
-schema: twzrd.path_b_runbook/v1 · version 1.0.0
-generated_at: 2026-08-11T23:00:47.902Z
+schema: `twzrd.path_b_runbook/v1` · v1.0.1
 
 **Claim:** Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.
 
-**Why first:** Distribution without external gate_evals is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists.
+**North star:** Success = one attributable external buyer refuse transcript (BLOCK with signer_invocation_count=0, payment_retry_count=0) under partner control — filed as twzrd.path_b_artifact/v1. Not free MCP hits. Not internal dogfood.
 
-**North star:** Success = external gate_evals with signer_invocation_count=0 on refuse (and attributable lineage on the Live Board).
+## Metric semantics (do not conflate)
 
-**Not this runbook:** Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight ≠ product.
+External Path B artifact: partner-controlled buyer gate run that produces a refuse transcript (signer never called on BLOCK). Schema twzrd.path_b_artifact/v1.
 
-## Order of ops
+intel day0.gate_evals counts facilitator settle-gate activity, not buyer AutoGate refuse transcripts. Path B proof is the external artifact + lineage, full stop.
 
-- 1. Produce this runbook (screen-share ready)
-- 2. Define BLOCK/ALLOW evidence-capture checklist
-- 3. Run with Vicky, then Nick, then Lucas
-- 4. Capture one attributable external artifact
-- 5. Launch founder post with external proof — not enrollment theater
+| Not primary | Means | Use for |
+|---|---|---|
+| `day0.gate_evals / gate_blocks / gate_allows` | Facilitator settle-gate evaluations on intel (seller/settlement path). Often shadow; orthogonal to buyer beforePayment refuse. | Ops context only. Do NOT treat a rise in gate_evals alone as Path B external adoption. |
+| `free_card_hits_external` | Free preflight / readiness cards hit by external callers (advisory). | Warm demand signal — convert to gate install, not a success metric. |
+| `paid_trust_payer_external` | Paid trust / portable proof by external payers. | Secondary conversion after Path B seats exist. |
+| `twzrd.gate_eval_refuse.v1 with closes_external_adoption_metric=false` | Internal self-serve / dogfood refuse (our machine). | CI and readiness only — never counts as external Path B. |
 
-## Install (cold machine)
+**Not this runbook:** Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight ≠ product. day0.gate_evals ≠ buyer refuse proof.
+
+## Cold install
 
 ```bash
 npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
 node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
 ```
+
 Expected: `signer_invocation_count=0 payment_retry_count=0`
 
-## Screen-share steps
+## Partner sequence
 
-### 1. Prep the seat (before screen-share) (5 min)
-Operator: You (TWZRD)
+1. **Vicky** — First external buyer seat. Goal: Cold refuse + wire hook + file artifact. Success: twzrd.path_b_artifact/v1 with external machine_note.
+2. **Nick** — Second seat — different client stack. Goal: Repeat evidence checklist on their stack. Success: Second artifact, non-identical environment.
+3. **Lucas** — Third seat — distribution-shaped. Goal: Third artifact or documented blocker. Success: Sequence complete or explicit hold with reason.
 
-Confirm intel health is green. Open Live Board funnel. Do not lead with MCP catalog or CF strategy. Hero line only: before your agent signs, TWZRD can refuse.
+## Steps
+
+### 1. Prep the seat (before screen-share) (10m)
+
+Confirm partner is an external buyer-side operator (agent client, not our seller worker). Share runbook URL + cold cmd. Do not lead with storefront merch.
 
 Expected:
-- intel.twzrd.xyz/health returns ok
-- gate_evals baseline noted (usually 0 external)
-- Partner machine has Node 20+ and network egress
+- Partner has Node 20+ shell
+- No expectation of funded wallet for BLOCK proof
+- Codename locked (Vicky → Nick → Lucas)
 
-Pitfalls:
-- Do not open with free-card volume or internal swarm hits
-- Do not demo V6 paid proof before refuse
+### 2. Cold-machine refuse proof (their shell) (5m)
 
-### 2. Cold-machine refuse proof (their shell) (3–5 min)
-Operator: Partner shares terminal
+Partner pastes cold install + refuse eval on a machine we do not control. Capture full stdout.
 
-They paste the install one-liner and run the refuse eval binary. No wallet. No USDC. Goal is a clean refuse before any signer invocation.
-
-```
+```bash
 npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
 node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
 ```
 
 Expected:
-- Process exits with signer_invocation_count=0
+- schema twzrd.gate_eval_refuse.v1
+- twzrd_decision=block
+- signer_invocation_count=0
 - payment_retry_count=0
-- Transcript / JSON includes a BLOCK (or refuse) decision path
+- usdc_spent=0
+- verified=true
 
-Pitfalls:
-- If peer deps fail, stop and fix as P0 — do not hand-wave past install friction
-- Never run this only on a TWZRD laptop and call it external
+### 3. Wire gate into their buyer pipeline (15–30m)
 
-### 3. Wire gate into their buyer pipeline (10–15 min)
-Operator: Partner + you
+Install beforePayment / AutoGate on their real x402 client path (not only the bin script).
 
-Install onBeforePayment / fetch wrapper so every payment attempt hits preflight + gate before signTransaction. Shadow mode is allowed for first session; enforce is the goal for the artifact.
-
-```
-// Pseudocode — place before any signTransaction
-import { createTwzrdGate } from "twzrd-x402-gate"; // or package entry from README
-
-const gate = createTwzrdGate({
-  intelBase: "https://intel.twzrd.xyz",
-  mode: "enforce", // or "shadow" for 14-day white-glove
-});
-
-async function onBeforePayment(intent) {
-  const decision = await gate.evaluate(intent);
-  // Log: decision, payer lineage, merchant, amount, ts
-  if (decision.action === "BLOCK") {
-    throw new Error("TWZRD_GATE_BLOCK: " + decision.reason);
-  }
-  return decision; // ALLOW → proceed to sign
-}
+```bash
+import { createTwzrdBeforePaymentHook } from "twzrd-x402-gate";
+// beforePayment: createTwzrdBeforePaymentHook({ refuseWashFlagged: true })
 ```
 
 Expected:
-- Every payment attempt calls evaluate before sign
-- BLOCK throws / aborts without touching signer
-- ALLOW continues to existing sign path unchanged
+- Hook runs after requirement selection, before signTransaction
+- BLOCK aborts payload creation
 
-Pitfalls:
-- Hook after sign is not Path B
-- Silent fail-open without logging is not evidence
+### 4. Run BLOCK + ALLOW evidence capture (15m)
 
-### 4. Run BLOCK + ALLOW evidence capture (10 min)
-Operator: Partner
-
-Two forced paths: (1) refuse fixture / known-bad merchant → BLOCK with signer=0; (2) known-good allow path → ALLOW with normal sign. Capture both using the checklist below.
+Paired evidence: refuse fixture BLOCK (no signer) then one ALLOW path they trust.
 
 Expected:
-- BLOCK transcript with signer_invocation_count=0
-- ALLOW path still works (gate is not a permanent outage)
-- Logs include attributable payer / install seat id
+- BLOCK transcript with zero signer invocations
+- ALLOW still completes once on known-good intent
 
-### 5. Confirm Live Board / health lineage (5 min)
-Operator: You
+### 5. Confirm lineage + file artifact (10m)
 
-Refresh intel /health and Live Board funnel. External gate_evals should move (or at least a design-partner install is logged with a timestamped artifact if counter lag exists). Document counter snapshot before/after.
+File twzrd.path_b_artifact/v1 with partner codename, machine note, package version, transcripts, health snapshots. day0.gate_evals may not move — that is OK if artifact is solid.
 
 Expected:
-- gate_evals delta noted or explicit lag note with artifact file
-- Artifact stored with partner codename + date (no secrets)
+- Artifact complete
+- External operator identity explicit
+- Not closed solely because day0.gate_evals incremented
 
-### 6. Lock next seat + founder-post gate (5 min)
-Operator: You
+### 6. Lock next seat + founder-post gate (5m)
 
-Sequence is locked: Vicky → Nick → Lucas. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.
+Next codename only after artifact filed. Founder post only after ≥1 external artifact.
 
 Expected:
-- Next partner on the locked sequence scheduled
-- Artifact file path / gist / transcript linked on board notes
+- Sequence Vicky → Nick → Lucas respected
 
-## Evidence checklist (BLOCK / ALLOW)
+## Evidence checklist
 
-| ID | Decision | Capture | Pass if |
-|---|---|---|---|
-| e-block-signer | BLOCK | Refuse before sign: Full refuse eval stdout or gate evaluate() JSON for a forced BLOCK path (refuse fixture / known-bad merchant). | signer_invocation_count=0 AND payment_retry_count=0 AND decision=BLOCK (or equivalent refuse action). |
-| e-block-reason | BLOCK | Machine-readable reason: decision.reason / code / rule id from gate output. | Stable string or code a partner can grep in logs. |
-| e-allow | ALLOW | Happy path still pays: One ALLOW evaluate() result on a known-good intent (sandbox or mainnet as agreed). | decision=ALLOW and existing sign path proceeds once. |
-| e-preflight-log | BOTH | Preflight logged: Log line showing free preflight (ReadinessCard / preflight id) before evaluate completes. | Preflight id or card hash present in session log for both paths. |
-| e-lineage | BOTH | Attributable payer lineage: Install seat id / partner codename / agent id + timestamp. Not a TWZRD-owned laptop alone. | External operator identity is explicit; can be tied to funnel stage gate_evals. |
-| e-board | BOTH | Live Board snapshot: Before/after /api/intel-health or /health day0: gate_evals, gate_blocks, free_card_hits_external. | Numbers recorded; if lag, artifact still filed with timestamp and follow-up check. |
+- **e-block-signer** [BLOCK] Refuse before sign: pass if signer_invocation_count=0 AND payment_retry_count=0 AND decision=BLOCK (or equivalent refuse action).
+- **e-block-reason** [BLOCK] Machine-readable reason: pass if Stable string or code a partner can grep in logs.
+- **e-allow** [ALLOW] Happy path still pays: pass if decision=ALLOW and existing sign path proceeds once.
+- **e-preflight-log** [BOTH] Preflight logged: pass if Preflight id or card hash present in session log for both paths.
+- **e-lineage** [BOTH] Attributable payer lineage: pass if External operator identity is explicit; artifact marks external=true.
+- **e-board** [BOTH] Health snapshot (context, not sole proof): pass if Numbers recorded for context; Path B success still requires the external refuse artifact even if gate_evals is unchanged.
 
-## Partner sequence (locked)
+## Order of ops
 
-1. **Vicky** — First external seat — design partner operator. Goal: Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.. Success: Artifact filed; gate_evals lineage path understood; white-glove notes for install friction.
-2. **Nick** — Second external seat — buyer pipeline integration. Goal: Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.. Success: Second artifact; runbook edits if friction differs from Vicky.
-3. **Lucas** — Third external seat — framework / embed adjacency. Goal: Install path stable enough to reference publicly; optional embed docs next.. Success: ≥1 public-safe sanitized transcript; gate_evals story is external, not internal swarm.
-
-## Artifact
-
-Founder recap / announcement only after at least one external artifact exists. Enrollment-without-artifact is not the post.
-
-```json
-{
-  "schema": "twzrd.path_b_artifact/v1",
-  "partner_codename": "Vicky",
-  "date_iso": "2026-08-12",
-  "machine_note": "partner macbook — external",
-  "gate_package_version": "0.8.14",
-  "block": {
-    "decision": "BLOCK",
-    "signer_invocation_count": 0,
-    "payment_retry_count": 0,
-    "reason": "…"
-  },
-  "allow": {
-    "decision": "ALLOW",
-    "note": "known-good merchant path"
-  },
-  "health_before": {
-    "gate_evals": 0,
-    "gate_blocks": 0
-  },
-  "health_after": {
-    "gate_evals": 1,
-    "gate_blocks": 1
-  },
-  "friction": []
-}
-```
+- 1. Produce screen-share-ready install runbook (this document).
+- 2. Define BLOCK/ALLOW evidence-capture checklist.
+- 3. Run with Vicky, then Nick, then Lucas.
+- 4. Capture one attributable external artifact (twzrd.path_b_artifact/v1).
+- 5. Launch founder post with external proof — not enrollment theater.

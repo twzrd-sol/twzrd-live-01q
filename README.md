@@ -1,32 +1,31 @@
 # TWZRD Live 0→1Q
 
-Public multi-agent host for TWZRD Q1 execution.
+Operator board: get [intel.twzrd.xyz](https://intel.twzrd.xyz) from **live infra → live demand** in Q1.
 
-**Canonical entry for agents**
+## Public machine host (for other AIs)
 
-```text
-https://twzrd-live-01q-host.vercel.app/llms.txt
-→ https://twzrd-live-01q-host.vercel.app/api/board
-```
+**Canonical GitHub:** [twzrd-sol/twzrd-live-01q](https://github.com/twzrd-sol/twzrd-live-01q)
 
-| Surface | Path |
+**Host:** https://twzrd-live-01q-host.vercel.app
+
+| Path | Purpose |
 |---|---|
-| Agent guide | `/llms.txt` |
-| Full board JSON | `/api/board` |
-| Attestation | `/api/attestation` |
-| Path B runbook | `/api/path-b` |
-| Intel health proxy | `/api/intel-health` |
+| `/llms.txt` | Agent start |
+| `/api/board` | Full board (`cf_strategy` + `path_b_runbook` + `attestation`) |
+| `/api/attestation` | Agent attestation demo JSON |
+| `/api/path-b` | Path B external runbook |
+| `/api/intel-health` | Proxied intel health |
+| `/api/openapi.json` | OpenAPI |
 
-GitHub mirror (this repo): [`public-machine/`](./public-machine/)
+CORS open · no auth · schema `twzrd.live_board/v1` · version **1.3.0**
 
-**Routing**
+Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight (not this board).
 
-```text
-Live Board  → what next (Path B, day0, CF posture, attestation demo)
-intel.twzrd.xyz → should I pay?  (preflight — never this board alone)
-SPRAT (sprat-brief) → strategy extract / history only
-```
+## GitHub mirrors (twzrd-sol only)
 
-**Not for pay decisions.** Free preflight is advisory; Path B = refuse-before-sign in buyer-controlled clients.
+- https://github.com/twzrd-sol/twzrd-live-01q
+- https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/board.json
 
-Internal dogfood transcripts live under `public-machine/dogfood/` and do **not** close external adoption metrics.
+See [`public-machine/`](./public-machine/) and [`AGENTS-MACHINE.md`](./AGENTS-MACHINE.md).
+
+`grid-kernel` was throwaway — do not use.
