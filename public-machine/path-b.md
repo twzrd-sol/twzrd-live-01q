@@ -1,32 +1,61 @@
 # Path B External Integration Runbook
 
-schema: twzrd.path_b_runbook/v1 · version 1.1.0
-generated_at: 2026-08-11T23:00:47.902Z
+schema: twzrd.path_b_runbook/v1 · version 1.2.0
+generated_at: 2026-08-12T04:13:29.000Z
 
-**Claim:** Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.
+**Claim:** Externally controlled payment-path trust: operator auto-calls TWZRD before pay; decision can BLOCK before sign or ALLOW with joinable settlement; minimal outcome closes the loop so the next decision improves.
 
-**Why first:** Distribution without external Path B artifacts is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists. `day0.gate_evals` is settle-rail telemetry — not buyer AutoGate adoption.
+**Why first:** Agents do not browse a directory before every payment. The cascade starts at the **operator/facilitator** layer (auto preflight, shadow OK). `path_b_artifacts_external` is the primary seat proof. Soft preflight→settlement association exists; **cryptographic `decision_id` bind + authenticated outcome** are product spine (PR B). `day0.gate_evals` is settle-rail only. Public outreach is delivery only — not an artifact.
 
-**Metric doctrine**
+**Intel’s role:** intel.twzrd.xyz is the **window into the memory the loop creates**, not where the loop begins.
+
+## Cascade (actual)
+
+```text
+pay intent
+  → operator auto-calls /trust or preflight
+  → signed decision_id
+  → allow | block (enforced before sign)
+  → settlement receipt | blocked-before-sign proof
+  → authenticated minimal outcome
+  → score/policy improves
+  → next decision is better
+```
+
+## Metric doctrine
 
 | Counter | Role |
 |---|---|
-| **path_b_artifacts_external** | **PRIMARY** Path B success |
+| **path_b_artifacts_external** | **PRIMARY** Path B seat success |
 | free_card_hits_external | Advisory demand only |
+| closed_loop_outcome_joins | Tertiary — compounds intelligence |
 | day0.gate_evals / gate_blocks | Settle-rail only — **not** buyer Path B |
 | self-serve dogfood | `closes_external_adoption_metric: false` |
+| public @mention / DM | Delivery only — **not** a closed loop |
 
-**North star:** Success = ≥1 external `twzrd.path_b_artifact/v1` (non-TWZRD host) with `signer_invocation_count=0` on BLOCK (matched ALLOW when claimed). **Not** `day0.gate_evals`.
+**North star:** ≥1 external `twzrd.path_b_artifact/v1`, then close decision→settlement|block→outcome so decision₂ can cite loop₁. **Not** `day0.gate_evals`. **Not** directory size.
 
-**Not this runbook:** Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight ≠ product.
+**Not this runbook:** Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight. Free preflight ≠ product. Leaderboards/profiles are evidence UI, not the CTA.
+
+## Decision spine (status)
+
+```text
+signed decision_id → gate artifact → payment intent
+  → settlement | blocked-before-sign → authenticated outcome → evidence
+```
+
+Present: `preflight_id`, soft `preflight_request_id` on settlement (~30m).  
+Missing (PR B): crypto bind into x402 challenge/intent; first-class outcome attestation; compounding demo.
 
 ## Order of ops
 
-- 1. Produce this runbook (screen-share ready)
-- 2. Define BLOCK/ALLOW evidence-capture checklist
-- 3. Run with Seat 1, then Seat 2, then Seat 3
-- 4. Capture one attributable external artifact
-- 5. Launch founder post with external proof — not enrollment theater
+1. This runbook (screen-share ready)
+2. BLOCK/ALLOW evidence-capture checklist
+3. Run **Seat 1** (then Seat 2, Seat 3) — procedural labels, not invented roster claims
+4. Capture one attributable external Path B artifact
+5. Join outcome on the same decision_id
+6. Founder post with **closed loop** proof — not enrollment theater
+
 
 ## Install (cold machine)
 

@@ -2,6 +2,8 @@
 
 **Audience:** Operator running the first **external** Path B seat. No partner is
 booked yet — this kit is ready for whoever fills that seat, not a specific person.  
+**Cascade:** Operator auto-preflight on a real path (shadow OK) → decision → settlement|refuse → minimal outcome. Outreach ≠ artifact.
+
 **Not for:** Founder posts, internal dogfood counted as adoption, CF #1863 work.
 
 One seat, run to completion, before opening a second. No named sequence — book

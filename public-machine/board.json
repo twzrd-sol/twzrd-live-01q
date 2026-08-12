@@ -1,29 +1,51 @@
 {
   "schema": "twzrd.live_board/v1",
   "id": "twzrd-live-0-1q",
-  "version": "1.4.0",
-  "generated_at": "2026-08-12T02:30:58.712Z",
+  "version": "1.5.0",
+  "generated_at": "2026-08-12T04:13:29.000Z",
   "product": {
     "name": "TWZRD Live 0\u21921Q",
     "owner": "TWZRD",
     "intel_base": "https://intel.twzrd.xyz",
     "human_ui": "https://twzrd-live-01q-host.vercel.app/",
-    "machine_start": "https://twzrd-live-01q-host.vercel.app/llms.txt"
+    "machine_start": "https://twzrd-live-01q-host.vercel.app/llms.txt",
+    "job": "Trust infrastructure for agents that spend money \u2014 answer one question before funds move: who is this counterparty, and should I trust them?",
+    "not_the_product": [
+      "Agent directory as the product",
+      "Leaderboard / reputation browsing as primary CTA",
+      "Traffic or free-card volume as north star",
+      "New rails / wallets / marketplaces before one closed operator loop"
+    ],
+    "hierarchy": {
+      "1_message": "Trust infrastructure for agents that spend money",
+      "2_primary_action": "Check a counterparty (/trust or preflight)",
+      "3_developer_action": "Integrate automatic preflight + refuse-before-sign on the payment path",
+      "4_profiles_and_graph": "Evidence under the decision \u2014 not the product",
+      "5_payment_control": "Intelligence \u2192 enforced consequence (gate / Turnkey)"
+    },
+    "layers": {
+      "KNOW": "Intel identifies and evaluates the counterparty",
+      "PAY": "Payment Control checks the proposed payment matches authorization",
+      "ENFORCE": "Gate / Turnkey makes a denial actually block the signature"
+    }
   },
   "north_star": {
     "title": "Live 0\u21921 for Q1",
-    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs \u2014 proven by attributable Path B artifacts (refuse-before-sign transcripts on non-TWZRD hosts), not by free MCP hits or day0.gate_evals.",
-    "primary": "External Path B artifacts (attributable refuse/allow transcripts)",
+    "statement": "One external operator runs automatic preflight on real payments; each decision is joined to settlement or refuse-before-sign proof plus a minimal outcome; the next decision is better because the previous transaction happened. Primary counter remains path_b_artifacts_external \u2265 1 \u2014 not free cards, not day0.gate_evals, not directory size.",
+    "primary": "External Path B artifacts (attributable refuse/allow on non-TWZRD hosts)",
     "primary_metric_key": "path_b_artifacts_external",
     "secondary": "free_card_hits_external (advisory demand only)",
-    "tertiary": "paid_trust_payer_external (portable V6 after seats exist)",
+    "tertiary": "closed_loop_outcome_joins (decision_id \u2192 settlement|block \u2192 outcome \u2192 better next decision)",
     "not_primary": {
-      "day0_gate_evals": "Facilitator settle-gate telemetry only \u2014 NOT buyer Path B. Do not chase as external adoption.",
+      "day0_gate_evals": "Facilitator settle-gate telemetry only \u2014 NOT buyer Path B.",
       "day0_gate_blocks": "Settle-rail refusals \u2014 NOT buyer AutoGate signer_invocation_count=0.",
       "free_preflight": "Advisory only until beforePayment hook is installed.",
-      "self_serve_dogfood": "public-machine/dogfood/* has closes_external_adoption_metric:false"
+      "self_serve_dogfood": "public-machine/dogfood/* has closes_external_adoption_metric:false",
+      "directory_fill": "Agent profiles are evidence inventory until the payment-path loop exists.",
+      "leaderboard_browse": "Leaderboards/reputation rails are secondary UI \u2014 not the product CTA.",
+      "public_mention_outreach": "A public @mention or DM is delivery only \u2014 not a Path B artifact or closed loop."
     },
-    "success_definition": "\u22651 twzrd.path_b_artifact/v1 from an operator we do not control, with BLOCK + signer_invocation_count=0 (matched ALLOW when claimed)."
+    "success_definition": "\u22651 external twzrd.path_b_artifact/v1 from an operator we do not control (BLOCK with signer_invocation_count=0; matched ALLOW when claimed), then close the outcome join so a second decision can cite evidence from the first loop."
   },
   "phases": [
     {
@@ -87,6 +109,16 @@
       "label": "Paid trust (external)",
       "hint": "Portable V6 after seats exist \u2014 not enforcement",
       "source": "day0.paid_trust_payer_external"
+    },
+    {
+      "id": "outcome_join",
+      "title": "Decision \u2192 settlement|block \u2192 outcome",
+      "role": "Hidden domino \u2014 proprietary evidence competitors cannot infer from chain alone",
+      "primary": false,
+      "metric_keys": [
+        "closed_loop_outcome_joins"
+      ],
+      "note": "Requires signed decision_id spine (product PR B). Soft preflight_request_id join is not enough."
     }
   ],
   "moves": [
@@ -686,7 +718,7 @@
   },
   "path_b_runbook": {
     "schema": "twzrd.path_b_runbook/v1",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "generated_at": "2026-08-12T02:21:33.086Z",
     "title": "Path B External Integration Runbook",
     "claim": "Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.",
@@ -807,7 +839,7 @@
         "title": "Lock next seat + founder-post gate",
         "duration": "5 min",
         "operator": "You",
-        "detail": "Sequence is locked: Seat 1 → Seat 2 → Seat 3. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
+        "detail": "Sequence is locked: Seat 1 \u2192 Seat 2 \u2192 Seat 3. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
         "expected": [
           "Next partner on the locked sequence scheduled",
           "Artifact file path / gist / transcript linked on board notes"
@@ -1018,7 +1050,9 @@
       "day0_gate_evals": "settle-gate telemetry only \u2014 NOT buyer AutoGate Path B",
       "free_preflight": "advisory only",
       "self_serve": "closes_external_adoption_metric:false"
-    }
+    },
+    "cascade": "board.cascade",
+    "decision_spine": "board.decision_spine"
   },
   "attestation": {
     "schema": "twzrd.agent_attestation/v1",
@@ -1235,6 +1269,21 @@
   },
   "next_actions": [
     {
+      "id": "cascade-operator-loop",
+      "phase": "proof",
+      "horizon": "this_week",
+      "impact": "critical",
+      "title": "Close one operator cascade (not directory inventory)",
+      "why": "First domino is operator/facilitator auto-preflight on real payments. Intel is the memory window, not the start. Public outreach \u2260 artifact.",
+      "how": [
+        "Wire automatic preflight (shadow OK) on one real payment path",
+        "Capture Path B artifact (BLOCK refuse and/or matched ALLOW)",
+        "Join decision_id \u2192 settlement|block \u2192 minimal outcome",
+        "Show second decision informed by first loop (after product spine lands)"
+      ],
+      "done": false
+    },
+    {
       "id": "truth-external-only",
       "phase": "truth",
       "title": "Pin external-only Day0 on the wall",
@@ -1363,9 +1412,11 @@
     "intel_preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
     "sprat_source": "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
     "sprat_extract_note": "SPRAT GitHub is source extract / history only \u2014 not a second start-here",
-    "path_b_artifacts": "https://twzrd-live-01q-host.vercel.app/api/path-b-artifacts",
+    "path_b_artifacts": "/api/path-b-artifacts",
     "path_b_artifacts_note": "PRIMARY Path B counter = external artifacts in this registry, not day0.gate_evals",
-    "path_b_artifacts_api": "https://twzrd-live-01q-host.vercel.app/api/path-b-artifacts"
+    "path_b_artifacts_api": "https://twzrd-live-01q-host.vercel.app/api/path-b-artifacts",
+    "cascade": "board.cascade",
+    "decision_spine": "board.decision_spine"
   },
   "path_b_metrics": {
     "primary_key": "path_b_artifacts_external",
@@ -1387,5 +1438,47 @@
       ]
     },
     "registry": "/api/path-b-artifacts"
+  },
+  "cascade": {
+    "schema": "twzrd.cascade/v1",
+    "broken_theory": "Add agent profiles \u2192 improve Intel \u2192 agents browse directory \u2192 agents buy trust checks. Agents do not naturally browse before every payment.",
+    "actual_loop": [
+      "Agent intends to pay",
+      "Operator/facilitator automatically calls /trust or preflight (shadow OK)",
+      "TWZRD emits a signed decision (decision_id)",
+      "Payment is allowed or blocked before sign",
+      "Settlement receipt OR blocked-before-sign proof",
+      "Authenticated minimal outcome (delivered / not / unknown)",
+      "Counterparty score and policy improve",
+      "Next decision is better because the previous transaction happened"
+    ],
+    "first_domino": "One operator/facilitator integration that auto-runs preflight on real payments \u2014 not one agent browsing Intel.",
+    "hidden_domino": "Outcome join: who was evaluated, what TWZRD predicted, did payment occur, was service delivered, was it worth buying. Signed decision_id is the join key.",
+    "intel_role": "intel.twzrd.xyz is not where the loop begins. It is the window into the memory created by the loop.",
+    "until_loop_exists": "Adding agents is inventory. Once the loop exists, every transaction compounds TWZRD."
+  },
+  "decision_spine": {
+    "schema": "twzrd.decision_spine/v1",
+    "status": "partial \u2014 soft join exists; cryptographic bind + outcome contract missing (product PR B)",
+    "chain": [
+      "signed decision_id (preflight_id today; must become cryptographically bound)",
+      "gate artifact",
+      "payment intent",
+      "settlement receipt | blocked-before-sign proof",
+      "authenticated outcome",
+      "score/policy evidence"
+    ],
+    "present": {
+      "preflight_id": "Server decision id on free preflight",
+      "preflight_request_id_on_settlement": "Store can soft-associate within ~30m",
+      "path_b_artifact": "External refuse/allow transcript schema"
+    },
+    "missing": {
+      "crypto_bind": "decision_id not committed into x402 challenge / payment intent",
+      "outcome_attestation": "No first-class authenticated outcome contract yet",
+      "compounding_proof": "Decision\u2082 citing evidence from closed loop\u2081 not yet demoed"
+    },
+    "allow_closes_through": "settlement + authenticated outcome",
+    "block_closes_through": "proof signing never occurred (signer_invocation_count=0)"
   }
 }
