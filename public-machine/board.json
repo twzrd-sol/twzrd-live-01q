@@ -2,7 +2,7 @@
   "schema": "twzrd.live_board/v1",
   "id": "twzrd-live-0-1q",
   "version": "1.5.0",
-  "generated_at": "2026-08-12T04:13:29.000Z",
+  "generated_at": "2026-08-12T04:19:42.000Z",
   "product": {
     "name": "TWZRD Live 0\u21921Q",
     "owner": "TWZRD",
@@ -1459,7 +1459,7 @@
   },
   "decision_spine": {
     "schema": "twzrd.decision_spine/v1",
-    "status": "partial \u2014 soft join exists; cryptographic bind + outcome contract missing (product PR B)",
+    "status": "product PR open \u2014 challenge bind + outcome contract implemented, pending intel deploy",
     "chain": [
       "signed decision_id (preflight_id today; must become cryptographically bound)",
       "gate artifact",
@@ -1471,14 +1471,17 @@
     "present": {
       "preflight_id": "Server decision id on free preflight",
       "preflight_request_id_on_settlement": "Store can soft-associate within ~30m",
-      "path_b_artifact": "External refuse/allow transcript schema"
+      "path_b_artifact": "External refuse/allow transcript schema",
+      "challenge_extra_stamp": "accepts[].extra.twzrd_decision_id (PR B \u2014 pending deploy)",
+      "outcome_attestation_endpoint": "POST /v1/intel/outcome-attestation (PR B \u2014 pending deploy)"
     },
     "missing": {
-      "crypto_bind": "decision_id not committed into x402 challenge / payment intent",
-      "outcome_attestation": "No first-class authenticated outcome contract yet",
-      "compounding_proof": "Decision\u2082 citing evidence from closed loop\u2081 not yet demoed"
+      "intel_production_deploy": "Merge + deploy wzrd-intel-deploy#1",
+      "on_chain_memo_commitment": "Protocol extension \u2014 not this PR",
+      "external_closed_loop": "Still need one external operator artifact"
     },
     "allow_closes_through": "settlement + authenticated outcome",
-    "block_closes_through": "proof signing never occurred (signer_invocation_count=0)"
+    "block_closes_through": "proof signing never occurred (signer_invocation_count=0)",
+    "product_pr": "https://github.com/twzrd-sol/wzrd-intel-deploy/pull/1"
   }
 }
