@@ -4,10 +4,24 @@ const SPRAT_URLS = [
   "https://raw.githubusercontent.com/twzrd-sol/sprat-brief/main/sprat.json",
 ];
 
+async function loadArtifactRegistry() {
+  try {
+    const r = await fetch(`${RAW_BASE}/path-b-artifacts.json`, { cache: "no-store" });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch {
+    return null;
+  }
+}
+
 export async function loadBoardJson() {
   const r = await fetch(`${RAW_BASE}/board.json`, { cache: "no-store" });
   if (!r.ok) throw new Error(`board.json ${r.status}`);
   const board = await r.json();
+
+  const artifacts = await loadArtifactRegistry();
+  const pathBExternal = artifacts?.counts?.external_artifacts ?? 0;
+
   // Live intel health
   try {
     const h = await fetch("https://intel.twzrd.xyz/health", {
@@ -17,23 +31,37 @@ export async function loadBoardJson() {
     if (h.ok) {
       const health = await h.json();
       const day0 = health.day0 || {};
+      // Honest funnel: Path B primary is artifacts, not day0.gate_evals
       const funnel = {
         external_cards: day0.free_card_hits_external ?? 0,
+        path_b_artifacts: pathBExternal,
+        settle_gate_evals: day0.gate_evals ?? 0,
+        settle_gate_blocks: day0.gate_blocks ?? 0,
+        paid_external: day0.paid_trust_payer_external ?? 0,
+        // legacy aliases (deprecated) — do not treat as Path B primary
         gate_evals: day0.gate_evals ?? 0,
         gate_blocks: day0.gate_blocks ?? 0,
-        paid_external: day0.paid_trust_payer_external ?? 0,
       };
       const stage = (key, v) => {
         if (key === "external_cards") return v <= 0 ? "empty" : v < 50 ? "thin" : v < 500 ? "moving" : "healthy";
-        if (key === "gate_evals" || key === "gate_blocks") return v <= 0 ? "empty" : v < 10 ? "thin" : v < 100 ? "moving" : "healthy";
+        if (key === "path_b_artifacts") return v <= 0 ? "empty" : v < 3 ? "thin" : v < 20 ? "moving" : "healthy";
+        if (key === "settle_gate_evals" || key === "settle_gate_blocks")
+          return v <= 0 ? "empty" : v < 10 ? "thin" : v < 100 ? "moving" : "healthy";
         return v <= 0 ? "empty" : v < 5 ? "thin" : v < 50 ? "moving" : "healthy";
       };
+
       let diagnosis = board.live?.diagnosis || "";
-      if (funnel.gate_evals === 0 && funnel.external_cards > 0) {
-        diagnosis = "Advisory demand exists without enforcement. Free cards are happening; nobody has installed the buyer gate. Lead with refuse-before-sign.";
-      } else if (funnel.gate_evals === 0 && funnel.external_cards === 0) {
-        diagnosis = "Infra is live; demand is not. Zero external free cards and zero gate_evals — Path B has no external seat yet.";
+      if (funnel.path_b_artifacts === 0 && funnel.external_cards > 0) {
+        diagnosis =
+          "Advisory demand exists without external Path B seats. Free cards are happening; no attributable external refuse/allow artifact is filed yet. Lead with refuse-before-sign. Do not chase day0.gate_evals — that is settle-rail telemetry, not buyer AutoGate.";
+      } else if (funnel.path_b_artifacts === 0 && funnel.external_cards === 0) {
+        diagnosis =
+          "Infra is live; external Path B seats are not. Zero external free cards and zero Path B artifacts. day0.gate_evals is settle-rail only and is not the Path B adoption counter.";
+      } else if (funnel.path_b_artifacts > 0) {
+        diagnosis =
+          "External Path B artifacts exist in the registry. Free cards remain advisory; day0.gate_evals remains settle-rail telemetry.";
       }
+
       board.live = {
         ok: true,
         fetched_at: new Date().toISOString(),
@@ -50,17 +78,35 @@ export async function loadBoardJson() {
         funnel,
         funnel_status: {
           external_cards: stage("external_cards", funnel.external_cards),
-          gate_evals: stage("gate_evals", funnel.gate_evals),
-          gate_blocks: stage("gate_blocks", funnel.gate_blocks),
+          path_b_artifacts: stage("path_b_artifacts", funnel.path_b_artifacts),
+          settle_gate_evals: stage("settle_gate_evals", funnel.settle_gate_evals),
+          settle_gate_blocks: stage("settle_gate_blocks", funnel.settle_gate_blocks),
           paid_external: stage("paid_external", funnel.paid_external),
+        },
+        funnel_doctrine: {
+          primary: "path_b_artifacts",
+          primary_source: "public-machine/path-b-artifacts.json",
+          not_path_b: ["settle_gate_evals", "settle_gate_blocks", "day0.gate_evals", "day0.gate_blocks"],
+          advisory: ["external_cards"],
+        },
+        path_b_artifacts: {
+          external: pathBExternal,
+          registry_counts: artifacts?.counts || null,
         },
         diagnosis,
       };
       board.generated_at = new Date().toISOString();
     }
   } catch (e) {
-    board.live = { ...(board.live || {}), ok: false, error: String(e), fetched_at: new Date().toISOString() };
+    board.live = {
+      ...(board.live || {}),
+      ok: false,
+      error: String(e),
+      fetched_at: new Date().toISOString(),
+      path_b_artifacts: { external: pathBExternal },
+    };
   }
+
   // Refresh cf_strategy from live SPRAT (jsDelivr first — raw CDN may lag)
   let spratHit = null;
   for (const url of SPRAT_URLS) {

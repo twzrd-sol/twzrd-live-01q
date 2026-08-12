@@ -30,28 +30,30 @@ SPRAT GitHub                        — extract / history only
 | Agent attestation / plug-in demo | `/api/attestation` or `board.attestation` |
 | External Path B install + evidence | `/api/path-b` or `board.path_b_runbook` |
 | CF / Solana posture this week | `/api/board` → `cf_strategy` |
-| What next for external gate_evals | `/api/board` / `/api/board/status` |
+| What next for external Path B seats | `/api/board` / `/api/board/status` / `/api/path-b` |
 | Intel up / day0 | `/api/intel-health` or intel `/health` |
 | Should I pay this seller? | **intel preflight — never this board** |
 
 ## North star
 
-An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by gate_evals and refuse transcripts, not by free MCP hits.
+An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by attributable Path B artifacts (refuse-before-sign transcripts on non-TWZRD hosts), not by free MCP hits or day0.gate_evals.
 
-- Primary: External gate_evals (Path B)
+- Primary: External Path B artifacts (attributable refuse/allow transcripts)
+- Not primary: day0.gate_evals (settle-rail only)
 - Secondary: free_card_hits_external
 - Tertiary: paid_trust_payer_external
 
 ## Live diagnosis
 
-Infra is live; demand is not. Zero external free cards and zero gate_evals — Path B has no external seat yet.
+Infra is live; external Path B seats are not. Zero external free cards and zero Path B artifacts. day0.gate_evals is settle-rail only.
 
 ### Funnel (external-demand oriented)
 
 | Stage | Value | Status |
 |---|---:|---|
 | External free cards | 0 | empty |
-| Gate evals (Path B) | 0 | empty |
+| Path B artifacts (PRIMARY) | 0 | empty |
+| day0.gate_evals (settle-rail, not Path B) | (see /api/intel-health) | n/a |
 | Gate blocks | 0 | empty |
 | Paid trust external | 0 | empty |
 
@@ -76,13 +78,24 @@ Not affiliated with or endorsed by Meta Platforms, Inc. Public CDO quotes about 
 
 Human UI: `/attest` · Machine: `/api/attestation`
 
+## Metric doctrine (read before chasing counters)
+
+| Counter | Role |
+|---|---|
+| **path_b_artifacts_external** | **PRIMARY** Path B success (registry: `path-b-artifacts.json`) |
+| free_card_hits_external | Advisory demand only |
+| day0.gate_evals / day0.gate_blocks | Facilitator settle-rail only — **NOT** buyer AutoGate Path B |
+| self-serve dogfood | Does **not** close external adoption |
+
+Buyer refuse is a client packet/artifact. It does not increment settle-gate day0 counters.
+
 ## Path B runbook (`path_b_runbook`)
 
 schema: twzrd.path_b_runbook/v1 · v1.0.0
 
 **Claim:** Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.
 
-**North star:** Success = external gate_evals with signer_invocation_count=0 on refuse (and attributable lineage on the Live Board).
+**North star:** Success = external Path B artifact with signer_invocation_count=0 on refuse. day0.gate_evals is settle-rail only.
 
 Partner sequence (locked): **Vicky → Nick → Lucas**
 
@@ -160,9 +173,9 @@ Query params on `/api/board` and `/api/board/moves`:
 ## Next actions (highest leverage open)
 
 1. **truth-external-only** — Pin external-only Day0 on the wall (critical, this_week)
-   metric: Team can recite external free cards, gate_evals, paid_trust_external from memory
+   metric: Team can recite external free cards (advisory), Path B artifacts (primary), paid_trust_external
 2. **truth-north-star** — Declare Path B north star for Q1 (critical, this_week)
-   metric: gate_evals (external) is the only primary OKR
+   metric: path_b_artifacts_external is the only primary OKR
 3. **wedge-path-b** — Lead every conversation with refuse-before-sign (critical, this_week)
    metric: 100% of partner demos show Path B first
 4. **proof-cold-machine** — Cold-machine Path B under 5 minutes (critical, this_week)
@@ -186,11 +199,11 @@ Outcome: A cold machine can prove Path B without a wallet or USDC.
 
 ### 04 · Distribution (`distribution`)
 Put the gate where agents already pay
-Outcome: 3 embed seats live + weekly outbound that creates gate_evals.
+Outcome: 3 embed seats live + weekly outbound that files Path B artifacts.
 
 ### 05 · Convert (`convert`)
 Free card → gate install → optional V6 proof
-Outcome: First external paid trust + first external gate_evals > 0.
+Outcome: First external paid trust + first external Path B artifact filed.
 
 ## Dogfood (Path B)
 

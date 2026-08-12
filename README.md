@@ -29,4 +29,7 @@ SPRAT (sprat-brief) → strategy extract / history only
 
 **Not for pay decisions.** Free preflight is advisory; Path B = refuse-before-sign in buyer-controlled clients.
 
+**Metric honesty:** Path B primary success = external artifacts in `public-machine/path-b-artifacts.json`.  
+`day0.gate_evals` is **settle-rail telemetry only** — not buyer AutoGate adoption. Self-serve dogfood does not close external metrics.
+
 Internal dogfood transcripts live under `public-machine/dogfood/` and do **not** close external adoption metrics.

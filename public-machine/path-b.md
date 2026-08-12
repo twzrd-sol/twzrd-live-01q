@@ -1,13 +1,22 @@
 # Path B External Integration Runbook
 
-schema: twzrd.path_b_runbook/v1 · version 1.0.0
+schema: twzrd.path_b_runbook/v1 · version 1.1.0
 generated_at: 2026-08-11T23:00:47.902Z
 
 **Claim:** Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.
 
-**Why first:** Distribution without external gate_evals is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists.
+**Why first:** Distribution without external Path B artifacts is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists. `day0.gate_evals` is settle-rail telemetry — not buyer AutoGate adoption.
 
-**North star:** Success = external gate_evals with signer_invocation_count=0 on refuse (and attributable lineage on the Live Board).
+**Metric doctrine**
+
+| Counter | Role |
+|---|---|
+| **path_b_artifacts_external** | **PRIMARY** Path B success |
+| free_card_hits_external | Advisory demand only |
+| day0.gate_evals / gate_blocks | Settle-rail only — **not** buyer Path B |
+| self-serve dogfood | `closes_external_adoption_metric: false` |
+
+**North star:** Success = ≥1 external `twzrd.path_b_artifact/v1` (non-TWZRD host) with `signer_invocation_count=0` on BLOCK (matched ALLOW when claimed). **Not** `day0.gate_evals`.
 
 **Not this runbook:** Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight ≠ product.
 
@@ -36,7 +45,7 @@ Confirm intel health is green. Open Live Board funnel. Do not lead with MCP cata
 
 Expected:
 - intel.twzrd.xyz/health returns ok
-- gate_evals baseline noted (usually 0 external)
+- path_b_artifacts_external baseline noted (usually 0); day0.gate_evals is settle-rail only — do not use as Path B baseline
 - Partner machine has Node 20+ and network egress
 
 Pitfalls:
@@ -108,10 +117,10 @@ Expected:
 ### 5. Confirm Live Board / health lineage (5 min)
 Operator: You
 
-Refresh intel /health and Live Board funnel. External gate_evals should move (or at least a design-partner install is logged with a timestamped artifact if counter lag exists). Document counter snapshot before/after.
+File the Path B artifact in the registry (`path-b-artifacts.json`). Buyer AutoGate does **not** increment `day0.gate_evals`. Document artifact id + optional settle-rail snapshot labeled non-Path-B.
 
 Expected:
-- gate_evals delta noted or explicit lag note with artifact file
+- Artifact filed with timestamp; settle-rail counters optional and labeled non-Path-B
 - Artifact stored with partner codename + date (no secrets)
 
 ### 6. Lock next seat + founder-post gate (5 min)
@@ -131,14 +140,14 @@ Expected:
 | e-block-reason | BLOCK | Machine-readable reason: decision.reason / code / rule id from gate output. | Stable string or code a partner can grep in logs. |
 | e-allow | ALLOW | Happy path still pays: One ALLOW evaluate() result on a known-good intent (sandbox or mainnet as agreed). | decision=ALLOW and existing sign path proceeds once. |
 | e-preflight-log | BOTH | Preflight logged: Log line showing free preflight (ReadinessCard / preflight id) before evaluate completes. | Preflight id or card hash present in session log for both paths. |
-| e-lineage | BOTH | Attributable payer lineage: Install seat id / partner codename / agent id + timestamp. Not a TWZRD-owned laptop alone. | External operator identity is explicit; can be tied to funnel stage gate_evals. |
-| e-board | BOTH | Live Board snapshot: Before/after /api/intel-health or /health day0: gate_evals, gate_blocks, free_card_hits_external. | Numbers recorded; if lag, artifact still filed with timestamp and follow-up check. |
+| e-lineage | BOTH | Attributable payer lineage: Install seat id / partner codename / agent id + timestamp. Not a TWZRD-owned laptop alone. | External operator identity is explicit; can be tied to Path B artifact registry entry. |
+| e-board | BOTH | Live Board snapshot: path_b_artifacts_external + free_card_hits_external (advisory). Optionally note day0.gate_evals labeled settle-rail only. | Numbers recorded; if lag, artifact still filed with timestamp and follow-up check. |
 
 ## Partner sequence (locked)
 
-1. **Vicky** — First external seat — design partner operator. Goal: Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.. Success: Artifact filed; gate_evals lineage path understood; white-glove notes for install friction.
+1. **Vicky** — First external seat — design partner operator. Goal: Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.. Success: Artifact filed; artifact schema + registry path understood; white-glove notes for install friction.
 2. **Nick** — Second external seat — buyer pipeline integration. Goal: Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.. Success: Second artifact; runbook edits if friction differs from Vicky.
-3. **Lucas** — Third external seat — framework / embed adjacency. Goal: Install path stable enough to reference publicly; optional embed docs next.. Success: ≥1 public-safe sanitized transcript; gate_evals story is external, not internal swarm.
+3. **Lucas** — Third external seat — framework / embed adjacency. Goal: Install path stable enough to reference publicly; optional embed docs next.. Success: ≥1 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.
 
 ## Artifact
 

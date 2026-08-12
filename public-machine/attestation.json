@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "generated_at": "2026-08-12T00:27:55.572Z",
   "title": "Agent attestation console",
-  "thesis": "TWZRD is the external verification edge on the agent graph: who this agent acts for, what it may spend on, how fresh the evidence is, and whether spend should ALLOW / WARN / BLOCK \u2014 before the wallet signs.",
+  "thesis": "TWZRD is the external verification edge on the agent graph: who this agent acts for, what it may spend on, how fresh the evidence is, and whether spend should ALLOW / WARN / BLOCK — before the wallet signs.",
   "disclaimer": "Sample cards are fictional and labeled. They illustrate decision shape, not real third-party verification. TWZRD does not claim legal identity attestation; it scores observed settlement / counterparty risk for agent payments.",
   "not_meta_affiliated": "Not affiliated with or endorsed by Meta Platforms, Inc. Public CDO quotes about wanting an external verification plug-in are market context only.",
   "questions": [
@@ -15,7 +15,7 @@
     {
       "id": "scope",
       "q": "What is it allowed to do?",
-      "maps_to": "scope[] (buy, book, quote, checkout) \u2014 out-of-scope spend is a risk flag"
+      "maps_to": "scope[] (buy, book, quote, checkout) — out-of-scope spend is a risk flag"
     },
     {
       "id": "fresh",
@@ -36,7 +36,7 @@
       "decision": "ALLOW",
       "principal": "Acme Travel Ops (demo principal)",
       "agent_id": "agent:demo.acme.travel.booker",
-      "wallet_hint": "GFp\u2026e1Gs (demo shape)",
+      "wallet_hint": "GFp…e1Gs (demo shape)",
       "scope": [
         "quote",
         "book",
@@ -53,23 +53,23 @@
       },
       "receipt": {
         "kind": "v6_demo",
-        "note": "Illustrative signed V6 shape only \u2014 not a live mint"
+        "note": "Illustrative signed V6 shape only — not a live mint"
       },
       "narrative": "Clean allow path: principal labeled, scope matched, fresh snapshot, no wash flags."
     },
     {
       "id": "demo-allow-narrow",
-      "label": "Merchant bot \u00b7 narrow scope",
+      "label": "Merchant bot · narrow scope",
       "fictional": true,
       "decision": "ALLOW",
       "principal": "Northwind Shop (demo principal)",
       "agent_id": "agent:demo.northwind.checkout",
-      "wallet_hint": "4Lk\u2026pZUE (demo shape)",
+      "wallet_hint": "4Lk…pZUE (demo shape)",
       "scope": [
         "price_quote",
         "checkout"
       ],
-      "scope_note": "Book / ads out of scope \u2014 would WARN if attempted",
+      "scope_note": "Book / ads out of scope — would WARN if attempted",
       "freshness": {
         "snapshot_age": "2h",
         "status": "fresh"
@@ -93,7 +93,7 @@
       "decision": "REVIEW",
       "principal": "Unknown / thin history",
       "agent_id": "agent:demo.orphan.quoter",
-      "wallet_hint": "1111\u20261112 (demo shape)",
+      "wallet_hint": "1111…1112 (demo shape)",
       "scope": [
         "price_quote"
       ],
@@ -111,7 +111,7 @@
       },
       "receipt": {
         "kind": "expired_demo",
-        "note": "Prior demo receipt expired \u2014 re-preflight required"
+        "note": "Prior demo receipt expired — re-preflight required"
       },
       "narrative": "Review / warn class: proceed only deliberately; buy portable proof or refuse."
     },
@@ -122,7 +122,7 @@
       "decision": "BLOCK",
       "principal": "Unattributed / spoof risk",
       "agent_id": "agent:demo.spoof.checkout",
-      "wallet_hint": "BJG\u2026R7VQ (wash-education shape only)",
+      "wallet_hint": "BJG…R7VQ (wash-education shape only)",
       "scope": [
         "checkout",
         "drain"
@@ -142,7 +142,7 @@
       },
       "receipt": {
         "kind": "none",
-        "note": "Refuse before sign \u2014 Path B"
+        "note": "Refuse before sign — Path B"
       },
       "narrative": "Block path: gate must abort before signTransaction. Success = signer_invocation_count=0."
     }
@@ -150,8 +150,8 @@
   "plug_in": {
     "title": "Plug into us (real endpoints)",
     "free_preflight_curl": "curl -sS -X POST https://intel.twzrd.xyz/v1/intel/preflight \\\n  -H 'content-type: application/json' \\\n  -d '{\"seller_wallet\":\"GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs\",\"price_usdc\":0.01,\"agent_intent\":\"preflight\"}'",
-    "path_b_gate": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0\n# wire beforePayment \u2192 evaluate \u2192 BLOCK aborts before signTransaction",
-    "paid_trust_note": "Paid V6 / trust calls buy portable proof after free preflight \u2014 they do not replace refuse-before-sign enforcement.",
+    "path_b_gate": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0\n# wire beforePayment → evaluate → BLOCK aborts before signTransaction",
+    "paid_trust_note": "Paid V6 / trust calls buy portable proof after free preflight — they do not replace refuse-before-sign enforcement.",
     "live_endpoints": {
       "preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
       "health": "https://intel.twzrd.xyz/health",
@@ -178,21 +178,21 @@
         },
         {
           "name": "@wzrd_sol/plugin-trustgate",
-          "role": "ElizaOS registry \u2014 NOT ClawHub"
+          "role": "ElizaOS registry — NOT ClawHub"
         }
       ],
-      "registry_split": "OpenClaw \u2192 ClawHub; ElizaOS \u2192 eliza community registry. Same product idea, two registries."
+      "registry_split": "OpenClaw → ClawHub; ElizaOS → eliza community registry. Same product idea, two registries."
     },
     "primary_pull": "Evidence favors npm + x402 tooling velocity over ClawHub skill installs or Moltbook nostalgia."
   },
   "narrative_angles": [
     {
       "angle": "External verifier",
-      "hook": "Agent platforms want verification outside their system \u2014 curl our preflight."
+      "hook": "Agent platforms want verification outside their system — curl our preflight."
     },
     {
       "angle": "Open weights wave",
-      "hook": "Local agents everywhere \u2192 identity/delegation problem explodes before spend."
+      "hook": "Local agents everywhere → identity/delegation problem explodes before spend."
     },
     {
       "angle": "Agent graph vs friend graph",
@@ -209,5 +209,6 @@
     "path_b": "https://twzrd-live-01q-host.vercel.app/api/path-b",
     "board": "https://twzrd-live-01q-host.vercel.app/api/board",
     "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt"
-  }
+  },
+  "metric_note": "Attestation / self-serve refuse does not close external Path B. Primary counter: path-b-artifacts.json"
 }

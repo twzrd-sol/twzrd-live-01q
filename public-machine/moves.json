@@ -27,13 +27,13 @@
       "id": "distribution",
       "label": "04 · Distribution",
       "subtitle": "Put the gate where agents already pay",
-      "outcome": "3 embed seats live + weekly outbound that creates gate_evals."
+      "outcome": "3 embed seats live + weekly outbound that files Path B artifacts."
     },
     {
       "id": "convert",
       "label": "05 · Convert",
       "subtitle": "Free card → gate install → optional V6 proof",
-      "outcome": "First external paid trust + first external gate_evals > 0."
+      "outcome": "First external paid trust + first external Path B artifact filed."
     }
   ],
   "moves": [
@@ -47,7 +47,7 @@
         "Never report free_card_hits_internal in investor/partner decks.",
         "Add a weekly screenshot of /health day0.door_zero with external basis."
       ],
-      "metric": "Team can recite external free cards, gate_evals, paid_trust_external from memory",
+      "metric": "Team can recite external free cards (advisory), Path B artifacts (primary), paid_trust_external from memory",
       "impact": "critical",
       "horizon": "this_week",
       "links": [
@@ -69,7 +69,7 @@
         "Secondary: external free cards. Tertiary: paid_trust_payer_external.",
         "Kill any metric that rewards internal template alias hits."
       ],
-      "metric": "gate_evals (external) is the only primary OKR",
+      "metric": "path_b_artifacts_external is the only primary OKR",
       "impact": "critical",
       "horizon": "this_week",
       "impact_weight": 5,
@@ -195,7 +195,7 @@
         "Offer: white-glove gate install + shadow mode for 14 days, then enforce.",
         "Success: their gate_evals show on health (even if fail-open is off)."
       ],
-      "metric": "5 LOIs or shipped installs; ≥1 external gate_eval/day",
+      "metric": "5 LOIs or shipped installs; ≥1 external Path B artifact",
       "impact": "critical",
       "horizon": "this_month",
       "impact_weight": 5,
@@ -227,7 +227,7 @@
         "If free cards grow but gate_evals stay 0, messaging is wrong — fix demos, not ads.",
         "Do not optimize paid V6 until gate_evals move; paid is proof, not enforcement."
       ],
-      "metric": "Funnel chart reviewed weekly; gate_evals is middle stage",
+      "metric": "Funnel chart reviewed weekly; path_b_artifacts is middle stage (primary)",
       "impact": "high",
       "horizon": "this_month",
       "impact_weight": 3,

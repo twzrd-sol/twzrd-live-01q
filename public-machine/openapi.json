@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "TWZRD Live 0\u21921Q",
-    "version": "1.2.0",
-    "description": "Machine-readable operator board for intel.twzrd.xyz 0\u21921Q. Includes Path B external runbook (refuse-before-sign), live day0 funnel, and folded CF strategy (SPRAT). Prefer JSON over HTML. Pay decisions \u2192 intel preflight, not this API.",
+    "title": "TWZRD Live 0→1Q",
+    "version": "1.4.0",
+    "description": "Machine-readable operator board for intel.twzrd.xyz 0→1Q. Includes Path B external runbook (refuse-before-sign), live day0 funnel, and folded CF strategy (SPRAT). Prefer JSON over HTML. Pay decisions → intel preflight, not this API. Path B primary metric = path-b-artifacts, not day0.gate_evals.",
     "contact": {
       "name": "TWZRD",
       "url": "https://twzrd.xyz"
@@ -47,7 +47,7 @@
     "/api/path-b": {
       "get": {
         "summary": "Path B external integration runbook (JSON)",
-        "description": "Install steps, BLOCK/ALLOW evidence checklist, Vicky\u2192Nick\u2192Lucas sequence, artifact template. format=md for markdown.",
+        "description": "Install steps, BLOCK/ALLOW evidence checklist, Vicky→Nick→Lucas sequence, artifact template. format=md for markdown.",
         "operationId": "getPathBRunbook",
         "parameters": [
           {
@@ -218,6 +218,17 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/path-b-artifacts": {
+      "get": {
+        "summary": "Path B external artifact registry (PRIMARY adoption counter)",
+        "description": "Count external Path B artifacts. day0.gate_evals is settle-rail only and is NOT this counter.",
+        "responses": {
+          "200": {
+            "description": "twzrd.path_b_artifact_registry/v1"
           }
         }
       }

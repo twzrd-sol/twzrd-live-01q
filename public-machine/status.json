@@ -2,13 +2,21 @@
   "schema": "twzrd.live_board_status/v1",
   "id": "twzrd-live-0-1q",
   "version": "1.3.0",
-  "generated_at": "2026-08-12T00:27:55.861Z",
+  "generated_at": "2026-08-12T02:21:33.086Z",
   "north_star": {
     "title": "Live 0→1 for Q1",
-    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by gate_evals and refuse transcripts, not by free MCP hits.",
-    "primary": "External gate_evals (Path B)",
-    "secondary": "free_card_hits_external",
-    "tertiary": "paid_trust_payer_external"
+    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by attributable Path B artifacts (refuse-before-sign transcripts on non-TWZRD hosts), not by free MCP hits or day0.gate_evals.",
+    "primary": "External Path B artifacts (attributable refuse/allow transcripts)",
+    "primary_metric_key": "path_b_artifacts_external",
+    "secondary": "free_card_hits_external (advisory demand only)",
+    "tertiary": "paid_trust_payer_external (portable V6 after seats exist)",
+    "not_primary": {
+      "day0_gate_evals": "Facilitator settle-gate telemetry only — NOT buyer Path B. Do not chase as external adoption.",
+      "day0_gate_blocks": "Settle-rail refusals — NOT buyer AutoGate signer_invocation_count=0.",
+      "free_preflight": "Advisory only until beforePayment hook is installed.",
+      "self_serve_dogfood": "public-machine/dogfood/* has closes_external_adoption_metric:false"
+    },
+    "success_definition": "≥1 twzrd.path_b_artifact/v1 from an operator we do not control, with BLOCK + signer_invocation_count=0 (matched ALLOW when claimed)."
   },
   "live": {
     "ok": true,
