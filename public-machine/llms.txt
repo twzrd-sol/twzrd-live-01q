@@ -1,0 +1,213 @@
+# TWZRD Live 0→1Q — Machine guide
+
+> Operator board for getting intel.twzrd.xyz from live infra to live demand in Q1.
+> Humans use the UI. Agents should start here and prefer JSON endpoints.
+> **Canonical multi-agent host.** SPRAT CF strategy is folded into `/api/board` → `cf_strategy`.
+> **Path B external runbook** → `path_b_runbook` and `/api/path-b`.
+> **Agent attestation demo** → `attestation` and `/api/attestation`.
+> SPRAT GitHub = source extract / history only (not a second start-here).
+
+schema: twzrd.live_board/v1
+version: 1.3.0
+generated_at: 2026-08-12T00:27:55.753Z
+
+## Routing (locked)
+
+```text
+Live Board /llms.txt → /api/board  — start here
+  board.attestation                 — who/scope/freshness/decision demo + plug-in curl
+  board.path_b_runbook              — external refuse-before-sign runbook
+  board.cf_strategy                 — CF→Solana posture (SPRAT fold)
+  board.next_actions / moves        — Path B 0→1Q execution
+  board.live                        — day0 funnel + intel health
+Human: /attest · /path-b
+intel.twzrd.xyz                     — product (should I pay?)
+SPRAT GitHub                        — extract / history only
+```
+
+| Agent needs… | Point at… |
+|---|---|
+| Agent attestation / plug-in demo | `/api/attestation` or `board.attestation` |
+| External Path B install + evidence | `/api/path-b` or `board.path_b_runbook` |
+| CF / Solana posture this week | `/api/board` → `cf_strategy` |
+| What next for external gate_evals | `/api/board` / `/api/board/status` |
+| Intel up / day0 | `/api/intel-health` or intel `/health` |
+| Should I pay this seller? | **intel preflight — never this board** |
+
+## North star
+
+An external agent client installs the TWZRD buyer gate and honors block before the wallet signs — proven by gate_evals and refuse transcripts, not by free MCP hits.
+
+- Primary: External gate_evals (Path B)
+- Secondary: free_card_hits_external
+- Tertiary: paid_trust_payer_external
+
+## Live diagnosis
+
+Infra is live; demand is not. Zero external free cards and zero gate_evals — Path B has no external seat yet.
+
+### Funnel (external-demand oriented)
+
+| Stage | Value | Status |
+|---|---:|---|
+| External free cards | 0 | empty |
+| Gate evals (Path B) | 0 | empty |
+| Gate blocks | 0 | empty |
+| Paid trust external | 0 | empty |
+
+## Agent attestation (`attestation`)
+
+schema: twzrd.agent_attestation/v1 · v1.0.0
+
+**Thesis:** TWZRD is the external verification edge on the agent graph: who this agent acts for, what it may spend on, how fresh the evidence is, and whether spend should ALLOW / WARN / BLOCK — before the wallet signs.
+
+Four questions: who it represents · scope · freshness · risk/decision.
+
+Sample cards are **fictional** (labeled). Real plug-in:
+```bash
+curl -sS -X POST https://intel.twzrd.xyz/v1/intel/preflight \
+  -H 'content-type: application/json' \
+  -d '{"seller_wallet":"GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs","price_usdc":0.01,"agent_intent":"preflight"}'
+```
+
+Sample cards are fictional and labeled. They illustrate decision shape, not real third-party verification. TWZRD does not claim legal identity attestation; it scores observed settlement / counterparty risk for agent payments.
+
+Not affiliated with or endorsed by Meta Platforms, Inc. Public CDO quotes about wanting an external verification plug-in are market context only.
+
+Human UI: `/attest` · Machine: `/api/attestation`
+
+## Path B runbook (`path_b_runbook`)
+
+schema: twzrd.path_b_runbook/v1 · v1.0.0
+
+**Claim:** Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.
+
+**North star:** Success = external gate_evals with signer_invocation_count=0 on refuse (and attributable lineage on the Live Board).
+
+Partner sequence (locked): **Vicky → Nick → Lucas**
+
+Cold install:
+```bash
+npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
+node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
+```
+Expected: `signer_invocation_count=0 payment_retry_count=0`
+
+Order of ops:
+- 1. Produce this runbook (screen-share ready)
+- 2. Define BLOCK/ALLOW evidence-capture checklist
+- 3. Run with Vicky, then Nick, then Lucas
+- 4. Capture one attributable external artifact
+- 5. Launch founder post with external proof — not enrollment theater
+
+Human UI: `/path-b` · Machine: `/api/path-b` (also `?format=md`)
+
+## CF strategy (`cf_strategy` — SPRAT fold)
+
+schema: twzrd.cf_strategy/v1 · source 1.2.0 (source_extract) · live_source=true
+
+**Thesis:** Own the rails that put every Cloudflare Agent on Solana.
+
+Cloudflare owns agent distribution. Solana owns settlement speed. SPRAT by TWZRD is the trust + x402 facilitator middle.
+
+**Decision (brief+hold):** Hold engineering on Agents MCP SVM. Flood live x402-hono Solana path. MCP-SVM is watch + optional read-only spike only — not build-now.
+
+- ship_now: workers-hono, preflight, portable-proof
+- hold: mcp-svm, cf-wallets
+- ready_not_shipped: token-policy
+- guardrail: Flood Solana volume through live Workers + x402-hono + intel facilitator. Do not pre-build speculative CF Wallets scopes. Do not engineer Agents MCP SVM this week without an explicit spike go.
+
+### Signals
+
+- **A** `cf-wallets-api` (watch): Stable documentable Virtual Wallet API with create/list/fund ops.
+- **B** `mcp-x402-svm` (watch): Agents MCP registers SVM scheme on both server and client; Solana in network map.
+
+### Supply lanes
+
+- **workers-hono** (live) — Workers Solana sell: x402-hono + TWZRD facilitator on mainnet USDC.
+- **preflight** (live) — Preflight intel gate: Seller wallet reputation + price sanity.
+- **portable-proof** (live) — Portable proof upsell (P5): Funnel measuring from clean zero.
+- **mcp-svm** (watch) — Agents MCP @x402/svm: Agents MCP still EVM-only. Foundation @x402/svm exists; CF has not registered it.
+- **cf-wallets** (watch) — Cloudflare Wallets API: Handle reservation live; Virtual Wallet API still coming.
+- **token-policy** (ready) — CF token mint policy: Per-job token policy ready.
+
+**Not this board:** Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight — never this board
+
+Source extract (optional mirror): https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json
+
+## Machine endpoints (prefer these)
+
+| Path | Purpose |
+|---|---|
+| GET /llms.txt | This guide |
+| GET /attest | Human attestation demo |
+| GET /api/attestation | Attestation JSON |
+| GET /path-b | Human Path B runbook |
+| GET /api/path-b | Path B runbook JSON |
+| GET /api/path-b?format=md | Path B markdown |
+| GET /api/board | Full board (live + playbook + cf_strategy + path_b + attestation) |
+| GET /api/board/status | Compact live status |
+| GET /api/board/moves | Playbook moves |
+| GET /api/openapi.json | OpenAPI 3.1 |
+| GET /api/intel-health | Proxied intel health |
+
+Query params on `/api/board` and `/api/board/moves`:
+- `phase` — truth | wedge | proof | distribution | convert
+- `horizon` — this_week | this_month | quarter
+- `impact` — critical | high | medium
+- `done` — comma-separated move ids to treat as completed (affects next_actions)
+
+## Next actions (highest leverage open)
+
+1. **truth-external-only** — Pin external-only Day0 on the wall (critical, this_week)
+   metric: Team can recite external free cards, gate_evals, paid_trust_external from memory
+2. **truth-north-star** — Declare Path B north star for Q1 (critical, this_week)
+   metric: gate_evals (external) is the only primary OKR
+3. **wedge-path-b** — Lead every conversation with refuse-before-sign (critical, this_week)
+   metric: 100% of partner demos show Path B first
+4. **proof-cold-machine** — Cold-machine Path B under 5 minutes (critical, this_week)
+   metric: 3 independent people complete refuse proof without help
+5. **wedge-message** — Freeze a one-screen message hierarchy (high, this_week)
+   metric: One paragraph + one command on every surface (intel, X, Smithery blurb)
+
+## Phases
+
+### 01 · Truth (`truth`)
+Separate live infra from live demand
+Outcome: One north-star metric board that only counts external demand.
+
+### 02 · Wedge (`wedge`)
+Path B is the product, not preflight alone
+Outcome: Every install demo ends with refuse-before-sign (signer=0).
+
+### 03 · Proof (`proof`)
+Make the gate dogfoodable in under 5 minutes
+Outcome: A cold machine can prove Path B without a wallet or USDC.
+
+### 04 · Distribution (`distribution`)
+Put the gate where agents already pay
+Outcome: 3 embed seats live + weekly outbound that creates gate_evals.
+
+### 05 · Convert (`convert`)
+Free card → gate install → optional V6 proof
+Outcome: First external paid trust + first external gate_evals > 0.
+
+## Dogfood (Path B)
+
+```bash
+npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
+node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
+```
+Expected: signer_invocation_count=0 payment_retry_count=0
+
+## Related TWZRD surfaces
+
+- https://intel.twzrd.xyz/llms.txt — Agent Intel MCP / HTTP
+- https://intel.twzrd.xyz/mcp — Hosted MCP
+- https://intel.twzrd.xyz/health — Day0 counters
+- https://intel.twzrd.xyz/v1/intel/preflight — Pay decisions (product)
+- https://twzrd.xyz — Product front door
+- https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json — SPRAT source extract (history only, not a second host)
+
+Agents: do not scrape the HTML UI. Use `/api/board`, `/api/attestation`, `/api/path-b`.
+SPRAT GitHub is extract only — start here at Live Board, not SPRAT.

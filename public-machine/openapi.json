@@ -1,0 +1,226 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TWZRD Live 0\u21921Q",
+    "version": "1.2.0",
+    "description": "Machine-readable operator board for intel.twzrd.xyz 0\u21921Q. Includes Path B external runbook (refuse-before-sign), live day0 funnel, and folded CF strategy (SPRAT). Prefer JSON over HTML. Pay decisions \u2192 intel preflight, not this API.",
+    "contact": {
+      "name": "TWZRD",
+      "url": "https://twzrd.xyz"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://twzrd-live-01q-host.vercel.app"
+    }
+  ],
+  "paths": {
+    "/llms.txt": {
+      "get": {
+        "summary": "Agent entry guide (markdown)",
+        "operationId": "getLlmsTxt",
+        "responses": {
+          "200": {
+            "description": "Markdown guide",
+            "content": {
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/path-b": {
+      "get": {
+        "summary": "Human Path B external integration runbook (UI)",
+        "operationId": "getPathBUi",
+        "responses": {
+          "200": {
+            "description": "HTML screen-share runbook"
+          }
+        }
+      }
+    },
+    "/api/path-b": {
+      "get": {
+        "summary": "Path B external integration runbook (JSON)",
+        "description": "Install steps, BLOCK/ALLOW evidence checklist, Vicky\u2192Nick\u2192Lucas sequence, artifact template. format=md for markdown.",
+        "operationId": "getPathBRunbook",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "md",
+                "markdown",
+                "txt"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "path_b_runbook/v1",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/markdown": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/board": {
+      "get": {
+        "summary": "Full board snapshot: live funnel + playbook + cf_strategy + path_b_runbook",
+        "description": "Board includes `path_b_runbook` and `cf_strategy`. Do not use for pay decisions.",
+        "operationId": "getBoard",
+        "parameters": [
+          {
+            "name": "phase",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "truth",
+                "wedge",
+                "proof",
+                "distribution",
+                "convert"
+              ]
+            }
+          },
+          {
+            "name": "horizon",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "this_week",
+                "this_month",
+                "quarter"
+              ]
+            }
+          },
+          {
+            "name": "impact",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium"
+              ]
+            }
+          },
+          {
+            "name": "done",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated completed move ids"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "twzrd.live_board/v1",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/board/status": {
+      "get": {
+        "summary": "Compact live status + cf_strategy summary",
+        "operationId": "getBoardStatus",
+        "responses": {
+          "200": {
+            "description": "status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/board/moves": {
+      "get": {
+        "summary": "Playbook moves",
+        "operationId": "getBoardMoves",
+        "responses": {
+          "200": {
+            "description": "moves",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/intel-health": {
+      "get": {
+        "summary": "Proxied intel.twzrd.xyz/health",
+        "operationId": "getIntelHealth",
+        "responses": {
+          "200": {
+            "description": "intel health",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/openapi.json": {
+      "get": {
+        "summary": "This OpenAPI document",
+        "operationId": "getOpenApi",
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.1",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

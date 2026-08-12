@@ -1,0 +1,1332 @@
+{
+  "schema": "twzrd.live_board/v1",
+  "id": "twzrd-live-0-1q",
+  "version": "1.3.0",
+  "generated_at": "2026-08-12T00:27:55.595Z",
+  "product": {
+    "name": "TWZRD Live 0\u21921Q",
+    "owner": "TWZRD",
+    "intel_base": "https://intel.twzrd.xyz",
+    "human_ui": "https://twzrd-live-01q-host.vercel.app/",
+    "machine_start": "https://twzrd-live-01q-host.vercel.app/llms.txt"
+  },
+  "north_star": {
+    "title": "Live 0\u21921 for Q1",
+    "statement": "An external agent client installs the TWZRD buyer gate and honors block before the wallet signs \u2014 proven by gate_evals and refuse transcripts, not by free MCP hits.",
+    "primary": "External gate_evals (Path B)",
+    "secondary": "free_card_hits_external",
+    "tertiary": "paid_trust_payer_external"
+  },
+  "phases": [
+    {
+      "id": "truth",
+      "label": "01 \u00b7 Truth",
+      "subtitle": "Separate live infra from live demand",
+      "outcome": "One north-star metric board that only counts external demand."
+    },
+    {
+      "id": "wedge",
+      "label": "02 \u00b7 Wedge",
+      "subtitle": "Path B is the product, not preflight alone",
+      "outcome": "Every install demo ends with refuse-before-sign (signer=0)."
+    },
+    {
+      "id": "proof",
+      "label": "03 \u00b7 Proof",
+      "subtitle": "Make the gate dogfoodable in under 5 minutes",
+      "outcome": "A cold machine can prove Path B without a wallet or USDC."
+    },
+    {
+      "id": "distribution",
+      "label": "04 \u00b7 Distribution",
+      "subtitle": "Put the gate where agents already pay",
+      "outcome": "3 embed seats live + weekly outbound that creates gate_evals."
+    },
+    {
+      "id": "convert",
+      "label": "05 \u00b7 Convert",
+      "subtitle": "Free card \u2192 gate install \u2192 optional V6 proof",
+      "outcome": "First external paid trust + first external gate_evals > 0."
+    }
+  ],
+  "funnel_stages": [
+    {
+      "key": "external_cards",
+      "label": "External free cards",
+      "hint": "Advisory demand only"
+    },
+    {
+      "key": "gate_evals",
+      "label": "Gate evals",
+      "hint": "Path B \u2014 primary"
+    },
+    {
+      "key": "gate_blocks",
+      "label": "Gate blocks",
+      "hint": "Refusals that saved spend"
+    },
+    {
+      "key": "paid_external",
+      "label": "Paid trust (external)",
+      "hint": "Portable V6 proof"
+    }
+  ],
+  "moves": [
+    {
+      "id": "truth-external-only",
+      "phase": "truth",
+      "title": "Pin external-only Day0 on the wall",
+      "why": "Health already separates free_card_hits_external from internal swarm. If you manage to total hits, you will celebrate dogfood and miss that demand is near zero.",
+      "how": [
+        "Dashboard tile: free_card_hits_external, gate_evals, paid_trust_payer_external only.",
+        "Never report free_card_hits_internal in investor/partner decks.",
+        "Add a weekly screenshot of /health day0.door_zero with external basis."
+      ],
+      "metric": "Team can recite external free cards, gate_evals, paid_trust_external from memory",
+      "impact": "critical",
+      "horizon": "this_week",
+      "links": [
+        {
+          "label": "Live health",
+          "href": "https://intel.twzrd.xyz/health"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "truth-north-star",
+      "phase": "truth",
+      "title": "Declare Path B north star for Q1",
+      "why": "Preflight is advisory. Paid V6 is portable proof. Neither is enforcement. Live 0\u21921 means a client honors block before signTransaction.",
+      "how": [
+        "Write one sentence: Success = external gate_evals with signer_invocation_count=0 on refuse.",
+        "Secondary: external free cards. Tertiary: paid_trust_payer_external.",
+        "Kill any metric that rewards internal template alias hits."
+      ],
+      "metric": "gate_evals (external) is the only primary OKR",
+      "impact": "critical",
+      "horizon": "this_week",
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "wedge-path-b",
+      "phase": "wedge",
+      "title": "Lead every conversation with refuse-before-sign",
+      "why": "MCP tools and free preflight create awareness but do not block spend. The install that refuses is the wedge competitors cannot soft-ship as a dashboard.",
+      "how": [
+        "Hero line: Before your agent signs, TWZRD can refuse.",
+        "Demo order: refuse fixture \u2192 gate eval \u2192 transcript with signer=0.",
+        "Only then show MCP / merchant_card / V6 as supporting rails."
+      ],
+      "metric": "100% of partner demos show Path B first",
+      "impact": "critical",
+      "horizon": "this_week",
+      "links": [
+        {
+          "label": "Refuse fixture",
+          "href": "https://intel.twzrd.xyz/v1/intel/refuse-fixture"
+        },
+        {
+          "label": "llms.txt",
+          "href": "https://intel.twzrd.xyz/llms.txt"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "wedge-message",
+      "phase": "wedge",
+      "title": "Freeze a one-screen message hierarchy",
+      "why": "Current surfaces list 24 tools, settle rails, market data, and watch hooks. 0\u21921 needs a single sentence and a single install path.",
+      "how": [
+        "Primary: Machine trust for autonomous spend \u2014 block before sign.",
+        "Proof: npm i twzrd-x402-gate + refuse eval binary.",
+        "Optional: hosted MCP for discovery; V6 only after trust is enforced."
+      ],
+      "metric": "One paragraph + one command on every surface (intel, X, Smithery blurb)",
+      "impact": "high",
+      "horizon": "this_week",
+      "impact_weight": 3,
+      "done": false
+    },
+    {
+      "id": "proof-cold-machine",
+      "phase": "proof",
+      "title": "Cold-machine Path B under 5 minutes",
+      "why": "Optional peers of the gate are not auto-installed. Broken first runs kill distribution. Q1 lives or dies on frictionless dogfood.",
+      "how": [
+        "Publish a single copy-paste block that installs gate + peers + runs refuse eval.",
+        "Record expected: signer_invocation_count=0 payment_retry_count=0.",
+        "File every break report as a P0 until the script is green on a fresh machine."
+      ],
+      "metric": "3 independent people complete refuse proof without help",
+      "impact": "critical",
+      "horizon": "this_week",
+      "links": [
+        {
+          "label": "Gate package",
+          "href": "https://www.npmjs.com/package/twzrd-x402-gate"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "proof-public-transcript",
+      "phase": "proof",
+      "title": "Ship a public refuse transcript artifact",
+      "why": "Screenshots of allow/warn cards look like every other trust API. A refuse transcript is unique and shareable.",
+      "how": [
+        "Commit a sanitized JSON transcript from twzrd-gate-eval-refuse.",
+        "Pin it on X + README with the install one-liner.",
+        "Invite partners: run this and paste your signer_invocation_count."
+      ],
+      "metric": "At least 5 public replies/forks with signer=0",
+      "impact": "high",
+      "horizon": "this_month",
+      "impact_weight": 3,
+      "done": false
+    },
+    {
+      "id": "dist-embed-seats",
+      "phase": "distribution",
+      "title": "Win 3 embed seats where x402 clients already live",
+      "why": "You cannot out-content Coinbase AgentKit, OpenClaw, or Claude Code install bases. You must be a default onBeforePayment hook inside them.",
+      "how": [
+        "AgentKit / x402 clients: keep registeredServices + README example warm.",
+        "OpenClaw / ClawHub skill: default preflight plugin with enforce mode docs.",
+        "One framework adapter (eliza / facilitator) with a public reference agent."
+      ],
+      "metric": "3 embed docs live that mention installTwzrdAutoGate or equivalent",
+      "impact": "critical",
+      "horizon": "this_month",
+      "links": [
+        {
+          "label": "Smithery listing",
+          "href": "https://smithery.ai/servers/wzrd/twzrd-agent-intel"
+        },
+        {
+          "label": "MCP endpoint",
+          "href": "https://intel.twzrd.xyz/mcp"
+        },
+        {
+          "label": "Skill",
+          "href": "https://intel.twzrd.xyz/skill.md"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "dist-design-partners",
+      "phase": "distribution",
+      "title": "Close 5 design-partner agent operators",
+      "why": "External free cards at ~30 with zero gate_evals means discovery without install. Operators who already lose USDC to bad counterparties feel the pain.",
+      "how": [
+        "Target: Solana x402 buyers who run recurring agent spend (multi_merchant cohort exists on corpus).",
+        "Offer: white-glove gate install + shadow mode for 14 days, then enforce.",
+        "Success: their gate_evals show on health (even if fail-open is off)."
+      ],
+      "metric": "5 LOIs or shipped installs; \u22651 external gate_eval/day",
+      "impact": "critical",
+      "horizon": "this_month",
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "dist-outbound-rhythm",
+      "phase": "distribution",
+      "title": "Weekly refuse-demo outbound rhythm",
+      "why": "Infra that is live but quiet dies. Outbound must force Path B, not link spam to /llms.txt.",
+      "how": [
+        "2 demos/week to agent frameworks, facilitators, and x402 merchants.",
+        "Each demo ends with them running the refuse binary themselves.",
+        "Log outcome: no-show / ran proof / installed / gate_eval observed."
+      ],
+      "metric": "8 demos/month with \u226550% completing refuse proof live",
+      "impact": "high",
+      "horizon": "this_month",
+      "impact_weight": 3,
+      "done": false
+    },
+    {
+      "id": "convert-funnel",
+      "phase": "convert",
+      "title": "Instrument free \u2192 gate \u2192 paid as a real funnel",
+      "why": "door_zero already sketches grade \u2192 free card \u2192 paid. 0\u21921 needs gate install as the missing middle.",
+      "how": [
+        "Event: preflight (external) \u2192 gate package download / eval hit \u2192 gate_eval \u2192 optional V6.",
+        "If free cards grow but gate_evals stay 0, messaging is wrong \u2014 fix demos, not ads.",
+        "Do not optimize paid V6 until gate_evals move; paid is proof, not enforcement."
+      ],
+      "metric": "Funnel chart reviewed weekly; gate_evals is middle stage",
+      "impact": "high",
+      "horizon": "this_month",
+      "impact_weight": 3,
+      "done": false
+    },
+    {
+      "id": "convert-first-external-paid",
+      "phase": "convert",
+      "title": "Earn first paid_trust_payer_external",
+      "why": "Zero paid external trust means no one bought portable proof. Useful signal after gate installs exist \u2014 portable receipt for downstream agents.",
+      "how": [
+        "After design partner gate is live, offer V6 as audit trail for compliance / multi-agent handoff.",
+        "Price already set (0.05 USDC) \u2014 do not change price; change why they need a receipt.",
+        "Verify with offline twzrd-receipt-verifier in the same session."
+      ],
+      "metric": "paid_trust_payer_external \u2265 1 and receipt_verify_valid \u2265 1",
+      "impact": "medium",
+      "horizon": "quarter",
+      "links": [
+        {
+          "label": "Receipt example",
+          "href": "https://intel.twzrd.xyz/v1/receipts/example"
+        }
+      ],
+      "impact_weight": 1,
+      "done": false
+    },
+    {
+      "id": "convert-settle-gate-path",
+      "phase": "convert",
+      "title": "Keep settle_gate in shadow until Path B has demand",
+      "why": "settle_gate_enforcing=false is correct for 0\u21921. Enforcing seller screens before you have buyer-gate installs confuses the wedge.",
+      "how": [
+        "Leave settle gate in shadow; log only.",
+        "Spend Q1 cycles on buyer AutoGate installs, not facilitator policy surface area.",
+        "Revisit enforce only after external gate_evals are healthy."
+      ],
+      "metric": "No premature settle_gate_enforcing=true without gate demand",
+      "impact": "medium",
+      "horizon": "quarter",
+      "impact_weight": 1,
+      "done": false
+    }
+  ],
+  "live": {
+    "ok": true,
+    "fetched_at": "2026-08-12T00:27:55.595Z",
+    "health": {
+      "status": "ok",
+      "package_version": "0.5.7",
+      "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+      "mode": "mainnet",
+      "settle_gate_enforcing": false,
+      "settle_gate_shadow": true,
+      "service_catalog": {
+        "service_count": 14806,
+        "covered_paytos": 1197,
+        "live_402_service_count": 3018,
+        "available": true
+      }
+    },
+    "day0": {
+      "free_card_hits": 52,
+      "free_card_hits_internal": 52,
+      "free_card_hits_external": 0,
+      "free_card_hits_unattributed": 0,
+      "free_card_attribution_note": "external is the only demand-bearing number here; internal is our own swarm/tooling and unattributed is context-free, never external",
+      "portable_proof_upsell_shown": 0,
+      "portable_proof_upsell_shown_internal": 0,
+      "portable_proof_upsell_shown_external": 0,
+      "portable_proof_upsell_shown_unattributed": 0,
+      "portable_proof_upsell_note": "merchant_card path only, interim in-memory counter (per-worker, non-durable, resets on restart) \u2014 the preflight path's impressions are durable, see preflight_requests.portable_proof_upsell_trigger instead",
+      "paid_merchant_mints": 0,
+      "receipt_verifies": 0,
+      "receipt_verify_valid": 0,
+      "receipt_verify_invalid": 0,
+      "dead_listing_demotions": 0,
+      "paid_trust_real_corpus": 0,
+      "paid_trust_self_or_payer": 0,
+      "paid_trust_not_in_corpus": 0,
+      "paid_trust_internal_interop": 0,
+      "paid_trust_unknown_basis": 0,
+      "paid_trust_payer_internal": 0,
+      "paid_trust_payer_external": 0,
+      "paid_trust_payer_unknown": 0,
+      "paid_trust_payer_note": "external = EXTERNAL_VERIFIED_WALLETS only (completed lineage audit); internal = INTERNAL_WALLETS / dogfood; unknown = unknown_pending_audit (default for anything new \u2014 never counted as external). Use paid_trust_payer_external for organic conversion, not raw paid_trust_total.",
+      "path_placeholder_hits": 21,
+      "template_alias_served": 21,
+      "path_invalid_pubkey_hits": 0,
+      "evm_payto_hits": 1,
+      "path_placeholder_samples": [
+        "/v1/intel/quick::pubkey",
+        "/v1/intel/quick::solana_address",
+        "/v1/intel/trust::pubkey",
+        "/v1/intel/merchant:{pubkey}",
+        "/v1/intel/trust:{pubkey}"
+      ],
+      "paid_trust_total": 0,
+      "gate_evals": 0,
+      "gate_shadow_blocks": 0,
+      "gate_blocks": 0,
+      "gate_allows": 0,
+      "gate_fail_open": 0,
+      "gate_wash_flagged": 0,
+      "grade_hits": 0,
+      "grade_cache_hits": 0,
+      "grade_flagged": 0,
+      "grade_receipt_minted": 0,
+      "door_requests": 52,
+      "door_anon": 52,
+      "door_proven": 0,
+      "door_receipt": 0,
+      "door_rate_limited": 0,
+      "door_fail_open": 0,
+      "door_zero": {
+        "note": "door-zero funnel: process-local mechanism usage; NOT external adoption (metric stays counted_external guard runs)",
+        "stages": {
+          "grade_hits": 0,
+          "free_card_hits": 52,
+          "free_card_hits_internal": 52,
+          "free_card_hits_external": 0,
+          "free_card_hits_unattributed": 0,
+          "paid_trust_total": 0,
+          "receipt_verifies": 0
+        },
+        "conversions": {
+          "grade_to_free_card": null,
+          "free_card_to_paid": null,
+          "paid_to_receipt_verify": null,
+          "grade_to_receipt_verify": null,
+          "basis": "free_card_hits_external"
+        },
+        "door": {
+          "requests": 52,
+          "anon": 52,
+          "proven": 0,
+          "receipt": 0,
+          "rate_limited": 0,
+          "fail_open": 0
+        },
+        "grade_detail": {
+          "cache_hits": 0,
+          "flagged": 0,
+          "receipt_minted": 0
+        }
+      },
+      "merchant_attach_ok": 0,
+      "merchant_attach_skip": 0,
+      "merchant_attach_error": 0
+    },
+    "funnel": {
+      "external_cards": 0,
+      "gate_evals": 0,
+      "gate_blocks": 0,
+      "paid_external": 0
+    },
+    "funnel_status": {
+      "external_cards": "empty",
+      "gate_evals": "empty",
+      "gate_blocks": "empty",
+      "paid_external": "empty"
+    },
+    "diagnosis": "Infra is live; demand is not. Zero external free cards and zero gate_evals \u2014 Path B has no external seat yet."
+  },
+  "cf_strategy": {
+    "schema": "twzrd.cf_strategy/v1",
+    "source": "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
+    "source_schema": "https://twzrd.xyz/schema/sprat-manifest/v1",
+    "source_schema_version": "1.2.0",
+    "source_role": "source_extract",
+    "source_generated_at": "2026-08-11T22:18:31.000Z",
+    "thesis": {
+      "headline": "Own the rails that put every Cloudflare Agent on Solana.",
+      "subcopy": "Cloudflare owns agent distribution. Solana owns settlement speed. SPRAT by TWZRD is the trust + x402 facilitator middle."
+    },
+    "decision": {
+      "summary": "Hold engineering on Agents MCP SVM. Flood live x402-hono Solana path. MCP-SVM is watch + optional read-only spike only \u2014 not build-now.",
+      "pick": "brief+hold",
+      "ship_now": [
+        "Workers + x402-hono + network:solana + https://intel.twzrd.xyz"
+      ],
+      "do_not": [
+        "Re-probe Signal B weekly as if it is the product",
+        "Build cloudflare/agents SVM fork this week without a go/no-go spike",
+        "Claim generational moat or facilitator monopoly",
+        "Treat paid MCP Solana as unblocked"
+      ],
+      "if_spike_later": {
+        "type": "read_only",
+        "return": [
+          "Patch outline (ExactSvmScheme twin + type unions)",
+          "Issue strategy: attach #1863 not reopen #596; check #1989 deprecation risk",
+          "Gas cost model if MCP Solana hits TWZRD sponsor",
+          "Explicit go / no-go / wait-for-Monetization-Gateway"
+        ],
+        "preferred_ship_shape_if_go": "Companion package first (usable without CF merge) + optional upstream PR sketch"
+      },
+      "github_agents_context": {
+        "596": "closed NOT_PLANNED \u2014 pure Solana MCP enhancement rejected once",
+        "793": "closed completed \u2014 v2 migrate; body mentioned future Solana; stopped at EVM",
+        "1863": "open bug \u2014 docs claim multi-chain; code EVM-only; multi-scheme + type widen design (Stellar-focused but same hole)",
+        "1989": "open \u2014 deprecating current x402 integration toward Monetization Gateway (raises merge risk for patches to mcp/x402.ts)"
+      },
+      "signal_b_probe_correction": {
+        "scheme_package": "@x402/svm@2.21.0 (complete, not stub)",
+        "register_api": "ExactSvmScheme class + registerExactSvmScheme on exact/server and exact/client (mirror EVM paths)",
+        "grep_hint": "Prefer ExactSvmScheme or @x402/svm \u2014 not only registerExactSvmScheme function name",
+        "fires_when": [
+          "SVM scheme registered on BOTH server and client in agents MCP x402 module",
+          "Solana appears in MCP network map / types",
+          "agents changelog mentions Solana/SVM x402"
+        ],
+        "not_enough": [
+          "TWZRD facilitator feePayers mainnet Solana (already true)",
+          "More x402-hono docs",
+          "Wallet API without MCP SVM"
+        ]
+      }
+    },
+    "agent": {
+      "name": "SPRAT Agent",
+      "codename": "sprat",
+      "role": "Solana Payment Rails for Agent Traffic",
+      "mission": "Convert Cloudflare agent demand into Solana settlement volume with TWZRD as the default trust + facilitator supplier.",
+      "weapons": [
+        "x402-hono Workers path (live, public workers.dev proof)",
+        "Preflight reputation gate (live)",
+        "Portable proof upsell funnel (live)",
+        "Passive watch on MCP SVM + CF Wallets API \u2014 no speculative build"
+      ]
+    },
+    "supply_lanes": [
+      {
+        "id": "workers-hono",
+        "name": "Workers Solana sell",
+        "status": "live",
+        "detail": "x402-hono + TWZRD facilitator on mainnet USDC.",
+        "product": "Immediate revenue path"
+      },
+      {
+        "id": "preflight",
+        "name": "Preflight intel gate",
+        "status": "live",
+        "detail": "Seller wallet reputation + price sanity.",
+        "product": "intel.twzrd.xyz"
+      },
+      {
+        "id": "portable-proof",
+        "name": "Portable proof upsell (P5)",
+        "status": "live",
+        "detail": "Funnel measuring from clean zero.",
+        "product": "Monetization layer"
+      },
+      {
+        "id": "mcp-svm",
+        "name": "Agents MCP @x402/svm",
+        "status": "watch",
+        "detail": "Agents MCP still EVM-only. Foundation @x402/svm exists; CF has not registered it.",
+        "product": "Signal B \u2014 passive watch only"
+      },
+      {
+        "id": "cf-wallets",
+        "name": "Cloudflare Wallets API",
+        "status": "watch",
+        "detail": "Handle reservation live; Virtual Wallet API still coming.",
+        "product": "Signal A \u2014 passive watch"
+      },
+      {
+        "id": "token-policy",
+        "name": "CF token mint policy",
+        "status": "ready",
+        "detail": "Per-job token policy ready.",
+        "product": "Ops readiness"
+      }
+    ],
+    "flow_steps": [
+      {
+        "id": "agent",
+        "label": "CF Agent / Worker",
+        "detail": "Agent requests a paid resource.",
+        "side": "cf"
+      },
+      {
+        "id": "challenge",
+        "label": "HTTP 402 challenge",
+        "detail": "network: solana, USDC amount.",
+        "side": "cf"
+      },
+      {
+        "id": "preflight",
+        "label": "TWZRD preflight",
+        "detail": "Seller wallet reputation + price sanity.",
+        "side": "twzrd"
+      },
+      {
+        "id": "sign",
+        "label": "Solana sign",
+        "detail": "SPL USDC transfer.",
+        "side": "solana"
+      },
+      {
+        "id": "settle",
+        "label": "Facilitator settle",
+        "detail": "TWZRD verifies + settles.",
+        "side": "twzrd"
+      },
+      {
+        "id": "serve",
+        "label": "Resource delivered",
+        "detail": "200 + Payment-Response.",
+        "side": "cf"
+      }
+    ],
+    "metrics": [
+      {
+        "label": "Facilitator path",
+        "value": "Solana mainnet",
+        "hint": "USDC exact"
+      },
+      {
+        "label": "CF handle",
+        "value": "twzrd.cloudflare.pay",
+        "hint": "reserved"
+      },
+      {
+        "label": "Live proof",
+        "value": "x402-seller-hack-20260810.fp4b5ksccw.workers.dev",
+        "hint": "ops-funded payer caveat"
+      },
+      {
+        "label": "MCP SVM",
+        "value": "not registered",
+        "hint": "watch Signal B; #1989 deprecation risk"
+      }
+    ],
+    "integration": {
+      "network": "solana",
+      "facilitator_url": "https://intel.twzrd.xyz",
+      "snippet_language": "typescript",
+      "surface": "x402-hono",
+      "not_surface": "agents/x402 withX402 paidTool (EVM-only today)"
+    },
+    "signals": {
+      "A": {
+        "id": "cf-wallets-api",
+        "label": "cf-wallets-api",
+        "status": "watch",
+        "fires_when": "Stable documentable Virtual Wallet API with create/list/fund ops.",
+        "watch": "Stable Virtual Wallet API \u2014 no speculative CF Wallets scopes until then"
+      },
+      "B": {
+        "id": "mcp-x402-svm",
+        "label": "mcp-x402-svm",
+        "status": "watch",
+        "fires_when": "Agents MCP registers SVM scheme on both server and client; Solana in network map.",
+        "probe": "https://raw.githubusercontent.com/cloudflare/agents/main/packages/agents/src/mcp/x402.ts",
+        "probe_hint": "grep ExactSvmScheme or @x402/svm (scheme package is class-based, Foundation-complete at 2.21.0)",
+        "related_issues": [
+          "https://github.com/cloudflare/agents/issues/1863",
+          "https://github.com/cloudflare/agents/issues/1989",
+          "https://github.com/cloudflare/agents/issues/596"
+        ],
+        "watch": "registerExactSvm / @x402/svm on both sides; #1863 open, #596 NOT_PLANNED, #1989 deprecation risk"
+      }
+    },
+    "posture": {
+      "ship_now": [
+        "workers-hono",
+        "preflight",
+        "portable-proof"
+      ],
+      "hold": [
+        "mcp-svm",
+        "cf-wallets"
+      ],
+      "ready_not_shipped": [
+        "token-policy"
+      ],
+      "guardrail": "Flood Solana volume through live Workers + x402-hono + intel facilitator. Do not pre-build speculative CF Wallets scopes. Do not engineer Agents MCP SVM this week without an explicit spike go."
+    },
+    "company_sentence": "Scarcity for paying agents isn\u2019t chain access \u2014 it\u2019s a machine-readable *should I pay this?*, free at the top, enforced at the wallet hook, monetized as portable proof.",
+    "not_this_board": "Pay decisions \u2192 https://intel.twzrd.xyz/v1/intel/preflight \u2014 never this board",
+    "routing": {
+      "cf_strategy": "This block (CF\u2192Solana posture)",
+      "execution": "Live Board next_actions / moves (Path B 0\u21921Q)",
+      "product": "intel.twzrd.xyz (should I pay?)"
+    },
+    "sprat_mirror": {
+      "self": "https://raw.githubusercontent.com/twzrd-sol/sprat-brief/main/sprat.json",
+      "llms_txt": "https://raw.githubusercontent.com/twzrd-sol/sprat-brief/main/llms.txt",
+      "canonical_host_llms": "https://twzrd-live-01q-host.vercel.app/llms.txt",
+      "canonical_host_board": "https://twzrd-live-01q-host.vercel.app/api/board",
+      "note": "SPRAT GitHub = source extract / history only. Start at Live Board."
+    },
+    "external": {
+      "intel_llms": "https://intel.twzrd.xyz/llms.txt",
+      "facilitator": "https://intel.twzrd.xyz",
+      "live_board": "https://twzrd-live-01q-host.vercel.app",
+      "cloudflare_agents_x402": "https://raw.githubusercontent.com/cloudflare/agents/main/packages/agents/src/mcp/x402.ts"
+    },
+    "fetched_at": "2026-08-12T00:27:55.596Z",
+    "live_source": true
+  },
+  "path_b_runbook": {
+    "schema": "twzrd.path_b_runbook/v1",
+    "version": "1.0.0",
+    "generated_at": "2026-08-12T00:27:55.595Z",
+    "title": "Path B External Integration Runbook",
+    "claim": "Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.",
+    "why_first": "Distribution without external gate_evals is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists.",
+    "not_this_runbook": "Pay decisions \u2192 https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight \u2260 product.",
+    "north_star": "Success = external gate_evals with signer_invocation_count=0 on refuse (and attributable lineage on the Live Board).",
+    "install": {
+      "package": "twzrd-x402-gate",
+      "package_version": "0.8.14",
+      "npm": "https://www.npmjs.com/package/twzrd-x402-gate",
+      "cold_machine_cmd": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
+      "expected_refuse": "signer_invocation_count=0 payment_retry_count=0",
+      "links": [
+        {
+          "label": "Refuse fixture",
+          "href": "https://intel.twzrd.xyz/v1/intel/refuse-fixture"
+        },
+        {
+          "label": "Intel llms.txt",
+          "href": "https://intel.twzrd.xyz/llms.txt"
+        },
+        {
+          "label": "Intel health",
+          "href": "https://intel.twzrd.xyz/health"
+        },
+        {
+          "label": "Preflight (pay decision)",
+          "href": "https://intel.twzrd.xyz/v1/intel/preflight"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "prep",
+        "n": 1,
+        "title": "Prep the seat (before screen-share)",
+        "duration": "5 min",
+        "operator": "You (TWZRD)",
+        "detail": "Confirm intel health is green. Open Live Board funnel. Do not lead with MCP catalog or CF strategy. Hero line only: before your agent signs, TWZRD can refuse.",
+        "expected": [
+          "intel.twzrd.xyz/health returns ok",
+          "gate_evals baseline noted (usually 0 external)",
+          "Partner machine has Node 20+ and network egress"
+        ],
+        "pitfalls": [
+          "Do not open with free-card volume or internal swarm hits",
+          "Do not demo V6 paid proof before refuse"
+        ]
+      },
+      {
+        "id": "cold-refuse",
+        "n": 2,
+        "title": "Cold-machine refuse proof (their shell)",
+        "duration": "3\u20135 min",
+        "operator": "Partner shares terminal",
+        "detail": "They paste the install one-liner and run the refuse eval binary. No wallet. No USDC. Goal is a clean refuse before any signer invocation.",
+        "commands": [
+          "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js"
+        ],
+        "expected": [
+          "Process exits with signer_invocation_count=0",
+          "payment_retry_count=0",
+          "Transcript / JSON includes a BLOCK (or refuse) decision path"
+        ],
+        "pitfalls": [
+          "If peer deps fail, stop and fix as P0 \u2014 do not hand-wave past install friction",
+          "Never run this only on a TWZRD laptop and call it external"
+        ]
+      },
+      {
+        "id": "wire-hook",
+        "n": 3,
+        "title": "Wire gate into their buyer pipeline",
+        "duration": "10\u201315 min",
+        "operator": "Partner + you",
+        "detail": "Install onBeforePayment / fetch wrapper so every payment attempt hits preflight + gate before signTransaction. Shadow mode is allowed for first session; enforce is the goal for the artifact.",
+        "commands": [
+          "// Pseudocode \u2014 place before any signTransaction\nimport { createTwzrdGate } from \"twzrd-x402-gate\"; // or package entry from README\n\nconst gate = createTwzrdGate({\n  intelBase: \"https://intel.twzrd.xyz\",\n  mode: \"enforce\", // or \"shadow\" for 14-day white-glove\n});\n\nasync function onBeforePayment(intent) {\n  const decision = await gate.evaluate(intent);\n  // Log: decision, payer lineage, merchant, amount, ts\n  if (decision.action === \"BLOCK\") {\n    throw new Error(\"TWZRD_GATE_BLOCK: \" + decision.reason);\n  }\n  return decision; // ALLOW \u2192 proceed to sign\n}"
+        ],
+        "expected": [
+          "Every payment attempt calls evaluate before sign",
+          "BLOCK throws / aborts without touching signer",
+          "ALLOW continues to existing sign path unchanged"
+        ],
+        "pitfalls": [
+          "Hook after sign is not Path B",
+          "Silent fail-open without logging is not evidence"
+        ]
+      },
+      {
+        "id": "evidence",
+        "n": 4,
+        "title": "Run BLOCK + ALLOW evidence capture",
+        "duration": "10 min",
+        "operator": "Partner",
+        "detail": "Two forced paths: (1) refuse fixture / known-bad merchant \u2192 BLOCK with signer=0; (2) known-good allow path \u2192 ALLOW with normal sign. Capture both using the checklist below.",
+        "expected": [
+          "BLOCK transcript with signer_invocation_count=0",
+          "ALLOW path still works (gate is not a permanent outage)",
+          "Logs include attributable payer / install seat id"
+        ]
+      },
+      {
+        "id": "lineage",
+        "n": 5,
+        "title": "Confirm Live Board / health lineage",
+        "duration": "5 min",
+        "operator": "You",
+        "detail": "Refresh intel /health and Live Board funnel. External gate_evals should move (or at least a design-partner install is logged with a timestamped artifact if counter lag exists). Document counter snapshot before/after.",
+        "expected": [
+          "gate_evals delta noted or explicit lag note with artifact file",
+          "Artifact stored with partner codename + date (no secrets)"
+        ]
+      },
+      {
+        "id": "handoff",
+        "n": 6,
+        "title": "Lock next seat + founder-post gate",
+        "duration": "5 min",
+        "operator": "You",
+        "detail": "Sequence is locked: Vicky \u2192 Nick \u2192 Lucas. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
+        "expected": [
+          "Next partner on the locked sequence scheduled",
+          "Artifact file path / gist / transcript linked on board notes"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "e-block-signer",
+        "decision": "BLOCK",
+        "title": "Refuse before sign",
+        "capture": "Full refuse eval stdout or gate evaluate() JSON for a forced BLOCK path (refuse fixture / known-bad merchant).",
+        "pass_if": "signer_invocation_count=0 AND payment_retry_count=0 AND decision=BLOCK (or equivalent refuse action).",
+        "fail_if": "Any signer call, any payment retry, or missing decision field."
+      },
+      {
+        "id": "e-block-reason",
+        "decision": "BLOCK",
+        "title": "Machine-readable reason",
+        "capture": "decision.reason / code / rule id from gate output.",
+        "pass_if": "Stable string or code a partner can grep in logs.",
+        "fail_if": "Opaque HTML or no reason on BLOCK."
+      },
+      {
+        "id": "e-allow",
+        "decision": "ALLOW",
+        "title": "Happy path still pays",
+        "capture": "One ALLOW evaluate() result on a known-good intent (sandbox or mainnet as agreed).",
+        "pass_if": "decision=ALLOW and existing sign path proceeds once.",
+        "fail_if": "ALLOW path broken or always-BLOCK false positive on good merchant."
+      },
+      {
+        "id": "e-preflight-log",
+        "decision": "BOTH",
+        "title": "Preflight logged",
+        "capture": "Log line showing free preflight (ReadinessCard / preflight id) before evaluate completes.",
+        "pass_if": "Preflight id or card hash present in session log for both paths.",
+        "fail_if": "Gate runs without intel preflight when product requires it."
+      },
+      {
+        "id": "e-lineage",
+        "decision": "BOTH",
+        "title": "Attributable payer lineage",
+        "capture": "Install seat id / partner codename / agent id + timestamp. Not a TWZRD-owned laptop alone.",
+        "pass_if": "External operator identity is explicit; can be tied to funnel stage gate_evals.",
+        "fail_if": "Anonymous or internal-only run counted as external."
+      },
+      {
+        "id": "e-board",
+        "decision": "BOTH",
+        "title": "Live Board snapshot",
+        "capture": "Before/after /api/intel-health or /health day0: gate_evals, gate_blocks, free_card_hits_external.",
+        "pass_if": "Numbers recorded; if lag, artifact still filed with timestamp and follow-up check.",
+        "fail_if": "No metric snapshot and no artifact file."
+      }
+    ],
+    "partner_sequence": [
+      {
+        "order": 1,
+        "codename": "Vicky",
+        "role": "First external seat \u2014 design partner operator",
+        "why_this_order": "Locked sequence. First attributable refuse must come from a real external control plane, not a list blast.",
+        "session_goal": "Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.",
+        "success": "Artifact filed; gate_evals lineage path understood; white-glove notes for install friction.",
+        "do_not": "Do not skip to Nick until Vicky session is complete or explicitly rescheduled."
+      },
+      {
+        "order": 2,
+        "codename": "Nick",
+        "role": "Second external seat \u2014 buyer pipeline integration",
+        "why_this_order": "Second seat validates the runbook is repeatable after Vicky fixes.",
+        "session_goal": "Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.",
+        "success": "Second artifact; runbook edits if friction differs from Vicky.",
+        "do_not": "Do not open multi-target outbound in parallel."
+      },
+      {
+        "order": 3,
+        "codename": "Lucas",
+        "role": "Third external seat \u2014 framework / embed adjacency",
+        "why_this_order": "Third seat is the credibility threshold for a founder post with external proof, not enrollment theater.",
+        "session_goal": "Install path stable enough to reference publicly; optional embed docs next.",
+        "success": "\u22651 public-safe sanitized transcript; gate_evals story is external, not internal swarm.",
+        "do_not": "Do not launch distribution package until this seat (or clear Vicky+Nick artifacts) unlocks the claim."
+      }
+    ],
+    "artifact": {
+      "title": "Attributable external Path B artifact",
+      "required_fields": [
+        "partner_codename",
+        "date_iso",
+        "machine_note (external, not TWZRD laptop)",
+        "gate_package_version",
+        "block_transcript (signer_invocation_count, payment_retry_count, decision)",
+        "allow_transcript_or_note",
+        "health_snapshot_before",
+        "health_snapshot_after",
+        "operator_friction_notes"
+      ],
+      "example_shape": {
+        "schema": "twzrd.path_b_artifact/v1",
+        "partner_codename": "Vicky",
+        "date_iso": "2026-08-12",
+        "machine_note": "partner macbook \u2014 external",
+        "gate_package_version": "0.8.14",
+        "block": {
+          "decision": "BLOCK",
+          "signer_invocation_count": 0,
+          "payment_retry_count": 0,
+          "reason": "\u2026"
+        },
+        "allow": {
+          "decision": "ALLOW",
+          "note": "known-good merchant path"
+        },
+        "health_before": {
+          "gate_evals": 0,
+          "gate_blocks": 0
+        },
+        "health_after": {
+          "gate_evals": 1,
+          "gate_blocks": 1
+        },
+        "friction": []
+      },
+      "publish_rule": "Founder recap / announcement only after at least one external artifact exists. Enrollment-without-artifact is not the post."
+    },
+    "session_script": {
+      "title": "Screen-share script (~30 min)",
+      "minutes": [
+        {
+          "t": "0:00",
+          "say": "Before your agent signs, TWZRD can refuse. That is the only demo that matters today.",
+          "show": "Live Board north star + funnel (external columns only)"
+        },
+        {
+          "t": "0:03",
+          "say": "No wallet. No USDC. You run this on your machine.",
+          "show": "Cold install one-liner \u2014 partner pastes"
+        },
+        {
+          "t": "0:08",
+          "say": "signer_invocation_count must be zero. That is refuse-before-sign.",
+          "show": "Their terminal output"
+        },
+        {
+          "t": "0:12",
+          "say": "Now we put the same evaluate call before your signTransaction.",
+          "show": "Their buyer pipeline entrypoint"
+        },
+        {
+          "t": "0:22",
+          "say": "Force a BLOCK, then an ALLOW. We capture both.",
+          "show": "Evidence checklist on this page"
+        },
+        {
+          "t": "0:28",
+          "say": "We file the artifact. Next seat is locked \u2014 not a spray list.",
+          "show": "Partner sequence + health snapshot"
+        }
+      ]
+    },
+    "funnel_instrumentation": [
+      {
+        "stage": "External free cards",
+        "metric": "free_card_hits_external",
+        "where": "intel /health day0 + Live Board funnel"
+      },
+      {
+        "stage": "Gate evals (Path B)",
+        "metric": "gate_evals",
+        "where": "intel /health day0 \u2014 primary wedge counter"
+      },
+      {
+        "stage": "Gate blocks",
+        "metric": "gate_blocks",
+        "where": "intel /health day0 \u2014 refuse outcomes"
+      },
+      {
+        "stage": "Paid trust external",
+        "metric": "paid_trust_payer_external",
+        "where": "Secondary \u2014 do not optimize before gate_evals move"
+      }
+    ],
+    "order_of_ops": [
+      "1. Produce this runbook (screen-share ready)",
+      "2. Define BLOCK/ALLOW evidence-capture checklist",
+      "3. Run with Vicky, then Nick, then Lucas",
+      "4. Capture one attributable external artifact",
+      "5. Launch founder post with external proof \u2014 not enrollment theater"
+    ],
+    "endpoints": {
+      "human_runbook": "https://twzrd-live-01q-host.vercel.app/path-b",
+      "machine_json": "https://twzrd-live-01q-host.vercel.app/api/path-b",
+      "board": "https://twzrd-live-01q-host.vercel.app/api/board",
+      "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt",
+      "intel_health": "https://twzrd-live-01q-host.vercel.app/api/intel-health"
+    }
+  },
+  "attestation": {
+    "schema": "twzrd.agent_attestation/v1",
+    "version": "1.0.0",
+    "generated_at": "2026-08-12T00:27:55.595Z",
+    "title": "Agent attestation console",
+    "thesis": "TWZRD is the external verification edge on the agent graph: who this agent acts for, what it may spend on, how fresh the evidence is, and whether spend should ALLOW / WARN / BLOCK \u2014 before the wallet signs.",
+    "disclaimer": "Sample cards are fictional and labeled. They illustrate decision shape, not real third-party verification. TWZRD does not claim legal identity attestation; it scores observed settlement / counterparty risk for agent payments.",
+    "not_meta_affiliated": "Not affiliated with or endorsed by Meta Platforms, Inc. Public CDO quotes about wanting an external verification plug-in are market context only.",
+    "questions": [
+      {
+        "id": "who",
+        "q": "Who does this agent represent?",
+        "maps_to": "principal + agent_id (attribution / delegation claim)"
+      },
+      {
+        "id": "scope",
+        "q": "What is it allowed to do?",
+        "maps_to": "scope[] (buy, book, quote, checkout) \u2014 out-of-scope spend is a risk flag"
+      },
+      {
+        "id": "fresh",
+        "q": "How fresh is the attestation?",
+        "maps_to": "caller-intel / corpus snapshot age"
+      },
+      {
+        "id": "risk",
+        "q": "Revocation / risk / decision?",
+        "maps_to": "readiness_card.decision allow|warn|block + flags"
+      }
+    ],
+    "cards": [
+      {
+        "id": "demo-allow-travel",
+        "label": "Verified travel booker",
+        "fictional": true,
+        "decision": "ALLOW",
+        "principal": "Acme Travel Ops (demo principal)",
+        "agent_id": "agent:demo.acme.travel.booker",
+        "wallet_hint": "GFp\u2026e1Gs (demo shape)",
+        "scope": [
+          "quote",
+          "book",
+          "pay_merchant"
+        ],
+        "scope_note": "In-scope hotel hold + small USDC settle",
+        "freshness": {
+          "snapshot_age": "12m",
+          "status": "fresh"
+        },
+        "risk": {
+          "score": 18,
+          "flags": []
+        },
+        "receipt": {
+          "kind": "v6_demo",
+          "note": "Illustrative signed V6 shape only \u2014 not a live mint"
+        },
+        "narrative": "Clean allow path: principal labeled, scope matched, fresh snapshot, no wash flags."
+      },
+      {
+        "id": "demo-allow-narrow",
+        "label": "Merchant bot \u00b7 narrow scope",
+        "fictional": true,
+        "decision": "ALLOW",
+        "principal": "Northwind Shop (demo principal)",
+        "agent_id": "agent:demo.northwind.checkout",
+        "wallet_hint": "4Lk\u2026pZUE (demo shape)",
+        "scope": [
+          "price_quote",
+          "checkout"
+        ],
+        "scope_note": "Book / ads out of scope \u2014 would WARN if attempted",
+        "freshness": {
+          "snapshot_age": "2h",
+          "status": "fresh"
+        },
+        "risk": {
+          "score": 24,
+          "flags": [
+            "scope_narrow"
+          ]
+        },
+        "receipt": {
+          "kind": "none",
+          "note": "Free preflight only"
+        },
+        "narrative": "Allow with narrow scope. Delegation is partial; still not identity KYC."
+      },
+      {
+        "id": "demo-review-stale",
+        "label": "Stale quoter",
+        "fictional": true,
+        "decision": "REVIEW",
+        "principal": "Unknown / thin history",
+        "agent_id": "agent:demo.orphan.quoter",
+        "wallet_hint": "1111\u20261112 (demo shape)",
+        "scope": [
+          "price_quote"
+        ],
+        "scope_note": "No portable proof; corpus thin",
+        "freshness": {
+          "snapshot_age": "9d",
+          "status": "stale"
+        },
+        "risk": {
+          "score": 61,
+          "flags": [
+            "thin_history",
+            "stale_snapshot"
+          ]
+        },
+        "receipt": {
+          "kind": "expired_demo",
+          "note": "Prior demo receipt expired \u2014 re-preflight required"
+        },
+        "narrative": "Review / warn class: proceed only deliberately; buy portable proof or refuse."
+      },
+      {
+        "id": "demo-block-spoof",
+        "label": "Checkout spoof pattern",
+        "fictional": true,
+        "decision": "BLOCK",
+        "principal": "Unattributed / spoof risk",
+        "agent_id": "agent:demo.spoof.checkout",
+        "wallet_hint": "BJG\u2026R7VQ (wash-education shape only)",
+        "scope": [
+          "checkout",
+          "drain"
+        ],
+        "scope_note": "Out-of-policy spend attempt",
+        "freshness": {
+          "snapshot_age": "4m",
+          "status": "fresh"
+        },
+        "risk": {
+          "score": 94,
+          "flags": [
+            "wash_shaped",
+            "fleet_cluster",
+            "revocation_candidate"
+          ]
+        },
+        "receipt": {
+          "kind": "none",
+          "note": "Refuse before sign \u2014 Path B"
+        },
+        "narrative": "Block path: gate must abort before signTransaction. Success = signer_invocation_count=0."
+      }
+    ],
+    "plug_in": {
+      "title": "Plug into us (real endpoints)",
+      "free_preflight_curl": "curl -sS -X POST https://intel.twzrd.xyz/v1/intel/preflight \\\n  -H 'content-type: application/json' \\\n  -d '{\"seller_wallet\":\"GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs\",\"price_usdc\":0.01,\"agent_intent\":\"preflight\"}'",
+      "path_b_gate": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0\n# wire beforePayment \u2192 evaluate \u2192 BLOCK aborts before signTransaction",
+      "paid_trust_note": "Paid V6 / trust calls buy portable proof after free preflight \u2014 they do not replace refuse-before-sign enforcement.",
+      "live_endpoints": {
+        "preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
+        "health": "https://intel.twzrd.xyz/health",
+        "llms": "https://intel.twzrd.xyz/llms.txt",
+        "path_b_runbook": "http://127.0.0.1:8080/api/path-b",
+        "live_board": "http://127.0.0.1:8080/api/board"
+      }
+    },
+    "distribution": {
+      "note": "Publishing is live (npm + ClawHub). Agent execution / Moltbook social is optional distribution, not the product. Prefer Path B external gate_evals over free MCP hits.",
+      "openclaw": {
+        "clawhub_skills": [
+          "twzrd-trust",
+          "twzrd-clawrouter"
+        ],
+        "npm_packages": [
+          {
+            "name": "twzrd-x402-gate",
+            "role": "buyer refuse-before-sign gate"
+          },
+          {
+            "name": "twzrd-preflight",
+            "role": "OpenClaw plugin + CLI"
+          },
+          {
+            "name": "@wzrd_sol/plugin-trustgate",
+            "role": "ElizaOS registry \u2014 NOT ClawHub"
+          }
+        ],
+        "registry_split": "OpenClaw \u2192 ClawHub; ElizaOS \u2192 eliza community registry. Same product idea, two registries."
+      },
+      "primary_pull": "Evidence favors npm + x402 tooling velocity over ClawHub skill installs or Moltbook nostalgia."
+    },
+    "narrative_angles": [
+      {
+        "angle": "External verifier",
+        "hook": "Agent platforms want verification outside their system \u2014 curl our preflight."
+      },
+      {
+        "angle": "Open weights wave",
+        "hook": "Local agents everywhere \u2192 identity/delegation problem explodes before spend."
+      },
+      {
+        "angle": "Agent graph vs friend graph",
+        "hook": "Friend graph needed identity; agent graph needs delegation + spend proof."
+      },
+      {
+        "angle": "Path B first",
+        "hook": "Refuse-before-sign is the product; free cards alone are not adoption."
+      }
+    ],
+    "endpoints": {
+      "human": "https://twzrd-live-01q-host.vercel.app/attest",
+      "machine": "https://twzrd-live-01q-host.vercel.app/api/attestation",
+      "path_b": "https://twzrd-live-01q-host.vercel.app/api/path-b",
+      "board": "https://twzrd-live-01q-host.vercel.app/api/board",
+      "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt"
+    }
+  },
+  "next_actions": [
+    {
+      "id": "truth-external-only",
+      "phase": "truth",
+      "title": "Pin external-only Day0 on the wall",
+      "why": "Health already separates free_card_hits_external from internal swarm. If you manage to total hits, you will celebrate dogfood and miss that demand is near zero.",
+      "how": [
+        "Dashboard tile: free_card_hits_external, gate_evals, paid_trust_payer_external only.",
+        "Never report free_card_hits_internal in investor/partner decks.",
+        "Add a weekly screenshot of /health day0.door_zero with external basis."
+      ],
+      "metric": "Team can recite external free cards, gate_evals, paid_trust_external from memory",
+      "impact": "critical",
+      "horizon": "this_week",
+      "links": [
+        {
+          "label": "Live health",
+          "href": "https://intel.twzrd.xyz/health"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "truth-north-star",
+      "phase": "truth",
+      "title": "Declare Path B north star for Q1",
+      "why": "Preflight is advisory. Paid V6 is portable proof. Neither is enforcement. Live 0\u21921 means a client honors block before signTransaction.",
+      "how": [
+        "Write one sentence: Success = external gate_evals with signer_invocation_count=0 on refuse.",
+        "Secondary: external free cards. Tertiary: paid_trust_payer_external.",
+        "Kill any metric that rewards internal template alias hits."
+      ],
+      "metric": "gate_evals (external) is the only primary OKR",
+      "impact": "critical",
+      "horizon": "this_week",
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "wedge-path-b",
+      "phase": "wedge",
+      "title": "Lead every conversation with refuse-before-sign",
+      "why": "MCP tools and free preflight create awareness but do not block spend. The install that refuses is the wedge competitors cannot soft-ship as a dashboard.",
+      "how": [
+        "Hero line: Before your agent signs, TWZRD can refuse.",
+        "Demo order: refuse fixture \u2192 gate eval \u2192 transcript with signer=0.",
+        "Only then show MCP / merchant_card / V6 as supporting rails."
+      ],
+      "metric": "100% of partner demos show Path B first",
+      "impact": "critical",
+      "horizon": "this_week",
+      "links": [
+        {
+          "label": "Refuse fixture",
+          "href": "https://intel.twzrd.xyz/v1/intel/refuse-fixture"
+        },
+        {
+          "label": "llms.txt",
+          "href": "https://intel.twzrd.xyz/llms.txt"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "proof-cold-machine",
+      "phase": "proof",
+      "title": "Cold-machine Path B under 5 minutes",
+      "why": "Optional peers of the gate are not auto-installed. Broken first runs kill distribution. Q1 lives or dies on frictionless dogfood.",
+      "how": [
+        "Publish a single copy-paste block that installs gate + peers + runs refuse eval.",
+        "Record expected: signer_invocation_count=0 payment_retry_count=0.",
+        "File every break report as a P0 until the script is green on a fresh machine."
+      ],
+      "metric": "3 independent people complete refuse proof without help",
+      "impact": "critical",
+      "horizon": "this_week",
+      "links": [
+        {
+          "label": "Gate package",
+          "href": "https://www.npmjs.com/package/twzrd-x402-gate"
+        }
+      ],
+      "impact_weight": 5,
+      "done": false
+    },
+    {
+      "id": "wedge-message",
+      "phase": "wedge",
+      "title": "Freeze a one-screen message hierarchy",
+      "why": "Current surfaces list 24 tools, settle rails, market data, and watch hooks. 0\u21921 needs a single sentence and a single install path.",
+      "how": [
+        "Primary: Machine trust for autonomous spend \u2014 block before sign.",
+        "Proof: npm i twzrd-x402-gate + refuse eval binary.",
+        "Optional: hosted MCP for discovery; V6 only after trust is enforced."
+      ],
+      "metric": "One paragraph + one command on every surface (intel, X, Smithery blurb)",
+      "impact": "high",
+      "horizon": "this_week",
+      "impact_weight": 3,
+      "done": false
+    }
+  ],
+  "dogfood": {
+    "title": "Cold-machine Path B refuse proof",
+    "command": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
+    "expected": "signer_invocation_count=0 payment_retry_count=0",
+    "notes": "No wallet. No USDC. Primary Q1 proof that the buyer gate can refuse before sign. Full external runbook: /path-b \u00b7 Attestation demo: /attest"
+  },
+  "endpoints": {
+    "human_ui": "https://twzrd-live-01q-host.vercel.app/",
+    "path_b_runbook": "https://twzrd-live-01q-host.vercel.app/path-b",
+    "path_b_json": "https://twzrd-live-01q-host.vercel.app/api/path-b",
+    "attestation": "https://twzrd-live-01q-host.vercel.app/attest",
+    "attestation_json": "https://twzrd-live-01q-host.vercel.app/api/attestation",
+    "llms_txt": "https://twzrd-live-01q-host.vercel.app/llms.txt",
+    "board_json": "https://twzrd-live-01q-host.vercel.app/api/board",
+    "status_json": "https://twzrd-live-01q-host.vercel.app/api/board/status",
+    "moves_json": "https://twzrd-live-01q-host.vercel.app/api/board/moves",
+    "openapi": "https://twzrd-live-01q-host.vercel.app/api/openapi.json",
+    "intel_health_proxy": "https://twzrd-live-01q-host.vercel.app/api/intel-health",
+    "intel_upstream": "https://intel.twzrd.xyz/health",
+    "intel_llms": "https://intel.twzrd.xyz/llms.txt",
+    "intel_preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
+    "sprat_source": "https://cdn.jsdelivr.net/gh/twzrd-sol/sprat-brief@main/sprat.json",
+    "sprat_extract_note": "SPRAT GitHub is source extract / history only \u2014 not a second start-here"
+  }
+}
