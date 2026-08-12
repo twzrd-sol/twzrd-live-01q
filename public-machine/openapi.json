@@ -47,7 +47,7 @@
     "/api/path-b": {
       "get": {
         "summary": "Path B external integration runbook (JSON)",
-        "description": "Install steps, BLOCK/ALLOW evidence checklist, Vicky→Nick→Lucas sequence, artifact template. format=md for markdown.",
+        "description": "Install steps, BLOCK/ALLOW evidence checklist, Seat 1 → Seat 2 → Seat 3 sequence, artifact template. format=md for markdown.",
         "operationId": "getPathBRunbook",
         "parameters": [
           {

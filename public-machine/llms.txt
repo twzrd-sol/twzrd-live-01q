@@ -97,9 +97,9 @@ schema: twzrd.path_b_runbook/v1 · v1.0.0
 
 **North star:** Success = external Path B artifact with signer_invocation_count=0 on refuse. day0.gate_evals is settle-rail only.
 
-Partner sequence (locked): **Vicky → Nick → Lucas**
+No partner is booked yet. One seat run to completion before opening a second.
 
-White-glove kit: `public-machine/vicky-seat/`
+White-glove kit: `public-machine/first-seat-kit/`
 
 Cold install:
 ```bash
@@ -111,7 +111,7 @@ Expected: `signer_invocation_count=0 payment_retry_count=0`
 Order of ops:
 - 1. Produce this runbook (screen-share ready)
 - 2. Define BLOCK/ALLOW evidence-capture checklist
-- 3. Run with Vicky, then Nick, then Lucas
+- 3. Run with Seat 1, then Seat 2, then Seat 3
 - 4. Capture one attributable external artifact
 - 5. Launch founder post with external proof — not enrollment theater
 

@@ -34,4 +34,4 @@ SPRAT (sprat-brief) → strategy extract / history only
 
 Internal dogfood transcripts live under `public-machine/dogfood/` and do **not** close external adoption metrics.
 
-**Vicky seat kit:** [`public-machine/vicky-seat/`](./public-machine/vicky-seat/) — first external Path B white-glove pack.
+**First-seat kit:** [`public-machine/first-seat-kit/`](./public-machine/first-seat-kit/) — first external Path B white-glove pack.

@@ -121,7 +121,7 @@
       "title": "Lock next seat + founder-post gate",
       "duration": "5 min",
       "operator": "You",
-      "detail": "Sequence is locked: Vicky \u2192 Nick \u2192 Lucas. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
+      "detail": "Sequence is locked: Seat 1 → Seat 2 → Seat 3. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
       "expected": [
         "Next partner on the locked sequence scheduled",
         "Artifact file path / gist / transcript linked on board notes"
@@ -181,30 +181,30 @@
   "partner_sequence": [
     {
       "order": 1,
-      "codename": "Vicky",
+      "codename": "Seat 1",
       "role": "First external seat \u2014 design partner operator",
       "why_this_order": "Locked sequence. First attributable refuse must come from a real external control plane, not a list blast.",
       "session_goal": "Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.",
       "success": "Artifact filed; artifact schema + registry path understood; white-glove notes for install friction.",
-      "do_not": "Do not skip to Nick until Vicky session is complete or explicitly rescheduled."
+      "do_not": "Do not skip to Seat 2 until Seat 1 session is complete or explicitly rescheduled."
     },
     {
       "order": 2,
-      "codename": "Nick",
+      "codename": "Seat 2",
       "role": "Second external seat \u2014 buyer pipeline integration",
-      "why_this_order": "Second seat validates the runbook is repeatable after Vicky fixes.",
+      "why_this_order": "Second seat validates the runbook is repeatable after Seat 1 fixes.",
       "session_goal": "Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.",
-      "success": "Second artifact; runbook edits if friction differs from Vicky.",
+      "success": "Second artifact; runbook edits if friction differs from Seat 1.",
       "do_not": "Do not open multi-target outbound in parallel."
     },
     {
       "order": 3,
-      "codename": "Lucas",
+      "codename": "Seat 3",
       "role": "Third external seat \u2014 framework / embed adjacency",
       "why_this_order": "Third seat is the credibility threshold for a founder post with external proof, not enrollment theater.",
       "session_goal": "Install path stable enough to reference publicly; optional embed docs next.",
       "success": "\u22651 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.",
-      "do_not": "Do not launch distribution package until this seat (or clear Vicky+Nick artifacts) unlocks the claim."
+      "do_not": "Do not launch distribution package until this seat (or clear Seat 1+Seat 2 artifacts) unlocks the claim."
     }
   ],
   "artifact": {
@@ -222,7 +222,7 @@
     ],
     "example_shape": {
       "schema": "twzrd.path_b_artifact/v1",
-      "partner_codename": "Vicky",
+      "partner_codename": "Seat 1",
       "date_iso": "2026-08-12",
       "machine_note": "partner macbook \u2014 external",
       "gate_package_version": "0.8.14",
@@ -315,7 +315,7 @@
   "order_of_ops": [
     "1. Produce this runbook (screen-share ready)",
     "2. Define BLOCK/ALLOW evidence-capture checklist",
-    "3. Run with Vicky, then Nick, then Lucas",
+    "3. Run with Seat 1, then Seat 2, then Seat 3",
     "4. Capture one attributable external artifact",
     "5. Launch founder post with external proof \u2014 not enrollment theater"
   ],
@@ -333,9 +333,9 @@
     "free_preflight": "advisory only",
     "self_serve": "closes_external_adoption_metric:false"
   },
-  "vicky_seat_kit": {
-    "path": "public-machine/vicky-seat/",
-    "partner_codename": "Vicky",
+  "first_seat_kit": {
+    "path": "public-machine/first-seat-kit/",
+    "partner_codename": null,
     "order": 1,
     "contents": [
       "COLD_VERIFY.sh",

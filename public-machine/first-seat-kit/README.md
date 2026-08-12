@@ -1,9 +1,11 @@
-# Vicky white-glove session kit (Path B seat 1)
+# First external seat — white-glove session kit (Path B seat 1)
 
-**Audience:** Operator running the first **external** Path B seat (codename Vicky).  
+**Audience:** Operator running the first **external** Path B seat. No partner is
+booked yet — this kit is ready for whoever fills that seat, not a specific person.  
 **Not for:** Founder posts, internal dogfood counted as adoption, CF #1863 work.
 
-Partner sequence (locked): **Vicky → Nick → Lucas**. Do not open Nick until this seat completes or is explicitly rescheduled.
+One seat, run to completion, before opening a second. No named sequence — book
+seat 2 when there's a real second candidate.
 
 ## Metric honesty (read first)
 
@@ -20,7 +22,7 @@ Founder post waits until **≥1 external path_b_artifact** exists.
 1. Cold refuse works on **their** machine (signer_invocation_count=0).
 2. Hook wires into their buyer pipeline (shadow OK first session; enforce is the artifact goal).
 3. Capture matched **BLOCK + ALLOW** into `artifact.template.json`.
-4. Fill friction log for runbook edits before Nick.
+4. Fill friction log for runbook edits before booking the next seat.
 
 ## A. 30–90s cold verification
 

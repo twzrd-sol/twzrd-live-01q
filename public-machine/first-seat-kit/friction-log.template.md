@@ -1,7 +1,7 @@
-### Vicky Onboarding Session Friction Log
+### External Seat Onboarding Session Friction Log
 
 * **Timestamp:** YYYY-MM-DD
-* **Partner codename:** Vicky
+* **Operator / org:** (fill in once real)
 * **Machine note:** (external / partner-controlled)
 * **gate package version:** 0.8.14
 * **Peer dependencies encountered:** (e.g. `@x402/core`, `@solana/kit`, `x402-solana`)
@@ -13,4 +13,4 @@
 * **Hook wiring notes:** (beforePayment seat shape, TypeScript errors)
 * **ALLOW arm run?** (yes/no — wallet funded?)
 * **Operator feedback (quote):**
-* **Runbook edit required before Nick?** (yes/no + what)
+* **Runbook edit required before the next seat?** (yes/no + what)
