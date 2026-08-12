@@ -1,12 +1,12 @@
 {
   "schema": "twzrd.path_b_runbook/v1",
   "version": "1.1.0",
-  "generated_at": "2026-08-12T02:21:33.086Z",
+  "generated_at": "2026-08-12T02:30:58.712Z",
   "title": "Path B External Integration Runbook",
   "claim": "Externally controlled refuse-before-sign: a buyer pipeline that is not ours evaluates and can BLOCK payment before any Solana signer runs.",
-  "why_first": "Distribution without external Path B artifacts is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists. day0.gate_evals is settle-rail only — do not treat a flat gate_evals counter as failed Path B installs.",
-  "not_this_runbook": "Pay decisions → https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight ≠ product.",
-  "north_star": "Success = ≥1 external twzrd.path_b_artifact/v1 (non-TWZRD host) with signer_invocation_count=0 on BLOCK; matched ALLOW when claimed. Not day0.gate_evals.",
+  "why_first": "Distribution without external Path B artifacts is amplification of supply. Path B is the only missing proof. Founder posts wait until one attributable external artifact exists. day0.gate_evals is settle-rail only \u2014 do not treat a flat gate_evals counter as failed Path B installs.",
+  "not_this_runbook": "Pay decisions \u2192 https://intel.twzrd.xyz/v1/intel/preflight. This runbook installs enforcement; it does not authorize spend. Free preflight \u2260 product.",
+  "north_star": "Success = \u22651 external twzrd.path_b_artifact/v1 (non-TWZRD host) with signer_invocation_count=0 on BLOCK; matched ALLOW when claimed. Not day0.gate_evals.",
   "install": {
     "package": "twzrd-x402-gate",
     "package_version": "0.8.14",
@@ -42,7 +42,7 @@
       "detail": "Confirm intel health is green. Open Live Board funnel. Do not lead with MCP catalog or CF strategy. Hero line only: before your agent signs, TWZRD can refuse.",
       "expected": [
         "intel.twzrd.xyz/health returns ok",
-        "path_b_artifacts_external baseline noted (usually 0); day0.gate_evals is settle-rail only — do not use as Path B baseline",
+        "path_b_artifacts_external baseline noted (usually 0); day0.gate_evals is settle-rail only \u2014 do not use as Path B baseline",
         "Partner machine has Node 20+ and network egress"
       ],
       "pitfalls": [
@@ -54,7 +54,7 @@
       "id": "cold-refuse",
       "n": 2,
       "title": "Cold-machine refuse proof (their shell)",
-      "duration": "3–5 min",
+      "duration": "3\u20135 min",
       "operator": "Partner shares terminal",
       "detail": "They paste the install one-liner and run the refuse eval binary. No wallet. No USDC. Goal is a clean refuse before any signer invocation.",
       "commands": [
@@ -66,7 +66,7 @@
         "Transcript / JSON includes a BLOCK (or refuse) decision path"
       ],
       "pitfalls": [
-        "If peer deps fail, stop and fix as P0 — do not hand-wave past install friction",
+        "If peer deps fail, stop and fix as P0 \u2014 do not hand-wave past install friction",
         "Never run this only on a TWZRD laptop and call it external"
       ]
     },
@@ -74,11 +74,11 @@
       "id": "wire-hook",
       "n": 3,
       "title": "Wire gate into their buyer pipeline",
-      "duration": "10–15 min",
+      "duration": "10\u201315 min",
       "operator": "Partner + you",
       "detail": "Install onBeforePayment / fetch wrapper so every payment attempt hits preflight + gate before signTransaction. Shadow mode is allowed for first session; enforce is the goal for the artifact.",
       "commands": [
-        "// Pseudocode — place before any signTransaction\nimport { createTwzrdGate } from \"twzrd-x402-gate\"; // or package entry from README\n\nconst gate = createTwzrdGate({\n  intelBase: \"https://intel.twzrd.xyz\",\n  mode: \"enforce\", // or \"shadow\" for 14-day white-glove\n});\n\nasync function onBeforePayment(intent) {\n  const decision = await gate.evaluate(intent);\n  // Log: decision, payer lineage, merchant, amount, ts\n  if (decision.action === \"BLOCK\") {\n    throw new Error(\"TWZRD_GATE_BLOCK: \" + decision.reason);\n  }\n  return decision; // ALLOW → proceed to sign\n}"
+        "// Pseudocode \u2014 place before any signTransaction\nimport { createTwzrdGate } from \"twzrd-x402-gate\"; // or package entry from README\n\nconst gate = createTwzrdGate({\n  intelBase: \"https://intel.twzrd.xyz\",\n  mode: \"enforce\", // or \"shadow\" for 14-day white-glove\n});\n\nasync function onBeforePayment(intent) {\n  const decision = await gate.evaluate(intent);\n  // Log: decision, payer lineage, merchant, amount, ts\n  if (decision.action === \"BLOCK\") {\n    throw new Error(\"TWZRD_GATE_BLOCK: \" + decision.reason);\n  }\n  return decision; // ALLOW \u2192 proceed to sign\n}"
       ],
       "expected": [
         "Every payment attempt calls evaluate before sign",
@@ -96,7 +96,7 @@
       "title": "Run BLOCK + ALLOW evidence capture",
       "duration": "10 min",
       "operator": "Partner",
-      "detail": "Two forced paths: (1) refuse fixture / known-bad merchant → BLOCK with signer=0; (2) known-good allow path → ALLOW with normal sign. Capture both using the checklist below.",
+      "detail": "Two forced paths: (1) refuse fixture / known-bad merchant \u2192 BLOCK with signer=0; (2) known-good allow path \u2192 ALLOW with normal sign. Capture both using the checklist below.",
       "expected": [
         "BLOCK transcript with signer_invocation_count=0",
         "ALLOW path still works (gate is not a permanent outage)",
@@ -121,7 +121,7 @@
       "title": "Lock next seat + founder-post gate",
       "duration": "5 min",
       "operator": "You",
-      "detail": "Sequence is locked: Vicky → Nick → Lucas. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
+      "detail": "Sequence is locked: Vicky \u2192 Nick \u2192 Lucas. Do not expand the 10-target list until one external artifact exists. Founder post only after step 5 artifact is real.",
       "expected": [
         "Next partner on the locked sequence scheduled",
         "Artifact file path / gist / transcript linked on board notes"
@@ -182,7 +182,7 @@
     {
       "order": 1,
       "codename": "Vicky",
-      "role": "First external seat — design partner operator",
+      "role": "First external seat \u2014 design partner operator",
       "why_this_order": "Locked sequence. First attributable refuse must come from a real external control plane, not a list blast.",
       "session_goal": "Complete cold refuse + wire hook in shadow or enforce; capture BLOCK artifact.",
       "success": "Artifact filed; artifact schema + registry path understood; white-glove notes for install friction.",
@@ -191,7 +191,7 @@
     {
       "order": 2,
       "codename": "Nick",
-      "role": "Second external seat — buyer pipeline integration",
+      "role": "Second external seat \u2014 buyer pipeline integration",
       "why_this_order": "Second seat validates the runbook is repeatable after Vicky fixes.",
       "session_goal": "Partner runs refuse binary themselves; at least one BLOCK with signer=0 on their stack.",
       "success": "Second artifact; runbook edits if friction differs from Vicky.",
@@ -200,10 +200,10 @@
     {
       "order": 3,
       "codename": "Lucas",
-      "role": "Third external seat — framework / embed adjacency",
+      "role": "Third external seat \u2014 framework / embed adjacency",
       "why_this_order": "Third seat is the credibility threshold for a founder post with external proof, not enrollment theater.",
       "session_goal": "Install path stable enough to reference publicly; optional embed docs next.",
-      "success": "≥1 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.",
+      "success": "\u22651 public-safe sanitized transcript; Path B artifact story is external, not internal swarm.",
       "do_not": "Do not launch distribution package until this seat (or clear Vicky+Nick artifacts) unlocks the claim."
     }
   ],
@@ -224,13 +224,13 @@
       "schema": "twzrd.path_b_artifact/v1",
       "partner_codename": "Vicky",
       "date_iso": "2026-08-12",
-      "machine_note": "partner macbook — external",
+      "machine_note": "partner macbook \u2014 external",
       "gate_package_version": "0.8.14",
       "block": {
         "decision": "BLOCK",
         "signer_invocation_count": 0,
         "payment_retry_count": 0,
-        "reason": "…"
+        "reason": "\u2026"
       },
       "allow": {
         "decision": "ALLOW",
@@ -259,7 +259,7 @@
       {
         "t": "0:03",
         "say": "No wallet. No USDC. You run this on your machine.",
-        "show": "Cold install one-liner — partner pastes"
+        "show": "Cold install one-liner \u2014 partner pastes"
       },
       {
         "t": "0:08",
@@ -278,7 +278,7 @@
       },
       {
         "t": "0:28",
-        "say": "We file the artifact. Next seat is locked — not a spray list.",
+        "say": "We file the artifact. Next seat is locked \u2014 not a spray list.",
         "show": "Partner sequence + health snapshot"
       }
     ]
@@ -292,17 +292,17 @@
     "1": {
       "stage": "Gate evals (Path B)",
       "metric": "gate_evals",
-      "where": "intel /health day0 — primary wedge counter"
+      "where": "intel /health day0 \u2014 primary wedge counter"
     },
     "2": {
       "stage": "Gate blocks",
       "metric": "gate_blocks",
-      "where": "intel /health day0 — refuse outcomes"
+      "where": "intel /health day0 \u2014 refuse outcomes"
     },
     "3": {
       "stage": "Paid trust external",
       "metric": "paid_trust_payer_external",
-      "where": "Secondary — do not optimize before gate_evals move"
+      "where": "Secondary \u2014 do not optimize before gate_evals move"
     },
     "primary_success": "path_b_artifacts_external",
     "advisory": "free_card_hits_external",
@@ -317,7 +317,7 @@
     "2. Define BLOCK/ALLOW evidence-capture checklist",
     "3. Run with Vicky, then Nick, then Lucas",
     "4. Capture one attributable external artifact",
-    "5. Launch founder post with external proof — not enrollment theater"
+    "5. Launch founder post with external proof \u2014 not enrollment theater"
   ],
   "endpoints": {
     "human_runbook": "https://twzrd-live-01q-host.vercel.app/path-b",
@@ -329,8 +329,20 @@
   "metric_doctrine": {
     "primary": "path_b_artifacts_external",
     "registry": "public-machine/path-b-artifacts.json",
-    "day0_gate_evals": "settle-gate telemetry only — NOT buyer AutoGate Path B",
+    "day0_gate_evals": "settle-gate telemetry only \u2014 NOT buyer AutoGate Path B",
     "free_preflight": "advisory only",
     "self_serve": "closes_external_adoption_metric:false"
+  },
+  "vicky_seat_kit": {
+    "path": "public-machine/vicky-seat/",
+    "partner_codename": "Vicky",
+    "order": 1,
+    "contents": [
+      "COLD_VERIFY.sh",
+      "matched-pair.snippet.ts",
+      "artifact.template.json",
+      "friction-log.template.md",
+      "README.md"
+    ]
   }
 }

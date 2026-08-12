@@ -99,6 +99,8 @@ schema: twzrd.path_b_runbook/v1 · v1.0.0
 
 Partner sequence (locked): **Vicky → Nick → Lucas**
 
+White-glove kit: `public-machine/vicky-seat/`
+
 Cold install:
 ```bash
 npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base

@@ -2,7 +2,7 @@
   "schema": "twzrd.live_board/v1",
   "id": "twzrd-live-0-1q",
   "version": "1.4.0",
-  "generated_at": "2026-08-12T02:21:33.086Z",
+  "generated_at": "2026-08-12T02:30:58.712Z",
   "product": {
     "name": "TWZRD Live 0\u21921Q",
     "owner": "TWZRD",
@@ -1342,7 +1342,9 @@
     "command": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
     "expected": "signer_invocation_count=0 payment_retry_count=0",
     "notes": "No wallet. No USDC. Proves cold refuse mechanics. Does NOT close external Path B adoption. Full external runbook: /path-b \u00b7 Attestation: /attest \u00b7 Registry: path-b-artifacts.json",
-    "closes_external_adoption_metric": false
+    "closes_external_adoption_metric": false,
+    "vicky_seat_kit": "public-machine/vicky-seat/",
+    "vicky_seat_note": "First external seat white-glove pack. Does not auto-close path_b_artifacts."
   },
   "endpoints": {
     "human_ui": "https://twzrd-live-01q-host.vercel.app/",
