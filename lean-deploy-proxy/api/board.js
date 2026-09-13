@@ -1,3 +1,5 @@
+import { fetchMachineText } from "../lib/http.mjs";
+
 function filterMoves(moves, q) {
   return (moves || []).filter((m) => {
     if (q.phase && m.phase !== q.phase) return false;
@@ -46,11 +48,8 @@ export default async function handler(req, res) {
     };
     const done = parseDone(url.searchParams.get("done"));
 
-    const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/board.json",
-      { cache: "no-store" },
-    );
-    const board = await r.json();
+    const loaded = await fetchMachineText("board.json");
+    const board = JSON.parse(loaded.text);
 
     try {
       const s = await fetch(
