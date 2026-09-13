@@ -12,9 +12,11 @@ export function originFromReq(req) {
 }
 
 const RETIRED_HOST = "twzrd-live-01q-host.vercel.app";
+const RETIRED_INTEL_SHA = "07281cb";
+const PINNED_SHA = "89d160a24f8ff4a5129588961fc1f08529fe4321";
 const MACHINE_BASES = [
-  "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@b494b1302de628011e76ec98e525c00126434530/public-machine",
-  "https://raw.githubusercontent.com/twzrd-sol/twzrd-live-01q/b494b1302de628011e76ec98e525c00126434530/public-machine",
+  `https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@${PINNED_SHA}/public-machine`,
+  `https://raw.githubusercontent.com/twzrd-sol/twzrd-live-01q/${PINNED_SHA}/public-machine`,
   "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine",
   "https://raw.githubusercontent.com/twzrd-sol/twzrd-live-01q/main/public-machine",
 ];
@@ -30,7 +32,12 @@ export async function fetchMachineText(name) {
         continue;
       }
       const text = await r.text();
-      if (!text.includes(RETIRED_HOST)) return { status: r.status, text };
+      const staleCopy =
+        text.includes(RETIRED_HOST) ||
+        (name === "board.json" &&
+          text.includes(RETIRED_INTEL_SHA) &&
+          text.includes("Ship 07281cb"));
+      if (!staleCopy) return { status: r.status, text };
       stale = stale || { status: r.status, text };
     } catch (e) {
       lastErr = e;
