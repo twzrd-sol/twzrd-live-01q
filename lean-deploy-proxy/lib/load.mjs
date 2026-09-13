@@ -5,13 +5,19 @@ const SPRAT_URLS = [
 ];
 
 async function loadArtifactRegistry() {
-  try {
-    const r = await fetch(`${RAW_BASE}/path-b-artifacts.json`, { cache: "no-store" });
-    if (!r.ok) return null;
-    return await r.json();
-  } catch {
-    return null;
+  const urls = [
+    "https://raw.githubusercontent.com/twzrd-sol/twzrd-live-01q/main/public-machine/path-b-artifacts.json",
+    `${RAW_BASE}/path-b-artifacts.json`,
+  ];
+  for (const url of urls) {
+    try {
+      const r = await fetch(url, { cache: "no-store" });
+      if (r.ok) return await r.json();
+    } catch {
+      // try next origin
+    }
   }
+  return null;
 }
 
 export async function loadBoardJson() {
