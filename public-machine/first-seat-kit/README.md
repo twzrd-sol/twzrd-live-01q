@@ -31,7 +31,7 @@ Founder post waits until **≥1 external path_b_artifact** exists.
 On a **clean** partner shell (not a TWZRD laptop alone):
 
 ```bash
-npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
+npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
 node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
 ```
 

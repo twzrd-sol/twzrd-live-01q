@@ -150,7 +150,7 @@
   "plug_in": {
     "title": "Plug into us (real endpoints)",
     "free_preflight_curl": "curl -sS -X POST https://intel.twzrd.xyz/v1/intel/preflight \\\n  -H 'content-type: application/json' \\\n  -d '{\"seller_wallet\":\"GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs\",\"price_usdc\":0.01,\"agent_intent\":\"preflight\"}'",
-    "path_b_gate": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0\n# wire beforePayment → evaluate → BLOCK aborts before signTransaction",
+    "path_b_gate": "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0\n# wire beforePayment → evaluate → BLOCK aborts before signTransaction",
     "paid_trust_note": "Paid V6 / trust calls buy portable proof after free preflight — they do not replace refuse-before-sign enforcement.",
     "live_endpoints": {
       "preflight": "https://intel.twzrd.xyz/v1/intel/preflight",

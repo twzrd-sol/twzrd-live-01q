@@ -60,7 +60,7 @@ Missing (PR B): crypto bind into x402 challenge/intent; first-class outcome atte
 ## Install (cold machine)
 
 ```bash
-npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
+npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
 node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
 ```
 Expected: `signer_invocation_count=0 payment_retry_count=0`
@@ -87,7 +87,7 @@ Operator: Partner shares terminal
 They paste the install one-liner and run the refuse eval binary. No wallet. No USDC. Goal is a clean refuse before any signer invocation.
 
 ```
-npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
+npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base
 node node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js
 ```
 
@@ -188,7 +188,7 @@ Founder recap / announcement only after at least one external artifact exists. E
   "partner_codename": "Seat 1",
   "date_iso": "2026-08-12",
   "machine_note": "partner macbook — external",
-  "gate_package_version": "0.8.14",
+  "gate_package_version": "0.9.7",
   "block": {
     "decision": "BLOCK",
     "signer_invocation_count": 0,

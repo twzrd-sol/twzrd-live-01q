@@ -9,9 +9,9 @@
   "north_star": "Success = \u22651 external twzrd.path_b_artifact/v1, then closed decision\u2192settlement|block\u2192outcome join so decision\u2082 cites evidence from loop\u2081. Not day0.gate_evals. Not directory size.",
   "install": {
     "package": "twzrd-x402-gate",
-    "package_version": "0.8.14",
+    "package_version": "0.9.7",
     "npm": "https://www.npmjs.com/package/twzrd-x402-gate",
-    "cold_machine_cmd": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
+    "cold_machine_cmd": "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
     "expected_refuse": "signer_invocation_count=0 payment_retry_count=0",
     "links": [
       {
@@ -58,7 +58,7 @@
       "operator": "Partner shares terminal",
       "detail": "They paste the install one-liner and run the refuse eval binary. No wallet. No USDC. Goal is a clean refuse before any signer invocation.",
       "commands": [
-        "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js"
+        "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js"
       ],
       "expected": [
         "Process exits with signer_invocation_count=0",
@@ -231,7 +231,7 @@
       "partner_codename": "Seat 1",
       "date_iso": "2026-08-12",
       "machine_note": "partner macbook \u2014 external",
-      "gate_package_version": "0.8.14",
+      "gate_package_version": "0.9.7",
       "block": {
         "decision": "BLOCK",
         "signer_invocation_count": 0,

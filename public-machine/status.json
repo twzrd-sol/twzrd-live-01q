@@ -218,7 +218,7 @@
   ],
   "dogfood": {
     "title": "Cold-machine Path B refuse proof",
-    "command": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
+    "command": "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
     "expected": "signer_invocation_count=0 payment_retry_count=0",
     "notes": "No wallet. No USDC. Primary Q1 proof that the buyer gate can refuse before sign. Full external runbook: /path-b \u00b7 Attestation demo: /attest"
   },
