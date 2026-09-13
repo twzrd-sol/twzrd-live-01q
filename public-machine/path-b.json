@@ -326,11 +326,11 @@
     "5. Launch founder post with external proof \u2014 not enrollment theater"
   ],
   "endpoints": {
-    "human_runbook": "https://twzrd-live-01q-host.vercel.app/path-b",
-    "machine_json": "https://twzrd-live-01q-host.vercel.app/api/path-b",
-    "board": "https://twzrd-live-01q-host.vercel.app/api/board",
-    "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt",
-    "intel_health": "https://twzrd-live-01q-host.vercel.app/api/intel-health"
+    "human_runbook": "https://twzrd-01q-board.vercel.app/path-b",
+    "machine_json": "https://twzrd-01q-board.vercel.app/api/path-b",
+    "board": "https://twzrd-01q-board.vercel.app/api/board",
+    "llms": "https://twzrd-01q-board.vercel.app/llms.txt",
+    "intel_health": "https://twzrd-01q-board.vercel.app/api/intel-health"
   },
   "metric_doctrine": {
     "primary": "path_b_artifacts_external",

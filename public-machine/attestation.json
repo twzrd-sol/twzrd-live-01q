@@ -156,8 +156,8 @@
       "preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
       "health": "https://intel.twzrd.xyz/health",
       "llms": "https://intel.twzrd.xyz/llms.txt",
-      "path_b_runbook": "https://twzrd-live-01q-host.vercel.app/api/path-b",
-      "live_board": "https://twzrd-live-01q-host.vercel.app/api/board"
+      "path_b_runbook": "https://twzrd-01q-board.vercel.app/api/path-b",
+      "live_board": "https://twzrd-01q-board.vercel.app/api/board"
     }
   },
   "distribution": {
@@ -204,11 +204,11 @@
     }
   ],
   "endpoints": {
-    "human": "https://twzrd-live-01q-host.vercel.app/attest",
-    "machine": "https://twzrd-live-01q-host.vercel.app/api/attestation",
-    "path_b": "https://twzrd-live-01q-host.vercel.app/api/path-b",
-    "board": "https://twzrd-live-01q-host.vercel.app/api/board",
-    "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt"
+    "human": "https://twzrd-01q-board.vercel.app/attest",
+    "machine": "https://twzrd-01q-board.vercel.app/api/attestation",
+    "path_b": "https://twzrd-01q-board.vercel.app/api/path-b",
+    "board": "https://twzrd-01q-board.vercel.app/api/board",
+    "llms": "https://twzrd-01q-board.vercel.app/llms.txt"
   },
   "metric_note": "Attestation / self-serve refuse does not close external Path B. Primary counter: path-b-artifacts.json"
 }

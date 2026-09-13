@@ -1,7 +1,7 @@
 # Agent start
 
-1. GET https://twzrd-live-01q-host.vercel.app/llms.txt
-2. GET https://twzrd-live-01q-host.vercel.app/api/board
+1. GET https://twzrd-01q-board.vercel.app/llms.txt
+2. GET https://twzrd-01q-board.vercel.app/api/board
 3. Pay decisions → POST https://intel.twzrd.xyz/v1/intel/preflight only
 
 Board schema: `twzrd.live_board/v1` · version in payload.

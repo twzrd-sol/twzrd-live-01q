@@ -7,8 +7,8 @@
     "name": "TWZRD Live 0\u21921Q",
     "owner": "TWZRD",
     "intel_base": "https://intel.twzrd.xyz",
-    "human_ui": "https://twzrd-live-01q-host.vercel.app/",
-    "machine_start": "https://twzrd-live-01q-host.vercel.app/llms.txt",
+    "human_ui": "https://twzrd-01q-board.vercel.app/",
+    "machine_start": "https://twzrd-01q-board.vercel.app/llms.txt",
     "job": "Trust infrastructure for agents that spend money \u2014 answer one question before funds move: who is this counterparty, and should I trust them?",
     "not_the_product": [
       "Agent directory as the product",
@@ -703,14 +703,14 @@
     "sprat_mirror": {
       "self": "https://raw.githubusercontent.com/twzrd-sol/sprat-brief/main/sprat.json",
       "llms_txt": "https://raw.githubusercontent.com/twzrd-sol/sprat-brief/main/llms.txt",
-      "canonical_host_llms": "https://twzrd-live-01q-host.vercel.app/llms.txt",
-      "canonical_host_board": "https://twzrd-live-01q-host.vercel.app/api/board",
+      "canonical_host_llms": "https://twzrd-01q-board.vercel.app/llms.txt",
+      "canonical_host_board": "https://twzrd-01q-board.vercel.app/api/board",
       "note": "SPRAT GitHub = source extract / history only. Start at Live Board."
     },
     "external": {
       "intel_llms": "https://intel.twzrd.xyz/llms.txt",
       "facilitator": "https://intel.twzrd.xyz",
-      "live_board": "https://twzrd-live-01q-host.vercel.app",
+      "live_board": "https://twzrd-01q-board.vercel.app",
       "cloudflare_agents_x402": "https://raw.githubusercontent.com/cloudflare/agents/main/packages/agents/src/mcp/x402.ts"
     },
     "fetched_at": "2026-08-12T00:27:55.596Z",
@@ -1038,11 +1038,11 @@
       "5. Launch founder post with external proof \u2014 not enrollment theater"
     ],
     "endpoints": {
-      "human_runbook": "https://twzrd-live-01q-host.vercel.app/path-b",
-      "machine_json": "https://twzrd-live-01q-host.vercel.app/api/path-b",
-      "board": "https://twzrd-live-01q-host.vercel.app/api/board",
-      "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt",
-      "intel_health": "https://twzrd-live-01q-host.vercel.app/api/intel-health"
+      "human_runbook": "https://twzrd-01q-board.vercel.app/path-b",
+      "machine_json": "https://twzrd-01q-board.vercel.app/api/path-b",
+      "board": "https://twzrd-01q-board.vercel.app/api/board",
+      "llms": "https://twzrd-01q-board.vercel.app/llms.txt",
+      "intel_health": "https://twzrd-01q-board.vercel.app/api/intel-health"
     },
     "metric_doctrine": {
       "primary": "path_b_artifacts_external",
@@ -1260,11 +1260,11 @@
       }
     ],
     "endpoints": {
-      "human": "https://twzrd-live-01q-host.vercel.app/attest",
-      "machine": "https://twzrd-live-01q-host.vercel.app/api/attestation",
-      "path_b": "https://twzrd-live-01q-host.vercel.app/api/path-b",
-      "board": "https://twzrd-live-01q-host.vercel.app/api/board",
-      "llms": "https://twzrd-live-01q-host.vercel.app/llms.txt"
+      "human": "https://twzrd-01q-board.vercel.app/attest",
+      "machine": "https://twzrd-01q-board.vercel.app/api/attestation",
+      "path_b": "https://twzrd-01q-board.vercel.app/api/path-b",
+      "board": "https://twzrd-01q-board.vercel.app/api/board",
+      "llms": "https://twzrd-01q-board.vercel.app/llms.txt"
     }
   },
   "next_actions": [
@@ -1396,17 +1396,17 @@
     "first_seat_note": "First external seat white-glove pack. No partner booked yet. Does not auto-close path_b_artifacts."
   },
   "endpoints": {
-    "human_ui": "https://twzrd-live-01q-host.vercel.app/",
-    "path_b_runbook": "https://twzrd-live-01q-host.vercel.app/path-b",
-    "path_b_json": "https://twzrd-live-01q-host.vercel.app/api/path-b",
-    "attestation": "https://twzrd-live-01q-host.vercel.app/attest",
-    "attestation_json": "https://twzrd-live-01q-host.vercel.app/api/attestation",
-    "llms_txt": "https://twzrd-live-01q-host.vercel.app/llms.txt",
-    "board_json": "https://twzrd-live-01q-host.vercel.app/api/board",
-    "status_json": "https://twzrd-live-01q-host.vercel.app/api/board/status",
-    "moves_json": "https://twzrd-live-01q-host.vercel.app/api/board/moves",
-    "openapi": "https://twzrd-live-01q-host.vercel.app/api/openapi.json",
-    "intel_health_proxy": "https://twzrd-live-01q-host.vercel.app/api/intel-health",
+    "human_ui": "https://twzrd-01q-board.vercel.app/",
+    "path_b_runbook": "https://twzrd-01q-board.vercel.app/path-b",
+    "path_b_json": "https://twzrd-01q-board.vercel.app/api/path-b",
+    "attestation": "https://twzrd-01q-board.vercel.app/attest",
+    "attestation_json": "https://twzrd-01q-board.vercel.app/api/attestation",
+    "llms_txt": "https://twzrd-01q-board.vercel.app/llms.txt",
+    "board_json": "https://twzrd-01q-board.vercel.app/api/board",
+    "status_json": "https://twzrd-01q-board.vercel.app/api/board/status",
+    "moves_json": "https://twzrd-01q-board.vercel.app/api/board/moves",
+    "openapi": "https://twzrd-01q-board.vercel.app/api/openapi.json",
+    "intel_health_proxy": "https://twzrd-01q-board.vercel.app/api/intel-health",
     "intel_upstream": "https://intel.twzrd.xyz/health",
     "intel_llms": "https://intel.twzrd.xyz/llms.txt",
     "intel_preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
@@ -1414,7 +1414,7 @@
     "sprat_extract_note": "SPRAT GitHub is source extract / history only \u2014 not a second start-here",
     "path_b_artifacts": "/api/path-b-artifacts",
     "path_b_artifacts_note": "PRIMARY Path B counter = external artifacts in this registry, not day0.gate_evals",
-    "path_b_artifacts_api": "https://twzrd-live-01q-host.vercel.app/api/path-b-artifacts",
+    "path_b_artifacts_api": "https://twzrd-01q-board.vercel.app/api/path-b-artifacts",
     "cascade": "board.cascade",
     "decision_spine": "board.decision_spine"
   },

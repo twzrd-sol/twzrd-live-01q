@@ -75,8 +75,8 @@ Copy `artifact.template.json` → fill → keep off public post until fields are
 
 | Surface | URL |
 |---------|-----|
-| Path B runbook (JSON) | https://twzrd-live-01q-host.vercel.app/api/path-b |
-| Live Board | https://twzrd-live-01q-host.vercel.app/api/board |
+| Path B runbook (JSON) | https://twzrd-01q-board.vercel.app/api/path-b |
+| Live Board | https://twzrd-01q-board.vercel.app/api/board |
 | Intel health | https://intel.twzrd.xyz/health |
 | Refuse fixture | https://intel.twzrd.xyz/v1/intel/refuse-fixture |
 | Gate package | https://www.npmjs.com/package/twzrd-x402-gate |
