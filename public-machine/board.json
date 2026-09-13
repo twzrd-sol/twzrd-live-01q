@@ -1421,8 +1421,8 @@
   "path_b_metrics": {
     "primary_key": "path_b_artifacts_external",
     "counts": {
-      "external_artifacts": 0,
-      "external_block": 0,
+      "external_artifacts": 1,
+      "external_block": 1,
       "external_allow": 0,
       "dogfood_self_serve": 1,
       "dogfood_note": "See public-machine/dogfood/* \u2014 not counted in external_artifacts"

@@ -1,0 +1,93 @@
+{
+  "schema": "twzrd.path_b_allow_evaluate.v1",
+  "captured_at": "2026-09-13T10:40:37.747Z",
+  "gate_package_version": "0.9.7",
+  "x402_solana_version": "3.0.0",
+  "usdc_spent": 0,
+  "signer_invocation_count": 0,
+  "payment_retry_count": 0,
+  "tx_signature": null,
+  "settlement_run": false,
+  "settlement_gap": "No env-gated operator wallet present. ALLOW arm is gate evaluate only; settlement not run; tx_signature left null (not invented).",
+  "target_url": "https://x402-solana-starter.fp4b5ksccw.workers.dev/report",
+  "http_status": 402,
+  "payment_required": {
+    "x402Version": 2,
+    "error": "Payment required",
+    "resource": {
+      "url": "https://x402-solana-starter.fp4b5ksccw.workers.dev/report",
+      "description": "A tiny generated status report — the one paid route this starter ships with. USDC on Solana mainnet via x402.",
+      "mimeType": "application/json"
+    },
+    "accepts": [
+      {
+        "scheme": "exact",
+        "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "amount": "10000",
+        "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "payTo": "GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs",
+        "maxTimeoutSeconds": 300,
+        "extra": {
+          "feePayer": "GWRLgRB6diC2zG9BaoGJsan9T8JvJCk7usFruiefnfMP"
+        },
+        "resource": "https://x402-solana-starter.fp4b5ksccw.workers.dev/report"
+      }
+    ]
+  },
+  "selected_requirements": {
+    "scheme": "exact",
+    "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "amount": "10000",
+    "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "payTo": "GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs",
+    "maxTimeoutSeconds": 300,
+    "extra": {
+      "feePayer": "GWRLgRB6diC2zG9BaoGJsan9T8JvJCk7usFruiefnfMP"
+    },
+    "resource": "https://x402-solana-starter.fp4b5ksccw.workers.dev/report"
+  },
+  "hook": {
+    "abort": false,
+    "reason": null,
+    "decision": {
+      "approved": true,
+      "reason": "twzrd_warn_allowed",
+      "verdict": "warn",
+      "payTo": "GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs",
+      "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+      "amountMicro": "10000",
+      "reputationScored": true,
+      "policyAction": "allow",
+      "resourceBind": {
+        "strength": "soft",
+        "evidence_level": "client_stamped",
+        "fact_type": "resource_bound",
+        "leaf_hash": "4f148acbca3d15e77e4010e54e06a646f9ef830fd0c29e3d94014a2d7f8f3fad",
+        "extra_stamped": false,
+        "reason": "bind hash local; seller extra not mutated (ExactSvm interop)"
+      }
+    }
+  },
+  "evaluateBeforePaymentCreation": {
+    "abort": false,
+    "reason": null,
+    "decision": {
+      "approved": true,
+      "reason": "twzrd_warn_allowed",
+      "verdict": "warn",
+      "payTo": "GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs",
+      "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+      "amountMicro": "10000",
+      "reputationScored": true,
+      "policyAction": "allow",
+      "resourceBind": {
+        "strength": "soft",
+        "evidence_level": "client_stamped",
+        "fact_type": "resource_bound",
+        "leaf_hash": "4f148acbca3d15e77e4010e54e06a646f9ef830fd0c29e3d94014a2d7f8f3fad",
+        "extra_stamped": false,
+        "reason": "bind hash local; seller extra not mutated (ExactSvm interop)"
+      }
+    }
+  }
+}

@@ -1,16 +1,18 @@
 {
   "schema": "twzrd.path_b_artifact_registry/v1",
-  "version": "1.0.0",
-  "generated_at": "2026-08-12T04:13:29.000Z",
-  "note": "Path B PRIMARY success = count of external attributable artifacts below. Self-serve / TWZRD dogfood does NOT close external adoption.",
+  "version": "1.0.1",
+  "generated_at": "2026-09-13T10:41:00.000Z",
+  "note": "Path B PRIMARY success = count of external attributable artifacts below. Self-serve / TWZRD refuse dumps under public-machine/dogfood/ do NOT close external adoption.",
+  "p1_note": "First filing is operator-controlled (Cursor Cloud Agent + first-seat-kit), not an independent partner. Packet P1 allows that path. ALLOW settlement was not run (no env-gated wallet); tx_signature is null.",
   "doctrine": {
     "primary": "external_path_b_artifacts",
     "primary_definition": "twzrd.path_b_artifact/v1 filed from a non-TWZRD-operated host with signer_invocation_count=0 on BLOCK (and matched ALLOW when claimed).",
+    "p1_operator_controlled": "Packet P1 also accepts one operator-controlled, non-self-serve filing so counts.external_artifacts can move. operator_type and verification.external_attribution_confirmed must stay honest.",
     "not_primary": [
       "day0.gate_evals \u2014 facilitator settle-gate telemetry (shadow/enforcing), not buyer AutoGate",
       "day0.gate_blocks \u2014 settle-rail only",
       "free_card_hits / free_card_hits_external \u2014 advisory preflight only",
-      "self_serve dogfood under public-machine/dogfood/ \u2014 closes_external_adoption_metric:false"
+      "self_serve refuse dumps under public-machine/dogfood/ \u2014 closes_external_adoption_metric:false"
     ],
     "cascade": "Seat artifact is first proof; closed outcome join compounds intelligence (product PR B).",
     "not_success": [
@@ -18,15 +20,104 @@
       "free_card_hits",
       "day0.gate_evals",
       "directory growth",
-      "self-serve dogfood"
+      "self-serve refuse dumps"
     ]
   },
-  "artifacts": [],
+  "artifacts": [
+    {
+      "schema": "twzrd.path_b_artifact/v1",
+      "id": "p1-2026-09-13-operator-controlled",
+      "metadata": {
+        "partner_codename": "P1-operator-seat",
+        "integration": "p1-first-seat-kit-cursor-cloud",
+        "operator_type": "operator_controlled",
+        "machine_note": "Cursor Cloud Agent VM (hostname cursor, Node v22.14.0), operator-dispatched first-seat-kit run on https://cursor.com/agents/bc-1af73df8-407d-4a59-83de-8d76066ecc2a. Not a partner-controlled laptop and not an independent external seat. Counted only because packet P1 allows operator-controlled, non-self-serve filings.",
+        "gate_package_version": "0.9.7",
+        "x402_solana_version": "3.0.0",
+        "captured_at": "2026-09-13T10:40:37.747Z"
+      },
+      "arm_block": {
+        "run_id": "1d5cd4e1-01a3-4c83-8754-85125ae7d945",
+        "source": "public-machine/first-seat-kit/COLD_VERIFY.sh",
+        "transcript_path": "public-machine/path-b-artifacts/p1-2026-09-13-block-transcript.json",
+        "decision": "block",
+        "signer_invocation_count": 0,
+        "payment_retry_count": 0,
+        "tx_signature": null,
+        "usdc_spent": 0,
+        "client_outcome": "refused_before_sign",
+        "verified": true,
+        "reason": "[twzrd] twzrd_decision_block payTo=CnTmHDXVEafkc8sFSzNky9w5zwk63Bk2mHZZodorjhvR network=solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+        "target_url": "https://intel.twzrd.xyz/v1/intel/refuse-fixture",
+        "pay_to": "CnTmHDXVEafkc8sFSzNky9w5zwk63Bk2mHZZodorjhvR",
+        "preflight_immediately_before_run": {
+          "decision": "block",
+          "can_spend": false
+        }
+      },
+      "arm_allow": {
+        "run_id": "f3cdf8cf-6b3d-4ead-a544-8302a76dcfe4",
+        "source": "createTwzrdBeforePaymentHook + evaluateBeforePaymentCreation (twzrd-x402-gate@0.9.7)",
+        "transcript_path": "public-machine/path-b-artifacts/p1-2026-09-13-allow-evaluate.json",
+        "decision": "allow",
+        "intel_decision": "warn",
+        "gate_verdict": "warn",
+        "gate_reason": "twzrd_warn_allowed",
+        "policy_action": "allow",
+        "gate_approved": true,
+        "gate_aborted": false,
+        "signer_invocation_count": 0,
+        "payment_retry_count": 0,
+        "tx_signature": null,
+        "usdc_spent": 0,
+        "settlement_run": false,
+        "http_status": 402,
+        "preflight_id": 656381,
+        "correlation_id": "fd72a46f-821f-4607-b40f-ae5c83ffebb7",
+        "recommended_action": "proceed_with_cap",
+        "recommended_cap_usdc": 0.01,
+        "pay_to": "GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs",
+        "target_url": "https://x402-solana-starter.fp4b5ksccw.workers.dev/report",
+        "note": "ALLOW arm is gate evaluate only. Official POST /v1/intel/preflight returned warn/can_spend=true/proceed_with_cap (preflight_id 656381). createTwzrdBeforePaymentHook did not abort (approved=true, policyAction=allow). No env-gated operator wallet was present, so settlement was not run and tx_signature is null \u2014 not invented."
+      },
+      "health_snapshot": {
+        "before": {
+          "path_b_artifacts": 0,
+          "free_card_hits_external": 10,
+          "seller_gate_evals_optional": 0,
+          "seller_gate_blocks_optional": 0,
+          "live_registry": "https://twzrd-01q-board.vercel.app/api/path-b-artifacts",
+          "intel_health": "https://intel.twzrd.xyz/health",
+          "intel_status": "ok",
+          "note": "day0.gate_evals is seller settle-rail only \u2014 optional, not success criterion"
+        },
+        "after": {
+          "path_b_artifacts": 1,
+          "note": "Registry-local count after this filing. Live GET /api/path-b-artifacts stays at 0 until this file is on main (proxy reads GitHub main / jsDelivr). Buyer refuse does not increment day0.gate_evals."
+        }
+      },
+      "verification": {
+        "valid_matched_pair": true,
+        "matched_pair_kind": "evaluate_only",
+        "settlement_complete": false,
+        "external_attribution_confirmed": false,
+        "closes_external_adoption_metric": true,
+        "closes_note": "P1 packet allows one operator-controlled, non-self-serve artifact to increment counts.external_artifacts. This is not an independent external partner seat."
+      },
+      "friction": [
+        "Kit ALLOW URL returns an empty JSON body; accepts live only on the PAYMENT-REQUIRED header. MCP evaluate_x402_resource reported '402 response has no accepts array' until the header was decoded.",
+        "No env-gated operator wallet / USDC in this environment \u2014 ALLOW settlement skipped on purpose.",
+        "COLD_VERIFY npm i emitted uuid@8.3.2 deprecation; cold refuse completed in ~14s on Node v22.14.0.",
+        "Refuse binary still labels lineage=self_serve_handoff_command and closes_external_adoption_metric=false until a path_b_artifact is filed (expected)."
+      ]
+    }
+  ],
   "counts": {
-    "external_artifacts": 0,
-    "external_block": 0,
+    "external_artifacts": 1,
+    "external_block": 1,
     "external_allow": 0,
     "dogfood_self_serve": 1,
-    "dogfood_note": "See public-machine/dogfood/* \u2014 not counted in external_artifacts"
+    "dogfood_note": "See public-machine/dogfood/* \u2014 not counted in external_artifacts",
+    "external_allow_note": "ALLOW evaluate captured (gate approved, policyAction=allow, no abort). Settlement not run \u2014 not counted in external_allow."
   }
 }
