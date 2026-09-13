@@ -2,7 +2,7 @@
   "schema": "twzrd.live_board/v1",
   "id": "twzrd-live-0-1q",
   "version": "1.5.0",
-  "generated_at": "2026-08-12T04:37:50.000Z",
+  "generated_at": "2026-09-13T09:50:46.000Z",
   "product": {
     "name": "TWZRD Live 0\u21921Q",
     "owner": "TWZRD",
@@ -1459,7 +1459,7 @@
   },
   "decision_spine": {
     "schema": "twzrd.decision_spine/v1",
-    "status": "merged on main (07281cb) \u2014 pending intel production deploy",
+    "status": "live intel e3f7abb8a (0.5.10 / twzrd-x402-gate@0.9.7); soft preflight_id join only",
     "chain": [
       "signed decision_id (preflight_id today; must become cryptographically bound)",
       "gate artifact",
@@ -1469,22 +1469,31 @@
       "score/policy evidence"
     ],
     "present": {
-      "preflight_id": "Server decision id on free preflight",
+      "preflight_id": "Server decision id on free preflight (observed live)",
       "preflight_request_id_on_settlement": "Store soft-associate ~30m",
       "path_b_artifact": "External refuse/allow transcript schema",
-      "challenge_extra_stamp": "accepts[].extra.twzrd_decision_id (on main, needs deploy)",
-      "outcome_attestation_endpoint": "POST /v1/intel/outcome-attestation (on main, needs deploy)",
-      "decision_id_alias": "preflight response + 402 body"
+      "correlation_id": "X-TWZRD-Correlation-Id + 402 resource query \u2014 not a decision_id bind"
     },
     "missing": {
-      "intel_production_deploy": "Ship 07281cb to intel.twzrd.xyz",
-      "on_chain_memo_commitment": "Protocol extension \u2014 not this PR",
-      "external_closed_loop": "Still need one external operator artifact"
+      "twzrd_decision_id_in_402_extra": "Live accepts[].extra has feePayer/decimals, not twzrd_decision_id",
+      "outcome_attestation_endpoint": "POST /v1/intel/outcome-attestation returns 404 on live intel",
+      "external_closed_loop": "Still need one external operator artifact",
+      "on_chain_memo_commitment": "Protocol extension \u2014 not this board"
     },
     "allow_closes_through": "settlement + authenticated outcome",
     "block_closes_through": "proof signing never occurred (signer_invocation_count=0)",
-    "product_pr": "https://github.com/twzrd-sol/wzrd-intel-deploy/pull/1",
-    "merged_at": "2026-08-12T04:37:32Z",
-    "merge_commit": "07281cb669de494a6cfbc1ae4b8d573cbbfb0365"
+    "live_intel": {
+      "health": "https://intel.twzrd.xyz/health",
+      "build_sha": "e3f7abb8ad2d77df2f46f37b691050a9b175be52",
+      "package_version": "0.5.10",
+      "gate_npm": "twzrd-x402-gate@0.9.7",
+      "observed_at": "2026-09-13T09:50:46Z"
+    },
+    "retired_sha": {
+      "sha": "07281cb669de494a6cfbc1ae4b8d573cbbfb0365",
+      "repo": "twzrd-sol/wzrd-intel-deploy",
+      "pr": "https://github.com/twzrd-sol/wzrd-intel-deploy/pull/1",
+      "note": "August decision-spine commit. It is not wzrd-final HEAD and must not be shipped over current intel."
+    }
   }
 }
