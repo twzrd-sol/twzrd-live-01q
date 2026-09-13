@@ -1,7 +1,7 @@
 /**
  * First external seat — matched BLOCK + ALLOW sketch for PayAI x402-solana + twzrd-x402-gate.
  *
- * Public APIs (verified against twzrd-x402-gate@0.8.14):
+ * Public APIs (verified against twzrd-x402-gate@0.9.7):
  *   createTwzrdBeforePaymentHook from "twzrd-x402-gate"
  *   createX402Client from "x402-solana" (beforePayment seat)
  *

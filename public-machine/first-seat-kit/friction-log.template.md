@@ -3,7 +3,7 @@
 * **Timestamp:** YYYY-MM-DD
 * **Operator / org:** (fill in once real)
 * **Machine note:** (external / partner-controlled)
-* **gate package version:** 0.8.14
+* **gate package version:** 0.9.7
 * **Peer dependencies encountered:** (e.g. `@x402/core`, `@solana/kit`, `x402-solana`)
 * **Time to first refuse decision:** (minutes)
 * **Cold verify exit:** (OK / FAIL + paste decision fields)

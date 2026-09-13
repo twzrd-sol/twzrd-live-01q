@@ -727,9 +727,9 @@
     "north_star": "Success = \u22651 external twzrd.path_b_artifact/v1 (non-TWZRD host) with signer_invocation_count=0 on BLOCK; matched ALLOW when claimed. Not day0.gate_evals.",
     "install": {
       "package": "twzrd-x402-gate",
-      "package_version": "0.8.14",
+      "package_version": "0.9.7",
       "npm": "https://www.npmjs.com/package/twzrd-x402-gate",
-      "cold_machine_cmd": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
+      "cold_machine_cmd": "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
       "expected_refuse": "signer_invocation_count=0 payment_retry_count=0",
       "links": [
         {
@@ -776,7 +776,7 @@
         "operator": "Partner shares terminal",
         "detail": "They paste the install one-liner and run the refuse eval binary. No wallet. No USDC. Goal is a clean refuse before any signer invocation.",
         "commands": [
-          "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js"
+          "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js"
         ],
         "expected": [
           "Process exits with signer_invocation_count=0",
@@ -943,7 +943,7 @@
         "partner_codename": "Seat 1",
         "date_iso": "2026-08-12",
         "machine_note": "partner macbook \u2014 external",
-        "gate_package_version": "0.8.14",
+        "gate_package_version": "0.9.7",
         "block": {
           "decision": "BLOCK",
           "signer_invocation_count": 0,
@@ -1206,7 +1206,7 @@
     "plug_in": {
       "title": "Plug into us (real endpoints)",
       "free_preflight_curl": "curl -sS -X POST https://intel.twzrd.xyz/v1/intel/preflight \\\n  -H 'content-type: application/json' \\\n  -d '{\"seller_wallet\":\"GFpLvocNdEjnSsLH3VJQL6wGcjGxTbUBrj6fqN3Qe1Gs\",\"price_usdc\":0.01,\"agent_intent\":\"preflight\"}'",
-      "path_b_gate": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0\n# wire beforePayment \u2192 evaluate \u2192 BLOCK aborts before signTransaction",
+      "path_b_gate": "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0\n# wire beforePayment \u2192 evaluate \u2192 BLOCK aborts before signTransaction",
       "paid_trust_note": "Paid V6 / trust calls buy portable proof after free preflight \u2014 they do not replace refuse-before-sign enforcement.",
       "live_endpoints": {
         "preflight": "https://intel.twzrd.xyz/v1/intel/preflight",
@@ -1388,7 +1388,7 @@
   ],
   "dogfood": {
     "title": "Cold-machine Path B refuse proof",
-    "command": "npm i twzrd-x402-gate@0.8.14 x402-solana@2.1.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
+    "command": "npm i twzrd-x402-gate@0.9.7 x402-solana@3.0.0 @x402/core @x402/fetch @x402/svm @solana/kit @scure/base\nnode node_modules/twzrd-x402-gate/bin/twzrd-gate-eval-refuse.js",
     "expected": "signer_invocation_count=0 payment_retry_count=0",
     "notes": "No wallet. No USDC. Proves cold refuse mechanics. Does NOT close external Path B adoption. Full external runbook: /path-b \u00b7 Attestation: /attest \u00b7 Registry: path-b-artifacts.json",
     "closes_external_adoption_metric": false,
