@@ -8,8 +8,8 @@ One question before funds move: *Who is this counterparty, and should I trust th
 **Canonical entry for agents**
 
 ```text
-https://twzrd-live-01q-host.vercel.app/llms.txt
-→ https://twzrd-live-01q-host.vercel.app/api/board
+https://twzrd-01q-board.vercel.app/llms.txt
+→ https://twzrd-01q-board.vercel.app/api/board
 ```
 
 | Surface | Path |

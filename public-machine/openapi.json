@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "https://twzrd-live-01q-host.vercel.app"
+      "url": "https://twzrd-01q-board.vercel.app"
     }
   ],
   "paths": {

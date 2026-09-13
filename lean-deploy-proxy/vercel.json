@@ -42,6 +42,14 @@
     {
       "source": "/api/path-b-artifacts",
       "destination": "/api/path-b-artifacts"
+    },
+    {
+      "source": "/path-b",
+      "destination": "/api/path-b"
+    },
+    {
+      "source": "/attest",
+      "destination": "/api/attestation"
     }
   ]
 }
