@@ -1,3 +1,5 @@
+import { fetchMachineText } from "../lib/http.mjs";
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
@@ -8,19 +10,13 @@ export default async function handler(req, res) {
     const url = new URL(req.url, "http://x");
     const format = (url.searchParams.get("format") || "json").toLowerCase();
     if (format === "md" || format === "markdown" || format === "txt") {
-      const r = await fetch(
-        "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/path-b.md",
-        { cache: "no-store" },
-      );
+      const r = await fetchMachineText("path-b.md");
       res.setHeader("content-type", "text/markdown; charset=utf-8");
-      return res.status(r.status).send(await r.text());
+      return res.status(r.status).send(r.text);
     }
-    const r = await fetch(
-      "https://cdn.jsdelivr.net/gh/twzrd-sol/twzrd-live-01q@main/public-machine/path-b.json",
-      { cache: "no-store" },
-    );
+    const r = await fetchMachineText("path-b.json");
     res.setHeader("content-type", "application/json; charset=utf-8");
-    res.status(r.status).send(await r.text());
+    res.status(r.status).send(r.text);
   } catch (e) {
     res.status(500).json({ error: String(e) });
   }
